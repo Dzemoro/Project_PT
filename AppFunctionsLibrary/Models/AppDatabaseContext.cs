@@ -17,5 +17,15 @@ namespace AppFunctionsLibrary.Models
         {
             throw new UnintentionalCodeFirstException();
         }
+
+        public DbSet<Channel> Channels { get; set; }
+        public DbSet<Connector> Connectors { get; set; }
+        public DbSet<ConnectorToWire> ConnectorsToWires { get; set; }
+        public DbSet<Device> Devices { get; set; }
+        public DbSet<Measurement> Measurements { get; set; }
+        public DbSet<Obstacle> Obstacles { get; set; }
+        public DbSet<ObstacleAmount> ObstaclesAmount { get; set; }
+        public DbSet<Wire> Wires { get; set; }
+        public DbSet<WireAttenuation> WiresAttenuation { get; set; }
     }
 }
