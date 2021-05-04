@@ -55,6 +55,15 @@
     <Compile Include="DAL\BaseRepository.cs" />
     <Compile Include="DAL\IRepository.cs" />
     <Compile Include="Models\AppDatabaseContext.cs" />
+    <Compile Include="Models\Channel.cs" />
+    <Compile Include="Models\Connector.cs" />
+    <Compile Include="Models\ConnectorToWire.cs" />
+    <Compile Include="Models\Device.cs" />
+    <Compile Include="Models\Measurement.cs" />
+    <Compile Include="Models\Obstacle.cs" />
+    <Compile Include="Models\ObstacleAmount.cs" />
+    <Compile Include="Models\Wire.cs" />
+    <Compile Include="Models\WireAttenuation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
