@@ -53,7 +53,16 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="DAL\BaseRepository.cs" />
+    <Compile Include="DAL\ChannelRepository.cs" />
+    <Compile Include="DAL\ConnectorRepository.cs" />
+    <Compile Include="DAL\ConnectorToWireRepository.cs" />
+    <Compile Include="DAL\DeviceRepository.cs" />
     <Compile Include="DAL\IRepository.cs" />
+    <Compile Include="DAL\MeasurementRepository.cs" />
+    <Compile Include="DAL\ObstacleAmountRepository.cs" />
+    <Compile Include="DAL\ObstacleRepository.cs" />
+    <Compile Include="DAL\WireAttenuationRepository.cs" />
+    <Compile Include="DAL\WireRepository.cs" />
     <Compile Include="Models\AppDatabaseContext.cs" />
     <Compile Include="Models\Channel.cs" />
     <Compile Include="Models\Connector.cs" />

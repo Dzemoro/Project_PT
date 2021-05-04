@@ -60,6 +60,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppFunctionsLibrary\AppFunctionsLibrary.csproj">
+      <Project>{ff904a3b-3d19-4b45-a504-62bfd3a7ef73}</Project>
+      <Name>AppFunctionsLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
