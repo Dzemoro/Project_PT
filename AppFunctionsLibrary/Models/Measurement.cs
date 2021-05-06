@@ -18,6 +18,10 @@ namespace AppFunctionsLibrary.Models
         public string name { get; set; }
         [Column("distance")]
         public float distance { get; set; }
+        [Column("wireLenghtT")]
+        public float wireLenghtT { get; set; }
+        [Column("wireLenghtR")]
+        public float wireLenghtR { get; set; }
         [Column("transmitter_id")]
         public int transmitter_id { get; set; }
         [Column("receiver_id")]
