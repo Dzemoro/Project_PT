@@ -70,5 +70,50 @@ namespace AppGUI
         {
 
         }
+
+        private void WireLabelT_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GainLabelT_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PowerLabelT_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TransmitterLabelT_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AttenuationWireLabelT_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LengthLabelT_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConnectorLabelT_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LengthTextBoxR_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
