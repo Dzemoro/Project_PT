@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,9 +18,6 @@ namespace AppGUI
         {
             InitializeComponent();
         }
-
-       
-
 
         private void koteczek_Click(object sender, EventArgs e)
         {
@@ -70,5 +69,36 @@ namespace AppGUI
         {
 
         }
+
+        private double GetValue(System.Windows.Forms.Control textBox)
+        {
+            var match = Regex.Match(textBox.Text, @"^[0-9]*\.?[0-9]+$");
+
+            if (match.Success && match.Value.Length == textBox.Text.Length)
+            {
+                NumberFormatInfo provider = new NumberFormatInfo();
+                provider.NumberDecimalSeparator = ".";
+                return Convert.ToDouble(textBox.Text, provider);
+            }
+            else
+            {
+                textBox.Text = "Wrong value!";
+                throw new Exception("Wrong value");
+            }
+        }
+
+        private void CountButton_Click(object sender, EventArgs e)
+        {
+            //MHz
+            try
+            {
+                double fsl = (20 * Math.Log10(GetValue(DistanceTextBox) / 1000)) + (20 * Math.Log10(GetValue(FrequencyComboBox))) + 32.44;
+                double rpl = GetValue(PowerTextBoxT) - GetValue(AttenuationWireTextBoxT) * GetValue(LengthTextBoxT) - GetValue(AttenuationConnectorTextBoxT) + GetValue(GainTextBoxT) - fsl + GetValue(GainTextBoxR) - GetValue(AttenuationWireTextBoxR) * GetValue(LengthTextBoxR) - GetValue(AttenuationConnectorTextBoxR);
+                rpl = Math.Round(rpl, 4);
+                ResultTextBox.Text = rpl.ToString();
+            }
+            catch (Exception ex) { }
+        }
     }
 }
+//todo: change FrequencyComboBox (take channelbox too idk)

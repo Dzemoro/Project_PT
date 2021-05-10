@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.LanguageButton = new System.Windows.Forms.Button();
             this.InfoButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.OpenButton = new System.Windows.Forms.Button();
@@ -65,7 +66,7 @@
             this.AttenuationWireLabelR = new System.Windows.Forms.Label();
             this.LengthLabelR = new System.Windows.Forms.Label();
             this.ConnectorLabelR = new System.Windows.Forms.Label();
-            this.GainComboBoxR = new System.Windows.Forms.TextBox();
+            this.GainTextBoxR = new System.Windows.Forms.TextBox();
             this.AttenuationConnectorTextBoxR = new System.Windows.Forms.TextBox();
             this.ConnectorComboBoxR = new System.Windows.Forms.ComboBox();
             this.LengthTextBoxR = new System.Windows.Forms.TextBox();
@@ -74,15 +75,15 @@
             this.CountButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.ChannelLabel = new System.Windows.Forms.Label();
             this.DistanceLabel = new System.Windows.Forms.Label();
             this.FrequencyLabel = new System.Windows.Forms.Label();
             this.ResultLabel = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.LanguageButton = new System.Windows.Forms.Button();
+            this.ResultTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.WireLabel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -102,6 +103,16 @@
             this.groupBox1.Size = new System.Drawing.Size(1019, 111);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // LanguageButton
+            // 
+            this.LanguageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.LanguageButton.Location = new System.Drawing.Point(791, 39);
+            this.LanguageButton.Name = "LanguageButton";
+            this.LanguageButton.Size = new System.Drawing.Size(75, 23);
+            this.LanguageButton.TabIndex = 27;
+            this.LanguageButton.Text = "PL/EN";
+            this.LanguageButton.UseVisualStyleBackColor = true;
             // 
             // InfoButton
             // 
@@ -147,7 +158,7 @@
             // 
             this.TransmitterComboBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.TransmitterComboBox.FormattingEnabled = true;
-            this.TransmitterComboBox.Location = new System.Drawing.Point(89, 13);
+            this.TransmitterComboBox.Location = new System.Drawing.Point(88, 13);
             this.TransmitterComboBox.Name = "TransmitterComboBox";
             this.TransmitterComboBox.Size = new System.Drawing.Size(121, 21);
             this.TransmitterComboBox.TabIndex = 3;
@@ -170,21 +181,21 @@
             // 
             // AttenuationConnectorTextBoxT
             // 
-            this.AttenuationConnectorTextBoxT.Location = new System.Drawing.Point(78, 332);
+            this.AttenuationConnectorTextBoxT.Location = new System.Drawing.Point(77, 332);
             this.AttenuationConnectorTextBoxT.Name = "AttenuationConnectorTextBoxT";
             this.AttenuationConnectorTextBoxT.Size = new System.Drawing.Size(100, 20);
             this.AttenuationConnectorTextBoxT.TabIndex = 6;
             // 
             // AttenuationWireTextBoxT
             // 
-            this.AttenuationWireTextBoxT.Location = new System.Drawing.Point(78, 191);
+            this.AttenuationWireTextBoxT.Location = new System.Drawing.Point(77, 191);
             this.AttenuationWireTextBoxT.Name = "AttenuationWireTextBoxT";
             this.AttenuationWireTextBoxT.Size = new System.Drawing.Size(100, 20);
             this.AttenuationWireTextBoxT.TabIndex = 7;
             // 
             // LengthTextBoxT
             // 
-            this.LengthTextBoxT.Location = new System.Drawing.Point(78, 238);
+            this.LengthTextBoxT.Location = new System.Drawing.Point(77, 238);
             this.LengthTextBoxT.Name = "LengthTextBoxT";
             this.LengthTextBoxT.Size = new System.Drawing.Size(100, 20);
             this.LengthTextBoxT.TabIndex = 8;
@@ -192,7 +203,7 @@
             // ConnectorComboBoxT
             // 
             this.ConnectorComboBoxT.FormattingEnabled = true;
-            this.ConnectorComboBoxT.Location = new System.Drawing.Point(78, 285);
+            this.ConnectorComboBoxT.Location = new System.Drawing.Point(77, 285);
             this.ConnectorComboBoxT.Name = "ConnectorComboBoxT";
             this.ConnectorComboBoxT.Size = new System.Drawing.Size(121, 21);
             this.ConnectorComboBoxT.TabIndex = 9;
@@ -200,7 +211,7 @@
             // WireComboBoxT
             // 
             this.WireComboBoxT.FormattingEnabled = true;
-            this.WireComboBoxT.Location = new System.Drawing.Point(78, 144);
+            this.WireComboBoxT.Location = new System.Drawing.Point(77, 144);
             this.WireComboBoxT.Name = "WireComboBoxT";
             this.WireComboBoxT.Size = new System.Drawing.Size(121, 21);
             this.WireComboBoxT.TabIndex = 10;
@@ -325,7 +336,7 @@
             // 
             this.GainLabelT.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.GainLabelT.AutoSize = true;
-            this.GainLabelT.Location = new System.Drawing.Point(23, 111);
+            this.GainLabelT.Location = new System.Drawing.Point(22, 111);
             this.GainLabelT.Name = "GainLabelT";
             this.GainLabelT.Size = new System.Drawing.Size(29, 13);
             this.GainLabelT.TabIndex = 13;
@@ -335,7 +346,7 @@
             // 
             this.PowerLabelT.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PowerLabelT.AutoSize = true;
-            this.PowerLabelT.Location = new System.Drawing.Point(19, 64);
+            this.PowerLabelT.Location = new System.Drawing.Point(18, 64);
             this.PowerLabelT.Name = "PowerLabelT";
             this.PowerLabelT.Size = new System.Drawing.Size(37, 13);
             this.PowerLabelT.TabIndex = 12;
@@ -346,7 +357,7 @@
             // 
             this.TransmitterLabelT.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.TransmitterLabelT.AutoSize = true;
-            this.TransmitterLabelT.Location = new System.Drawing.Point(8, 17);
+            this.TransmitterLabelT.Location = new System.Drawing.Point(7, 17);
             this.TransmitterLabelT.Name = "TransmitterLabelT";
             this.TransmitterLabelT.Size = new System.Drawing.Size(59, 13);
             this.TransmitterLabelT.TabIndex = 11;
@@ -367,7 +378,7 @@
             this.tableLayoutPanel2.Controls.Add(this.AttenuationWireLabelR, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.LengthLabelR, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.ConnectorLabelR, 0, 6);
-            this.tableLayoutPanel2.Controls.Add(this.GainComboBoxR, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.GainTextBoxR, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.AttenuationConnectorTextBoxR, 1, 7);
             this.tableLayoutPanel2.Controls.Add(this.ConnectorComboBoxR, 1, 6);
             this.tableLayoutPanel2.Controls.Add(this.LengthTextBoxR, 1, 5);
@@ -469,12 +480,12 @@
             this.ConnectorLabelR.TabIndex = 18;
             this.ConnectorLabelR.Text = "Connector";
             // 
-            // GainComboBoxR
+            // GainTextBoxR
             // 
-            this.GainComboBoxR.Location = new System.Drawing.Point(142, 97);
-            this.GainComboBoxR.Name = "GainComboBoxR";
-            this.GainComboBoxR.Size = new System.Drawing.Size(100, 20);
-            this.GainComboBoxR.TabIndex = 4;
+            this.GainTextBoxR.Location = new System.Drawing.Point(142, 97);
+            this.GainTextBoxR.Name = "GainTextBoxR";
+            this.GainTextBoxR.Size = new System.Drawing.Size(100, 20);
+            this.GainTextBoxR.TabIndex = 4;
             // 
             // AttenuationConnectorTextBoxR
             // 
@@ -522,6 +533,7 @@
             this.CountButton.TabIndex = 27;
             this.CountButton.Text = "Count";
             this.CountButton.UseVisualStyleBackColor = true;
+            this.CountButton.Click += new System.EventHandler(this.CountButton_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -556,6 +568,28 @@
             this.label2.Size = new System.Drawing.Size(54, 13);
             this.label2.TabIndex = 17;
             this.label2.Text = "Obstacles";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(138, 50);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 30);
+            this.listBox1.TabIndex = 34;
+            // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Location = new System.Drawing.Point(138, 97);
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
+            this.maskedTextBox1.TabIndex = 35;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(138, 3);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown1.TabIndex = 36;
             // 
             // ChannelLabel
             // 
@@ -594,47 +628,23 @@
             this.ResultLabel.TabIndex = 33;
             this.ResultLabel.Text = "Result";
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(138, 50);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 30);
-            this.listBox1.TabIndex = 34;
-            // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(138, 97);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBox1.TabIndex = 35;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(138, 3);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 36;
-            // 
             // toolTip1
             // 
             this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
             // 
-            // LanguageButton
+            // ResultTextBox
             // 
-            this.LanguageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.LanguageButton.Location = new System.Drawing.Point(791, 39);
-            this.LanguageButton.Name = "LanguageButton";
-            this.LanguageButton.Size = new System.Drawing.Size(75, 23);
-            this.LanguageButton.TabIndex = 27;
-            this.LanguageButton.Text = "PL/EN";
-            this.LanguageButton.UseVisualStyleBackColor = true;
+            this.ResultTextBox.Location = new System.Drawing.Point(850, 563);
+            this.ResultTextBox.Name = "ResultTextBox";
+            this.ResultTextBox.Size = new System.Drawing.Size(100, 20);
+            this.ResultTextBox.TabIndex = 34;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1160, 628);
+            this.Controls.Add(this.ResultTextBox);
             this.Controls.Add(this.ResultLabel);
             this.Controls.Add(this.FrequencyLabel);
             this.Controls.Add(this.DistanceLabel);
@@ -693,7 +703,7 @@
         private System.Windows.Forms.Label TransmitterLabelT;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TextBox LengthTextBoxR;
-        private System.Windows.Forms.TextBox GainComboBoxR;
+        private System.Windows.Forms.TextBox GainTextBoxR;
         private System.Windows.Forms.ComboBox ReceiverComboBox;
         private System.Windows.Forms.ComboBox ConnectorComboBoxR;
         private System.Windows.Forms.TextBox AttenuationWireTextBoxR;
@@ -719,6 +729,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button LanguageButton;
+        private System.Windows.Forms.TextBox ResultTextBox;
     }
 }
 
