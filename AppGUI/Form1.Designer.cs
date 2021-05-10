@@ -47,7 +47,7 @@
             this.ChannelComboBox = new System.Windows.Forms.ComboBox();
             this.FrequencyComboBox = new System.Windows.Forms.ComboBox();
             this.koteczek = new System.Windows.Forms.Label();
-            this.WireLabel = new System.Windows.Forms.TableLayoutPanel();
+            this.TransmitterTable = new System.Windows.Forms.TableLayoutPanel();
             this.AttenuationConnectorLabelT = new System.Windows.Forms.Label();
             this.ConnectorLabelT = new System.Windows.Forms.Label();
             this.LengthLabelT = new System.Windows.Forms.Label();
@@ -56,7 +56,7 @@
             this.GainLabelT = new System.Windows.Forms.Label();
             this.PowerLabelT = new System.Windows.Forms.Label();
             this.TransmitterLabelT = new System.Windows.Forms.Label();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.ReceiverTable = new System.Windows.Forms.TableLayoutPanel();
             this.AttenuationConnectorLabelR = new System.Windows.Forms.Label();
             this.ReceiverComboBox = new System.Windows.Forms.ComboBox();
             this.ReceiverLabel = new System.Windows.Forms.Label();
@@ -88,8 +88,8 @@
             this.Amount2Column = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.DeleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
-            this.WireLabel.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.TransmitterTable.SuspendLayout();
+            this.ReceiverTable.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ObstaclesDataGridView)).BeginInit();
@@ -258,43 +258,43 @@
             this.koteczek.Text = "koteczek";
             this.koteczek.Click += new System.EventHandler(this.koteczek_Click);
             // 
-            // WireLabel
+            // TransmitterTable
             // 
-            this.WireLabel.ColumnCount = 2;
-            this.WireLabel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.48214F));
-            this.WireLabel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.51786F));
-            this.WireLabel.Controls.Add(this.AttenuationConnectorLabelT, 0, 7);
-            this.WireLabel.Controls.Add(this.ConnectorLabelT, 0, 6);
-            this.WireLabel.Controls.Add(this.LengthLabelT, 0, 5);
-            this.WireLabel.Controls.Add(this.AttenuationWireLabelT, 0, 4);
-            this.WireLabel.Controls.Add(this.WireLabelT, 0, 3);
-            this.WireLabel.Controls.Add(this.GainLabelT, 0, 2);
-            this.WireLabel.Controls.Add(this.PowerLabelT, 0, 1);
-            this.WireLabel.Controls.Add(this.GainTextBoxT, 1, 2);
-            this.WireLabel.Controls.Add(this.AttenuationWireTextBoxT, 1, 4);
-            this.WireLabel.Controls.Add(this.PowerTextBoxT, 1, 1);
-            this.WireLabel.Controls.Add(this.WireComboBoxT, 1, 3);
-            this.WireLabel.Controls.Add(this.ConnectorComboBoxT, 1, 6);
-            this.WireLabel.Controls.Add(this.LengthTextBoxT, 1, 5);
-            this.WireLabel.Controls.Add(this.AttenuationConnectorTextBoxT, 1, 7);
-            this.WireLabel.Controls.Add(this.TransmitterComboBox, 1, 0);
-            this.WireLabel.Controls.Add(this.TransmitterLabelT, 0, 0);
-            this.WireLabel.Location = new System.Drawing.Point(50, 129);
-            this.WireLabel.Name = "WireLabel";
-            this.WireLabel.RowCount = 8;
-            this.WireLabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.WireLabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.WireLabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.WireLabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.WireLabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.WireLabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.WireLabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.WireLabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.WireLabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.WireLabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.WireLabel.Size = new System.Drawing.Size(224, 377);
-            this.WireLabel.TabIndex = 22;
-            this.WireLabel.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            this.TransmitterTable.ColumnCount = 2;
+            this.TransmitterTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.48214F));
+            this.TransmitterTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.51786F));
+            this.TransmitterTable.Controls.Add(this.AttenuationConnectorLabelT, 0, 7);
+            this.TransmitterTable.Controls.Add(this.ConnectorLabelT, 0, 6);
+            this.TransmitterTable.Controls.Add(this.LengthLabelT, 0, 5);
+            this.TransmitterTable.Controls.Add(this.AttenuationWireLabelT, 0, 4);
+            this.TransmitterTable.Controls.Add(this.WireLabelT, 0, 3);
+            this.TransmitterTable.Controls.Add(this.GainLabelT, 0, 2);
+            this.TransmitterTable.Controls.Add(this.PowerLabelT, 0, 1);
+            this.TransmitterTable.Controls.Add(this.GainTextBoxT, 1, 2);
+            this.TransmitterTable.Controls.Add(this.AttenuationWireTextBoxT, 1, 4);
+            this.TransmitterTable.Controls.Add(this.PowerTextBoxT, 1, 1);
+            this.TransmitterTable.Controls.Add(this.WireComboBoxT, 1, 3);
+            this.TransmitterTable.Controls.Add(this.ConnectorComboBoxT, 1, 6);
+            this.TransmitterTable.Controls.Add(this.LengthTextBoxT, 1, 5);
+            this.TransmitterTable.Controls.Add(this.AttenuationConnectorTextBoxT, 1, 7);
+            this.TransmitterTable.Controls.Add(this.TransmitterComboBox, 1, 0);
+            this.TransmitterTable.Controls.Add(this.TransmitterLabelT, 0, 0);
+            this.TransmitterTable.Location = new System.Drawing.Point(50, 129);
+            this.TransmitterTable.Name = "TransmitterTable";
+            this.TransmitterTable.RowCount = 8;
+            this.TransmitterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.TransmitterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.TransmitterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.TransmitterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.TransmitterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.TransmitterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.TransmitterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.TransmitterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.TransmitterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.TransmitterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.TransmitterTable.Size = new System.Drawing.Size(224, 377);
+            this.TransmitterTable.TabIndex = 22;
+            this.TransmitterTable.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // AttenuationConnectorLabelT
             // 
@@ -385,42 +385,42 @@
             this.TransmitterLabelT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.TransmitterLabelT.Click += new System.EventHandler(this.TransmitterLabelT_Click);
             // 
-            // tableLayoutPanel2
+            // ReceiverTable
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.AttenuationConnectorLabelR, 0, 7);
-            this.tableLayoutPanel2.Controls.Add(this.ReceiverComboBox, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.ReceiverLabel, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label10, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.GainLabelR, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.WireLabelR, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.AttenuationWireLabelR, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.LengthLabelR, 0, 5);
-            this.tableLayoutPanel2.Controls.Add(this.ConnectorLabelR, 0, 6);
-            this.tableLayoutPanel2.Controls.Add(this.GainComboBoxR, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.AttenuationConnectorTextBoxR, 1, 7);
-            this.tableLayoutPanel2.Controls.Add(this.ConnectorComboBoxR, 1, 6);
-            this.tableLayoutPanel2.Controls.Add(this.LengthTextBoxR, 1, 5);
-            this.tableLayoutPanel2.Controls.Add(this.AttenuationWireTextBoxR, 1, 4);
-            this.tableLayoutPanel2.Controls.Add(this.WireComboBoxR, 1, 3);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(397, 129);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 8;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(278, 377);
-            this.tableLayoutPanel2.TabIndex = 23;
-            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
+            this.ReceiverTable.ColumnCount = 2;
+            this.ReceiverTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.ReceiverTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.ReceiverTable.Controls.Add(this.AttenuationConnectorLabelR, 0, 7);
+            this.ReceiverTable.Controls.Add(this.ReceiverComboBox, 1, 0);
+            this.ReceiverTable.Controls.Add(this.ReceiverLabel, 0, 0);
+            this.ReceiverTable.Controls.Add(this.label10, 0, 1);
+            this.ReceiverTable.Controls.Add(this.GainLabelR, 0, 2);
+            this.ReceiverTable.Controls.Add(this.WireLabelR, 0, 3);
+            this.ReceiverTable.Controls.Add(this.AttenuationWireLabelR, 0, 4);
+            this.ReceiverTable.Controls.Add(this.LengthLabelR, 0, 5);
+            this.ReceiverTable.Controls.Add(this.ConnectorLabelR, 0, 6);
+            this.ReceiverTable.Controls.Add(this.GainComboBoxR, 1, 2);
+            this.ReceiverTable.Controls.Add(this.AttenuationConnectorTextBoxR, 1, 7);
+            this.ReceiverTable.Controls.Add(this.ConnectorComboBoxR, 1, 6);
+            this.ReceiverTable.Controls.Add(this.LengthTextBoxR, 1, 5);
+            this.ReceiverTable.Controls.Add(this.AttenuationWireTextBoxR, 1, 4);
+            this.ReceiverTable.Controls.Add(this.WireComboBoxR, 1, 3);
+            this.ReceiverTable.Location = new System.Drawing.Point(397, 129);
+            this.ReceiverTable.Name = "ReceiverTable";
+            this.ReceiverTable.RowCount = 8;
+            this.ReceiverTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.ReceiverTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.ReceiverTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.ReceiverTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.ReceiverTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.ReceiverTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.ReceiverTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.ReceiverTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.ReceiverTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.ReceiverTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.ReceiverTable.Size = new System.Drawing.Size(278, 377);
+            this.ReceiverTable.TabIndex = 23;
+            this.ReceiverTable.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
             // AttenuationConnectorLabelR
             // 
@@ -728,8 +728,8 @@
             this.Controls.Add(this.ChannelLabel);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.CountButton);
-            this.Controls.Add(this.tableLayoutPanel2);
-            this.Controls.Add(this.WireLabel);
+            this.Controls.Add(this.ReceiverTable);
+            this.Controls.Add(this.TransmitterTable);
             this.Controls.Add(this.koteczek);
             this.Controls.Add(this.FrequencyComboBox);
             this.Controls.Add(this.ChannelComboBox);
@@ -739,10 +739,10 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
-            this.WireLabel.ResumeLayout(false);
-            this.WireLabel.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            this.TransmitterTable.ResumeLayout(false);
+            this.TransmitterTable.PerformLayout();
+            this.ReceiverTable.ResumeLayout(false);
+            this.ReceiverTable.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
@@ -766,7 +766,7 @@
         private System.Windows.Forms.ComboBox ChannelComboBox;
         private System.Windows.Forms.ComboBox FrequencyComboBox;
         private System.Windows.Forms.Label koteczek;
-        private System.Windows.Forms.TableLayoutPanel WireLabel;
+        private System.Windows.Forms.TableLayoutPanel TransmitterTable;
         private System.Windows.Forms.Button OpenButton;
         private System.Windows.Forms.Button NewButton;
         private System.Windows.Forms.Button InfoButton;
@@ -779,7 +779,7 @@
         private System.Windows.Forms.Label GainLabelT;
         private System.Windows.Forms.Label PowerLabelT;
         private System.Windows.Forms.Label TransmitterLabelT;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel ReceiverTable;
         private System.Windows.Forms.TextBox LengthTextBoxR;
         private System.Windows.Forms.TextBox GainComboBoxR;
         private System.Windows.Forms.ComboBox ReceiverComboBox;
