@@ -13,5 +13,9 @@ namespace AppFunctionsLibrary.DAL
         {
 
         }
+        public Device GetDevice(int id)
+        {
+            return dbSet.SingleOrDefault(x => x.id == id);
+        }
     }
 }
