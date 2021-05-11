@@ -74,7 +74,7 @@
             this.WireComboBoxR = new System.Windows.Forms.ComboBox();
             this.CountButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.ObstaclesLabel = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.ChannelLabel = new System.Windows.Forms.Label();
             this.DistanceLabel = new System.Windows.Forms.Label();
@@ -117,6 +117,7 @@
             this.LanguageButton.TabIndex = 27;
             this.LanguageButton.Text = "PL/EN";
             this.LanguageButton.UseVisualStyleBackColor = true;
+            this.LanguageButton.Click += new System.EventHandler(this.LanguageButton_Click);
             // 
             // InfoButton
             // 
@@ -127,6 +128,7 @@
             this.InfoButton.TabIndex = 26;
             this.InfoButton.Text = "Info";
             this.InfoButton.UseVisualStyleBackColor = true;
+            this.InfoButton.Click += new System.EventHandler(this.InfoButton_Click);
             // 
             // SaveButton
             // 
@@ -261,8 +263,8 @@
             // TransmitterTable
             // 
             this.TransmitterTable.ColumnCount = 2;
-            this.TransmitterTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.48214F));
-            this.TransmitterTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.51786F));
+            this.TransmitterTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.625F));
+            this.TransmitterTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 59.375F));
             this.TransmitterTable.Controls.Add(this.AttenuationConnectorLabelT, 0, 7);
             this.TransmitterTable.Controls.Add(this.ConnectorLabelT, 0, 6);
             this.TransmitterTable.Controls.Add(this.LengthLabelT, 0, 5);
@@ -301,9 +303,9 @@
             this.AttenuationConnectorLabelT.AutoSize = true;
             this.AttenuationConnectorLabelT.Location = new System.Drawing.Point(3, 346);
             this.AttenuationConnectorLabelT.Name = "AttenuationConnectorLabelT";
-            this.AttenuationConnectorLabelT.Size = new System.Drawing.Size(61, 13);
+            this.AttenuationConnectorLabelT.Size = new System.Drawing.Size(83, 13);
             this.AttenuationConnectorLabelT.TabIndex = 18;
-            this.AttenuationConnectorLabelT.Text = "Attenuation";
+            this.AttenuationConnectorLabelT.Text = "Attenuation [dB]";
             // 
             // ConnectorLabelT
             // 
@@ -321,9 +323,9 @@
             this.LengthLabelT.AutoSize = true;
             this.LengthLabelT.Location = new System.Drawing.Point(3, 252);
             this.LengthLabelT.Name = "LengthLabelT";
-            this.LengthLabelT.Size = new System.Drawing.Size(40, 13);
+            this.LengthLabelT.Size = new System.Drawing.Size(57, 13);
             this.LengthLabelT.TabIndex = 16;
-            this.LengthLabelT.Text = "Length";
+            this.LengthLabelT.Text = "Length [m]";
             // 
             // AttenuationWireLabelT
             // 
@@ -331,9 +333,9 @@
             this.AttenuationWireLabelT.AutoSize = true;
             this.AttenuationWireLabelT.Location = new System.Drawing.Point(3, 205);
             this.AttenuationWireLabelT.Name = "AttenuationWireLabelT";
-            this.AttenuationWireLabelT.Size = new System.Drawing.Size(61, 13);
+            this.AttenuationWireLabelT.Size = new System.Drawing.Size(83, 13);
             this.AttenuationWireLabelT.TabIndex = 15;
-            this.AttenuationWireLabelT.Text = "Attenuation";
+            this.AttenuationWireLabelT.Text = "Attenuation [dB]";
             // 
             // WireLabelT
             // 
@@ -351,9 +353,9 @@
             this.GainLabelT.AutoSize = true;
             this.GainLabelT.Location = new System.Drawing.Point(3, 111);
             this.GainLabelT.Name = "GainLabelT";
-            this.GainLabelT.Size = new System.Drawing.Size(29, 13);
+            this.GainLabelT.Size = new System.Drawing.Size(53, 13);
             this.GainLabelT.TabIndex = 13;
-            this.GainLabelT.Text = "Gain";
+            this.GainLabelT.Text = "Gain [dBi]";
             // 
             // PowerLabelT
             // 
@@ -361,9 +363,9 @@
             this.PowerLabelT.AutoSize = true;
             this.PowerLabelT.Location = new System.Drawing.Point(3, 64);
             this.PowerLabelT.Name = "PowerLabelT";
-            this.PowerLabelT.Size = new System.Drawing.Size(37, 13);
+            this.PowerLabelT.Size = new System.Drawing.Size(67, 13);
             this.PowerLabelT.TabIndex = 12;
-            this.PowerLabelT.Text = "Power";
+            this.PowerLabelT.Text = "Power [dBm]";
             this.PowerLabelT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // TransmitterLabelT
@@ -419,9 +421,9 @@
             this.AttenuationConnectorLabelR.AutoSize = true;
             this.AttenuationConnectorLabelR.Location = new System.Drawing.Point(3, 346);
             this.AttenuationConnectorLabelR.Name = "AttenuationConnectorLabelR";
-            this.AttenuationConnectorLabelR.Size = new System.Drawing.Size(61, 13);
+            this.AttenuationConnectorLabelR.Size = new System.Drawing.Size(83, 13);
             this.AttenuationConnectorLabelR.TabIndex = 19;
-            this.AttenuationConnectorLabelR.Text = "Attenuation";
+            this.AttenuationConnectorLabelR.Text = "Attenuation [dB]";
             // 
             // ReceiverComboBox
             // 
@@ -456,9 +458,9 @@
             this.GainLabelR.AutoSize = true;
             this.GainLabelR.Location = new System.Drawing.Point(3, 111);
             this.GainLabelR.Name = "GainLabelR";
-            this.GainLabelR.Size = new System.Drawing.Size(29, 13);
+            this.GainLabelR.Size = new System.Drawing.Size(53, 13);
             this.GainLabelR.TabIndex = 14;
-            this.GainLabelR.Text = "Gain";
+            this.GainLabelR.Text = "Gain [dBi]";
             // 
             // WireLabelR
             // 
@@ -476,9 +478,9 @@
             this.AttenuationWireLabelR.AutoSize = true;
             this.AttenuationWireLabelR.Location = new System.Drawing.Point(3, 205);
             this.AttenuationWireLabelR.Name = "AttenuationWireLabelR";
-            this.AttenuationWireLabelR.Size = new System.Drawing.Size(61, 13);
+            this.AttenuationWireLabelR.Size = new System.Drawing.Size(83, 13);
             this.AttenuationWireLabelR.TabIndex = 16;
-            this.AttenuationWireLabelR.Text = "Attenuation";
+            this.AttenuationWireLabelR.Text = "Attenuation [dB]";
             // 
             // LengthLabelR
             // 
@@ -486,9 +488,9 @@
             this.LengthLabelR.AutoSize = true;
             this.LengthLabelR.Location = new System.Drawing.Point(3, 252);
             this.LengthLabelR.Name = "LengthLabelR";
-            this.LengthLabelR.Size = new System.Drawing.Size(40, 13);
+            this.LengthLabelR.Size = new System.Drawing.Size(57, 13);
             this.LengthLabelR.TabIndex = 17;
-            this.LengthLabelR.Text = "Length";
+            this.LengthLabelR.Text = "Length [m]";
             // 
             // ConnectorLabelR
             // 
@@ -566,7 +568,7 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.ObstaclesLabel, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.numericUpDown1, 1, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(757, 129);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -584,14 +586,14 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(270, 60);
             this.tableLayoutPanel3.TabIndex = 24;
             // 
-            // label2
+            // ObstaclesLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 13);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Obstacles";
+            this.ObstaclesLabel.AutoSize = true;
+            this.ObstaclesLabel.Location = new System.Drawing.Point(3, 0);
+            this.ObstaclesLabel.Name = "ObstaclesLabel";
+            this.ObstaclesLabel.Size = new System.Drawing.Size(54, 13);
+            this.ObstaclesLabel.TabIndex = 17;
+            this.ObstaclesLabel.Text = "Obstacles";
             // 
             // numericUpDown1
             // 
@@ -614,27 +616,27 @@
             this.DistanceLabel.AutoSize = true;
             this.DistanceLabel.Location = new System.Drawing.Point(47, 530);
             this.DistanceLabel.Name = "DistanceLabel";
-            this.DistanceLabel.Size = new System.Drawing.Size(49, 13);
+            this.DistanceLabel.Size = new System.Drawing.Size(66, 13);
             this.DistanceLabel.TabIndex = 31;
-            this.DistanceLabel.Text = "Distance";
+            this.DistanceLabel.Text = "Distance [m]";
             // 
             // FrequencyLabel
             // 
             this.FrequencyLabel.AutoSize = true;
             this.FrequencyLabel.Location = new System.Drawing.Point(47, 560);
             this.FrequencyLabel.Name = "FrequencyLabel";
-            this.FrequencyLabel.Size = new System.Drawing.Size(57, 13);
+            this.FrequencyLabel.Size = new System.Drawing.Size(88, 13);
             this.FrequencyLabel.TabIndex = 32;
-            this.FrequencyLabel.Text = "Frequency";
+            this.FrequencyLabel.Text = "Frequency [MHz]";
             // 
             // ResultLabel
             // 
             this.ResultLabel.AutoSize = true;
             this.ResultLabel.Location = new System.Drawing.Point(860, 534);
             this.ResultLabel.Name = "ResultLabel";
-            this.ResultLabel.Size = new System.Drawing.Size(50, 13);
+            this.ResultLabel.Size = new System.Drawing.Size(72, 13);
             this.ResultLabel.TabIndex = 33;
-            this.ResultLabel.Text = "RESULT";
+            this.ResultLabel.Text = "RESULT [dB]";
             // 
             // toolTip1
             // 
@@ -725,7 +727,7 @@
             this.Controls.Add(this.DistanceTextBox);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Link Budget Calculator";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.TransmitterTable.ResumeLayout(false);
@@ -786,7 +788,7 @@
         private System.Windows.Forms.Label LengthLabelR;
         private System.Windows.Forms.Label ConnectorLabelR;
         private System.Windows.Forms.Label AttenuationConnectorLabelR;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label ObstaclesLabel;
         private System.Windows.Forms.Label ChannelLabel;
         private System.Windows.Forms.Label DistanceLabel;
         private System.Windows.Forms.Label FrequencyLabel;

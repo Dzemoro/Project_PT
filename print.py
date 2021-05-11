@@ -10,7 +10,8 @@ cursor = conn.cursor()
 #cursor.execute("DROP TABLE IF EXISTS Devices")
 
 #Creating table as per requirement
-sql = "SELECT * FROM Devices;"
+sql = "SELECT * FROM ConnectorsToWires;"
+print(sql)
 cursor.execute(sql)
 
 rows = cursor.fetchall()

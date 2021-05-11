@@ -1,2 +1,10 @@
-INSERT INTO Devices (name, power, gain) VALUES ('test1', 20, 16);
-INSERT INTO Devices (name, power, gain) VALUES ('test2', 24, 3);
+INSERT INTO Channels (number, band, frequency) VALUES ();
+
+
+
+CREATE TABLE Channels (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  number INTEGER NOT NULL,
+  band INTEGER NOT NULL,
+  frequency INTEGER NOT NULL
+);
