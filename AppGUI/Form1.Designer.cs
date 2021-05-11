@@ -66,7 +66,7 @@
             this.AttenuationWireLabelR = new System.Windows.Forms.Label();
             this.LengthLabelR = new System.Windows.Forms.Label();
             this.ConnectorLabelR = new System.Windows.Forms.Label();
-            this.GainComboBoxR = new System.Windows.Forms.TextBox();
+            this.GainTextBoxR = new System.Windows.Forms.TextBox();
             this.AttenuationConnectorTextBoxR = new System.Windows.Forms.TextBox();
             this.ConnectorComboBoxR = new System.Windows.Forms.ComboBox();
             this.LengthTextBoxR = new System.Windows.Forms.TextBox();
@@ -294,7 +294,6 @@
             this.TransmitterTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.TransmitterTable.Size = new System.Drawing.Size(224, 377);
             this.TransmitterTable.TabIndex = 22;
-            this.TransmitterTable.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // AttenuationConnectorLabelT
             // 
@@ -315,7 +314,6 @@
             this.ConnectorLabelT.Size = new System.Drawing.Size(56, 13);
             this.ConnectorLabelT.TabIndex = 17;
             this.ConnectorLabelT.Text = "Connector";
-            this.ConnectorLabelT.Click += new System.EventHandler(this.ConnectorLabelT_Click);
             // 
             // LengthLabelT
             // 
@@ -326,7 +324,6 @@
             this.LengthLabelT.Size = new System.Drawing.Size(40, 13);
             this.LengthLabelT.TabIndex = 16;
             this.LengthLabelT.Text = "Length";
-            this.LengthLabelT.Click += new System.EventHandler(this.LengthLabelT_Click);
             // 
             // AttenuationWireLabelT
             // 
@@ -337,7 +334,6 @@
             this.AttenuationWireLabelT.Size = new System.Drawing.Size(61, 13);
             this.AttenuationWireLabelT.TabIndex = 15;
             this.AttenuationWireLabelT.Text = "Attenuation";
-            this.AttenuationWireLabelT.Click += new System.EventHandler(this.AttenuationWireLabelT_Click);
             // 
             // WireLabelT
             // 
@@ -348,7 +344,6 @@
             this.WireLabelT.Size = new System.Drawing.Size(29, 13);
             this.WireLabelT.TabIndex = 14;
             this.WireLabelT.Text = "Wire";
-            this.WireLabelT.Click += new System.EventHandler(this.WireLabelT_Click);
             // 
             // GainLabelT
             // 
@@ -359,7 +354,6 @@
             this.GainLabelT.Size = new System.Drawing.Size(29, 13);
             this.GainLabelT.TabIndex = 13;
             this.GainLabelT.Text = "Gain";
-            this.GainLabelT.Click += new System.EventHandler(this.GainLabelT_Click);
             // 
             // PowerLabelT
             // 
@@ -371,7 +365,6 @@
             this.PowerLabelT.TabIndex = 12;
             this.PowerLabelT.Text = "Power";
             this.PowerLabelT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.PowerLabelT.Click += new System.EventHandler(this.PowerLabelT_Click);
             // 
             // TransmitterLabelT
             // 
@@ -383,7 +376,6 @@
             this.TransmitterLabelT.TabIndex = 11;
             this.TransmitterLabelT.Text = "Transmitter";
             this.TransmitterLabelT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.TransmitterLabelT.Click += new System.EventHandler(this.TransmitterLabelT_Click);
             // 
             // ReceiverTable
             // 
@@ -399,7 +391,7 @@
             this.ReceiverTable.Controls.Add(this.AttenuationWireLabelR, 0, 4);
             this.ReceiverTable.Controls.Add(this.LengthLabelR, 0, 5);
             this.ReceiverTable.Controls.Add(this.ConnectorLabelR, 0, 6);
-            this.ReceiverTable.Controls.Add(this.GainComboBoxR, 1, 2);
+            this.ReceiverTable.Controls.Add(this.GainTextBoxR, 1, 2);
             this.ReceiverTable.Controls.Add(this.AttenuationConnectorTextBoxR, 1, 7);
             this.ReceiverTable.Controls.Add(this.ConnectorComboBoxR, 1, 6);
             this.ReceiverTable.Controls.Add(this.LengthTextBoxR, 1, 5);
@@ -420,7 +412,6 @@
             this.ReceiverTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.ReceiverTable.Size = new System.Drawing.Size(278, 377);
             this.ReceiverTable.TabIndex = 23;
-            this.ReceiverTable.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
             // AttenuationConnectorLabelR
             // 
@@ -509,13 +500,13 @@
             this.ConnectorLabelR.TabIndex = 18;
             this.ConnectorLabelR.Text = "Connector";
             // 
-            // GainComboBoxR
+            // GainTextBoxR
             // 
-            this.GainComboBoxR.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.GainComboBoxR.Location = new System.Drawing.Point(189, 107);
-            this.GainComboBoxR.Name = "GainComboBoxR";
-            this.GainComboBoxR.Size = new System.Drawing.Size(86, 20);
-            this.GainComboBoxR.TabIndex = 4;
+            this.GainTextBoxR.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.GainTextBoxR.Location = new System.Drawing.Point(189, 107);
+            this.GainTextBoxR.Name = "GainTextBoxR";
+            this.GainTextBoxR.Size = new System.Drawing.Size(86, 20);
+            this.GainTextBoxR.TabIndex = 4;
             // 
             // AttenuationConnectorTextBoxR
             // 
@@ -541,7 +532,6 @@
             this.LengthTextBoxR.Name = "LengthTextBoxR";
             this.LengthTextBoxR.Size = new System.Drawing.Size(86, 20);
             this.LengthTextBoxR.TabIndex = 7;
-            this.LengthTextBoxR.TextChanged += new System.EventHandler(this.LengthTextBoxR_TextChanged);
             // 
             // AttenuationWireTextBoxR
             // 
@@ -569,6 +559,7 @@
             this.CountButton.TabIndex = 27;
             this.CountButton.Text = "Count";
             this.CountButton.UseVisualStyleBackColor = true;
+            this.CountButton.Click += new System.EventHandler(this.CountButton_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -626,7 +617,6 @@
             this.DistanceLabel.Size = new System.Drawing.Size(49, 13);
             this.DistanceLabel.TabIndex = 31;
             this.DistanceLabel.Text = "Distance";
-            this.DistanceLabel.Click += new System.EventHandler(this.label3_Click_1);
             // 
             // FrequencyLabel
             // 
@@ -672,7 +662,6 @@
             this.ObstaclesDataGridView.Name = "ObstaclesDataGridView";
             this.ObstaclesDataGridView.Size = new System.Drawing.Size(457, 197);
             this.ObstaclesDataGridView.TabIndex = 36;
-            this.ObstaclesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // ObstacleColumn
             // 
@@ -781,7 +770,7 @@
         private System.Windows.Forms.Label TransmitterLabelT;
         private System.Windows.Forms.TableLayoutPanel ReceiverTable;
         private System.Windows.Forms.TextBox LengthTextBoxR;
-        private System.Windows.Forms.TextBox GainComboBoxR;
+        private System.Windows.Forms.TextBox GainTextBoxR;
         private System.Windows.Forms.ComboBox ReceiverComboBox;
         private System.Windows.Forms.ComboBox ConnectorComboBoxR;
         private System.Windows.Forms.TextBox AttenuationWireTextBoxR;
