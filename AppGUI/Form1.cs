@@ -9,9 +9,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.SqlServer;
 using Microsoft.Data.Sqlite;
-using Microsoft.SqlServer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 using AppFunctionsLibrary.Models;
 
 namespace AppGUI
@@ -19,7 +19,7 @@ namespace AppGUI
     public partial class Form1 : Form
     {
         AppDatabaseContext context;
-        DeviceManager um;
+        DeviceManager dm;
 
         // 0 if English, 1 if Polish
         private bool guiLanguage = false;
@@ -27,23 +27,14 @@ namespace AppGUI
         public Form1()
         {
 
-            var opBuilder = new SqliteConnectionStringBuilder<AppDatabaseContext>();
-            var conStringBuilder = new SqliteConnectionStringBuilder();
-            conStringBuilder.DataSource = @"..\..\..\AppDB.db";
-            opBuilder.UseSqlite(conStringBuilder.ConnectionString);
-            this.context = new AppDatabaseContext(opBuilder.Options);
-
-
             var opBuilder = new DbContextOptionsBuilder<AppDatabaseContext>();
             var conStringBuilder = new SqliteConnectionStringBuilder();
             conStringBuilder.DataSource = @"..\..\..\AppDB.db";
             opBuilder.UseSqlite(conStringBuilder.ConnectionString);
             this.context = new AppDatabaseContext(opBuilder.Options);
-            this.um = new DeviceManager(this.context);
+            this.dm = new DeviceManager(this.context);
 
             InitializeComponent();
-
-            
 
         }
 
