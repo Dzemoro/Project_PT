@@ -19,23 +19,61 @@ namespace AppGUI
     public partial class Form1 : Form
     {
         AppDatabaseContext context;
+        ChannelManager chm;
+        ConnectorManager cm;
         DeviceManager dm;
+        ObstacleManager om;
+        WireManager wm;
+        WireAttenuationManager wam;
 
         // 0 if English, 1 if Polish
         private bool guiLanguage = false;
 
+        NumberFormatInfo nfi = new NumberFormatInfo();
+
         public Form1()
         {
+            InitializeComponent();
 
             var opBuilder = new DbContextOptionsBuilder<AppDatabaseContext>();
             var conStringBuilder = new SqliteConnectionStringBuilder();
             conStringBuilder.DataSource = @"..\..\..\AppDB.db";
             opBuilder.UseSqlite(conStringBuilder.ConnectionString);
             this.context = new AppDatabaseContext(opBuilder.Options);
+            this.chm = new ChannelManager(this.context);
+            this.cm = new ConnectorManager(this.context);
             this.dm = new DeviceManager(this.context);
+            this.om = new ObstacleManager(this.context);
+            this.wm = new WireManager(this.context);
+            this.wam = new WireAttenuationManager(this.context);
+            var connectorList = this.cm.GetConnectors();
+            var deviceList = this.dm.GetDevices();
+            var obstacleList = this.om.GetObstacles();
+            var wireList = this.wm.GetWires();
 
-            InitializeComponent();
+            foreach (var connector in connectorList)
+            {
+                ConnectorComboBoxT.Items.Add(connector.name);
+                ConnectorComboBoxR.Items.Add(connector.name);
+            }
+            foreach (var device in deviceList)
+            {
+                TransmitterComboBox.Items.Add(device.name);
+                ReceiverComboBox.Items.Add(device.name);
+            }
+            /*foreach (var obstacle in obstacleList)
+            {
+                ObstacleComboBox.Items.Add(obstacle.name);
+            }*/
+            foreach (var wire in wireList)
+            {
+                WireComboBoxT.Items.Add(wire.name);
+                WireComboBoxR.Items.Add(wire.name);
+            }
+            BandComboBox.Items.Add("2.4");
+            BandComboBox.Items.Add("5.0");
 
+            this.nfi.NumberDecimalSeparator = ".";
         }
 
         private void koteczek_Click(object sender, EventArgs e)
@@ -60,9 +98,7 @@ namespace AppGUI
 
             if (match.Success && match.Value.Length == textBox.Text.Length)
             {
-                NumberFormatInfo provider = new NumberFormatInfo();
-                provider.NumberDecimalSeparator = ".";
-                return Convert.ToDouble(textBox.Text, provider);
+                return Convert.ToDouble(textBox.Text, nfi);
             }
             else
             {
@@ -75,7 +111,7 @@ namespace AppGUI
         {
             try
             {
-                double fsl = (20 * Math.Log10(GetValue(DistanceTextBox) / 1000)) + (20 * Math.Log10(GetValue(FrequencyComboBox))) + 32.44;
+                double fsl = (20 * Math.Log10(GetValue(DistanceTextBox) / 1000)) + (20 * Math.Log10(GetValue(FrequencyTextBox))) + 32.44;
                 double rpl = GetValue(PowerTextBoxT) - GetValue(AttenuationWireTextBoxT) * GetValue(LengthTextBoxT) - GetValue(AttenuationConnectorTextBoxT) + GetValue(GainTextBoxT) - fsl + GetValue(GainTextBoxR) - GetValue(AttenuationWireTextBoxR) * GetValue(LengthTextBoxR) - GetValue(AttenuationConnectorTextBoxR);
                 rpl = Math.Round(rpl, 4);
                 ResultTextBox.Text = rpl.ToString();
@@ -100,7 +136,7 @@ namespace AppGUI
                 ConnectorLabelT.Text = ConnectorLabelR.Text = "Connector";
                 AttenuationConnectorLabelT.Text = AttenuationConnectorLabelR.Text = "Attenuation [dB]";
                 DistanceLabel.Text = "Distance [m]";
-                FrequencyLabel.Text = "Frequency [MHz]";
+                BandLabel.Text = "Frequency [MHz]";
                 ChannelLabel.Text = "Channel";
                 ObstaclesLabel.Text = "Obstacles";
                 ResultLabel.Text = "RESULT [dB]";
@@ -123,7 +159,7 @@ namespace AppGUI
                 ConnectorLabelT.Text = ConnectorLabelR.Text = "Złącze";
                 AttenuationConnectorLabelT.Text = AttenuationConnectorLabelR.Text = "Tłumienie [db]";
                 DistanceLabel.Text = "Dystans [m]";
-                FrequencyLabel.Text = "Częstotliwość [MHz]";
+                BandLabel.Text = "Częstotliwość [MHz]";
                 ChannelLabel.Text = "Kanał";
                 ObstaclesLabel.Text = "Przeszkody";
                 ResultLabel.Text = "WYNIK [dB]";
@@ -178,5 +214,105 @@ where:
             }
             MessageBox.Show(info, "Info");
         }
+
+        private void TransmitterComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var transmitter = this.dm.GetDeviceByName(TransmitterComboBox.Text);
+            PowerTextBoxT.Text = transmitter.power.ToString();
+            GainTextBoxT.Text = transmitter.gain.ToString();
+        }
+
+        private void ReceiverComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var receiver = this.dm.GetDeviceByName(ReceiverComboBox.Text);
+            GainTextBoxR.Text = receiver.gain.ToString();
+        }
+
+        private void WireComboBoxT_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var wire = this.wm.GetWireByName(WireComboBoxT.Text);
+
+            // AttenuationWireLabelT.Text = wire.
+            // to zaraz
+        }
+
+        private void WireComboBoxR_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConnectorComboBoxT_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConnectorComboBoxR_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BandComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FrequencyTextBox.Text = "";
+            ChannelComboBox.Text = "";
+            ChannelComboBox.Items.Clear();
+            AttenuationWireTextBoxT.Text = "";
+            AttenuationWireTextBoxR.Text = "";
+            List<Channel> channels = new List<Channel>();
+            if (BandComboBox.Text == "2.4")
+                channels = this.chm.GetChannelsByBand(24);
+            else if (BandComboBox.Text == "5.0")
+                channels = this.chm.GetChannelsByBand(50);
+            foreach (var channel in channels)
+            {
+                ChannelComboBox.Items.Add(channel.number);
+            }
+        }
+
+        private void ChannelComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int band = 0;
+            if (BandComboBox.Text == "2.4")
+                band = 24;
+            else if (BandComboBox.Text == "5.0")
+                band = 50;
+            var channel = this.chm.GetChannelByBandFrequency(band, Convert.ToInt32(ChannelComboBox.Text));
+            FrequencyTextBox.Text = channel.frequency.ToString();
+
+            // uzupełnić conn att
+            
+            if (WireComboBoxT.Text != "")
+            {
+                var wireAttenuation = this.wm.GetWireAttenuationByNameFrequency(WireComboBoxT.Text, channel.frequency);
+                AttenuationWireTextBoxT.Text = (wireAttenuation.value/100).ToString(nfi);
+            } else
+            {
+                WireComboBoxT.Items.Clear();
+                var wirelist = this.wm.GetWiresByFrequency(channel.frequency);
+                foreach (var wire in wirelist)
+                {
+                    WireComboBoxT.Items.Add(wire.name);
+                }
+            }
+
+            if (WireComboBoxR.Text != "")
+            {
+                var wireAttenuation = this.wm.GetWireAttenuationByNameFrequency(WireComboBoxR.Text, channel.frequency);
+                AttenuationWireTextBoxR.Text = (wireAttenuation.value/100).ToString(nfi);
+            }
+            {
+                WireComboBoxR.Items.Clear();
+                var wirelist = this.wm.GetWiresByFrequency(channel.frequency);
+                foreach (var wire in wirelist)
+                {
+                    WireComboBoxR.Items.Add(wire.name);
+                }
+            }
+        }
+
+
     }
 }
+
+// todo:
+// poprawić zaokrąglanie attenuation wires - żeby nie dawało zbyt bardzo oddalonych np. H-100 i 5800 Mhz

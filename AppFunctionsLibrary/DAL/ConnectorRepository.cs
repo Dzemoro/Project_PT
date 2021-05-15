@@ -13,5 +13,18 @@ namespace AppFunctionsLibrary.DAL
         {
 
         }
+
+        public Connector GetConnector(int id)
+        {
+            return dbSet.SingleOrDefault(x => x.id == id);
+        }
+        public Connector GetConnectorByName(string name)
+        {
+            return dbSet.SingleOrDefault(x => x.name == name);
+        }
+        public List<Connector> GetAllConnectors()
+        {
+            return dbSet.ToList();
+        }
     }
 }

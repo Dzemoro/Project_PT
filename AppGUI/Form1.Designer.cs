@@ -45,7 +45,7 @@
             this.WireComboBoxT = new System.Windows.Forms.ComboBox();
             this.DistanceTextBox = new System.Windows.Forms.TextBox();
             this.ChannelComboBox = new System.Windows.Forms.ComboBox();
-            this.FrequencyComboBox = new System.Windows.Forms.ComboBox();
+            this.BandComboBox = new System.Windows.Forms.ComboBox();
             this.koteczek = new System.Windows.Forms.Label();
             this.TransmitterTable = new System.Windows.Forms.TableLayoutPanel();
             this.AttenuationConnectorLabelT = new System.Windows.Forms.Label();
@@ -78,7 +78,7 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.ChannelLabel = new System.Windows.Forms.Label();
             this.DistanceLabel = new System.Windows.Forms.Label();
-            this.FrequencyLabel = new System.Windows.Forms.Label();
+            this.BandLabel = new System.Windows.Forms.Label();
             this.ResultLabel = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.ResultTextBox = new System.Windows.Forms.TextBox();
@@ -87,6 +87,8 @@
             this.ObstacleAmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount2Column = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.DeleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.FrequencyLabel = new System.Windows.Forms.Label();
+            this.FrequencyTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.TransmitterTable.SuspendLayout();
             this.ReceiverTable.SuspendLayout();
@@ -168,6 +170,7 @@
             this.TransmitterComboBox.Name = "TransmitterComboBox";
             this.TransmitterComboBox.Size = new System.Drawing.Size(86, 21);
             this.TransmitterComboBox.TabIndex = 3;
+            this.TransmitterComboBox.SelectedIndexChanged += new System.EventHandler(this.TransmitterComboBox_SelectedIndexChanged);
             // 
             // PowerTextBoxT
             // 
@@ -217,6 +220,7 @@
             this.ConnectorComboBoxT.Name = "ConnectorComboBoxT";
             this.ConnectorComboBoxT.Size = new System.Drawing.Size(86, 21);
             this.ConnectorComboBoxT.TabIndex = 9;
+            this.ConnectorComboBoxT.SelectedIndexChanged += new System.EventHandler(this.ConnectorComboBoxT_SelectedIndexChanged);
             // 
             // WireComboBoxT
             // 
@@ -226,10 +230,11 @@
             this.WireComboBoxT.Name = "WireComboBoxT";
             this.WireComboBoxT.Size = new System.Drawing.Size(86, 21);
             this.WireComboBoxT.TabIndex = 10;
+            this.WireComboBoxT.SelectedIndexChanged += new System.EventHandler(this.WireComboBoxT_SelectedIndexChanged);
             // 
             // DistanceTextBox
             // 
-            this.DistanceTextBox.Location = new System.Drawing.Point(185, 530);
+            this.DistanceTextBox.Location = new System.Drawing.Point(185, 520);
             this.DistanceTextBox.Name = "DistanceTextBox";
             this.DistanceTextBox.Size = new System.Drawing.Size(86, 20);
             this.DistanceTextBox.TabIndex = 17;
@@ -237,18 +242,20 @@
             // ChannelComboBox
             // 
             this.ChannelComboBox.FormattingEnabled = true;
-            this.ChannelComboBox.Location = new System.Drawing.Point(185, 587);
+            this.ChannelComboBox.Location = new System.Drawing.Point(185, 573);
             this.ChannelComboBox.Name = "ChannelComboBox";
             this.ChannelComboBox.Size = new System.Drawing.Size(86, 21);
             this.ChannelComboBox.TabIndex = 18;
+            this.ChannelComboBox.SelectedIndexChanged += new System.EventHandler(this.ChannelComboBox_SelectedIndexChanged);
             // 
-            // FrequencyComboBox
+            // BandComboBox
             // 
-            this.FrequencyComboBox.FormattingEnabled = true;
-            this.FrequencyComboBox.Location = new System.Drawing.Point(185, 560);
-            this.FrequencyComboBox.Name = "FrequencyComboBox";
-            this.FrequencyComboBox.Size = new System.Drawing.Size(86, 21);
-            this.FrequencyComboBox.TabIndex = 19;
+            this.BandComboBox.FormattingEnabled = true;
+            this.BandComboBox.Location = new System.Drawing.Point(185, 546);
+            this.BandComboBox.Name = "BandComboBox";
+            this.BandComboBox.Size = new System.Drawing.Size(86, 21);
+            this.BandComboBox.TabIndex = 19;
+            this.BandComboBox.SelectedIndexChanged += new System.EventHandler(this.BandComboBox_SelectedIndexChanged);
             // 
             // koteczek
             // 
@@ -433,6 +440,7 @@
             this.ReceiverComboBox.Name = "ReceiverComboBox";
             this.ReceiverComboBox.Size = new System.Drawing.Size(86, 21);
             this.ReceiverComboBox.TabIndex = 3;
+            this.ReceiverComboBox.SelectedIndexChanged += new System.EventHandler(this.ReceiverComboBox_SelectedIndexChanged);
             // 
             // ReceiverLabel
             // 
@@ -526,6 +534,7 @@
             this.ConnectorComboBoxR.Name = "ConnectorComboBoxR";
             this.ConnectorComboBoxR.Size = new System.Drawing.Size(86, 21);
             this.ConnectorComboBoxR.TabIndex = 10;
+            this.ConnectorComboBoxR.SelectedIndexChanged += new System.EventHandler(this.ConnectorComboBoxR_SelectedIndexChanged);
             // 
             // LengthTextBoxR
             // 
@@ -551,6 +560,7 @@
             this.WireComboBoxR.Name = "WireComboBoxR";
             this.WireComboBoxR.Size = new System.Drawing.Size(86, 21);
             this.WireComboBoxR.TabIndex = 9;
+            this.WireComboBoxR.SelectedIndexChanged += new System.EventHandler(this.WireComboBoxR_SelectedIndexChanged);
             // 
             // CountButton
             // 
@@ -605,7 +615,7 @@
             // ChannelLabel
             // 
             this.ChannelLabel.AutoSize = true;
-            this.ChannelLabel.Location = new System.Drawing.Point(47, 587);
+            this.ChannelLabel.Location = new System.Drawing.Point(47, 576);
             this.ChannelLabel.Name = "ChannelLabel";
             this.ChannelLabel.Size = new System.Drawing.Size(46, 13);
             this.ChannelLabel.TabIndex = 30;
@@ -614,20 +624,20 @@
             // DistanceLabel
             // 
             this.DistanceLabel.AutoSize = true;
-            this.DistanceLabel.Location = new System.Drawing.Point(47, 530);
+            this.DistanceLabel.Location = new System.Drawing.Point(47, 520);
             this.DistanceLabel.Name = "DistanceLabel";
             this.DistanceLabel.Size = new System.Drawing.Size(66, 13);
             this.DistanceLabel.TabIndex = 31;
             this.DistanceLabel.Text = "Distance [m]";
             // 
-            // FrequencyLabel
+            // BandLabel
             // 
-            this.FrequencyLabel.AutoSize = true;
-            this.FrequencyLabel.Location = new System.Drawing.Point(47, 560);
-            this.FrequencyLabel.Name = "FrequencyLabel";
-            this.FrequencyLabel.Size = new System.Drawing.Size(88, 13);
-            this.FrequencyLabel.TabIndex = 32;
-            this.FrequencyLabel.Text = "Frequency [MHz]";
+            this.BandLabel.AutoSize = true;
+            this.BandLabel.Location = new System.Drawing.Point(47, 549);
+            this.BandLabel.Name = "BandLabel";
+            this.BandLabel.Size = new System.Drawing.Size(62, 13);
+            this.BandLabel.TabIndex = 32;
+            this.BandLabel.Text = "Band [GHz]";
             // 
             // ResultLabel
             // 
@@ -705,16 +715,34 @@
             this.DeleteColumn.Name = "DeleteColumn";
             this.DeleteColumn.Text = "Delete";
             // 
+            // FrequencyLabel
+            // 
+            this.FrequencyLabel.AutoSize = true;
+            this.FrequencyLabel.Location = new System.Drawing.Point(47, 606);
+            this.FrequencyLabel.Name = "FrequencyLabel";
+            this.FrequencyLabel.Size = new System.Drawing.Size(88, 13);
+            this.FrequencyLabel.TabIndex = 37;
+            this.FrequencyLabel.Text = "Frequency [MHz]";
+            // 
+            // FrequencyTextBox
+            // 
+            this.FrequencyTextBox.Location = new System.Drawing.Point(185, 599);
+            this.FrequencyTextBox.Name = "FrequencyTextBox";
+            this.FrequencyTextBox.Size = new System.Drawing.Size(86, 20);
+            this.FrequencyTextBox.TabIndex = 38;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1160, 628);
+            this.Controls.Add(this.FrequencyTextBox);
+            this.Controls.Add(this.FrequencyLabel);
             this.Controls.Add(this.ObstaclesDataGridView);
             this.Controls.Add(this.ResultTextBox);
             this.Controls.Add(this.ResultLabel);
-            this.Controls.Add(this.FrequencyLabel);
+            this.Controls.Add(this.BandLabel);
             this.Controls.Add(this.DistanceLabel);
             this.Controls.Add(this.ChannelLabel);
             this.Controls.Add(this.tableLayoutPanel3);
@@ -722,7 +750,7 @@
             this.Controls.Add(this.ReceiverTable);
             this.Controls.Add(this.TransmitterTable);
             this.Controls.Add(this.koteczek);
-            this.Controls.Add(this.FrequencyComboBox);
+            this.Controls.Add(this.BandComboBox);
             this.Controls.Add(this.ChannelComboBox);
             this.Controls.Add(this.DistanceTextBox);
             this.Controls.Add(this.groupBox1);
@@ -755,7 +783,7 @@
         private System.Windows.Forms.ComboBox WireComboBoxT;
         private System.Windows.Forms.TextBox DistanceTextBox;
         private System.Windows.Forms.ComboBox ChannelComboBox;
-        private System.Windows.Forms.ComboBox FrequencyComboBox;
+        private System.Windows.Forms.ComboBox BandComboBox;
         private System.Windows.Forms.Label koteczek;
         private System.Windows.Forms.TableLayoutPanel TransmitterTable;
         private System.Windows.Forms.Button OpenButton;
@@ -791,7 +819,7 @@
         private System.Windows.Forms.Label ObstaclesLabel;
         private System.Windows.Forms.Label ChannelLabel;
         private System.Windows.Forms.Label DistanceLabel;
-        private System.Windows.Forms.Label FrequencyLabel;
+        private System.Windows.Forms.Label BandLabel;
         private System.Windows.Forms.Label ResultLabel;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.ToolTip toolTip1;
@@ -802,6 +830,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ObstacleAmountColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn Amount2Column;
         private System.Windows.Forms.DataGridViewButtonColumn DeleteColumn;
+        private System.Windows.Forms.Label FrequencyLabel;
+        private System.Windows.Forms.TextBox FrequencyTextBox;
     }
 }
 
