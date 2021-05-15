@@ -25,6 +25,7 @@ CREATE TABLE Connectors (
 );
 
 CREATE TABLE ConnectorsToWires (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
   wire_id INTEGER,
   connector_id INTEGER,
   FOREIGN KEY (wire_id) REFERENCES Wires (id),
@@ -34,7 +35,8 @@ CREATE TABLE ConnectorsToWires (
 CREATE TABLE Obstacles (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name varchar(255) NOT NULL,
-  attenuation float NOT NULL
+  attenuation_24 float NOT NULL,
+  attenuation_5 float NOT NULL
 );
 
 CREATE TABLE Channels (
