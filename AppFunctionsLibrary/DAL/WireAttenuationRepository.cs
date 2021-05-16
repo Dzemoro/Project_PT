@@ -23,10 +23,12 @@ namespace AppFunctionsLibrary.DAL
                 var singleResult = dbSet.SingleOrDefault(x => x.wire_id == GetWireAttenuation(wire).wire_id && x.value == frequency);
                 if (singleResult == default)
                 {
-                    var min = dbSet.Where(x => x.wire_id == wire).Where(x => x.frequency < frequency).OrderByDescending(x => x.frequency).FirstOrDefault();
+                    var min = dbSet.Where(x => x.wire_id == wire).Where(x => (int)Math.Round(x.frequency/1000) == (int)Math.Round(frequency/1000)).Where(x => x.frequency < frequency).OrderByDescending(x => x.frequency).FirstOrDefault();
                     var max = dbSet.Where(x => x.wire_id == wire).FirstOrDefault(x => x.frequency > frequency);
 
-                    if (min == default)
+                    if (max == default && min == default)
+                        continue;
+                    else if (min == default)
                         result.Add(max);
                     else if (max == default)
                         result.Add(min);
@@ -36,8 +38,7 @@ namespace AppFunctionsLibrary.DAL
                             result.Add(min);
                         else
                             result.Add(max);
-                    }
-                        
+                    }                    
                 }
             }
             return result;

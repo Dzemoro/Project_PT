@@ -13,5 +13,17 @@ namespace AppFunctionsLibrary.DAL
         {
 
         }
+        public List<ConnectorToWire> GetAllConnectorsToWires()
+        {
+            return dbSet.ToList();
+        }
+        public List<ConnectorToWire> GetByWire(int wire_id)
+        {
+            return dbSet.Where(x => x.wire_id == wire_id).ToList();
+        }
+        public List<ConnectorToWire> GetByConnector(int connector_id)
+        {
+            return dbSet.Where(x => x.connector_id == connector_id).ToList();
+        }
     }
 }

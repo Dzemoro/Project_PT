@@ -34,13 +34,15 @@ namespace AppGUI
         {
             var wires = this.rep.GetAllWires();
             var wiresAttenuation = this.repAtt.GetWiresAttenuationByFrequency(frequency);
+
             List<Wire> result = new List<Wire>();
             foreach (var att in wiresAttenuation)
             {
-                if (att.frequency == frequency)
-                {
-                    result.Add(this.rep.GetWire(att.wire_id));
-                }
+                foreach( var w in wires)
+                    if (att.wire_id == w.id)
+                    {
+                        result.Add(this.rep.GetWire(w.id));
+                    }
 
             }
 
@@ -49,10 +51,12 @@ namespace AppGUI
         public WireAttenuation GetWireAttenuationByNameFrequency(string name, int frequency)
         {
             var wires = this.rep.GetAllWires();
-
             var wiresAttenuation = this.repAtt.GetWiresAttenuationByFrequency(frequency);
 
-            return wiresAttenuation.First(i => i.wire_id == wires.First(j => j.name == name).id);
+            var result = wiresAttenuation.FirstOrDefault(i => i.wire_id == wires.FirstOrDefault(j => j.name == name).id);
+            if (result == default)
+                return null;
+            else return result;
         }
     }
 }
