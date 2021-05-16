@@ -179,6 +179,7 @@
             this.PowerTextBoxT.Name = "PowerTextBoxT";
             this.PowerTextBoxT.Size = new System.Drawing.Size(86, 20);
             this.PowerTextBoxT.TabIndex = 4;
+            this.PowerTextBoxT.Click += new System.EventHandler(this.PowerTextBoxT_Click);
             // 
             // GainTextBoxT
             // 
@@ -187,6 +188,7 @@
             this.GainTextBoxT.Name = "GainTextBoxT";
             this.GainTextBoxT.Size = new System.Drawing.Size(86, 20);
             this.GainTextBoxT.TabIndex = 5;
+            this.GainTextBoxT.Click += new System.EventHandler(this.GainTextBoxT_Click);
             // 
             // AttenuationConnectorTextBoxT
             // 
@@ -195,6 +197,7 @@
             this.AttenuationConnectorTextBoxT.Name = "AttenuationConnectorTextBoxT";
             this.AttenuationConnectorTextBoxT.Size = new System.Drawing.Size(86, 20);
             this.AttenuationConnectorTextBoxT.TabIndex = 6;
+            this.AttenuationConnectorTextBoxT.Click += new System.EventHandler(this.AttenuationConnectorTextBoxT_Click);
             // 
             // AttenuationWireTextBoxT
             // 
@@ -203,6 +206,7 @@
             this.AttenuationWireTextBoxT.Name = "AttenuationWireTextBoxT";
             this.AttenuationWireTextBoxT.Size = new System.Drawing.Size(86, 20);
             this.AttenuationWireTextBoxT.TabIndex = 7;
+            this.AttenuationWireTextBoxT.Click += new System.EventHandler(this.AttenuationWireTextBoxT_Click);
             // 
             // LengthTextBoxT
             // 
@@ -517,6 +521,7 @@
             this.GainTextBoxR.Name = "GainTextBoxR";
             this.GainTextBoxR.Size = new System.Drawing.Size(86, 20);
             this.GainTextBoxR.TabIndex = 4;
+            this.GainTextBoxR.Click += new System.EventHandler(this.GainTextBoxR_Click);
             // 
             // AttenuationConnectorTextBoxR
             // 
@@ -525,6 +530,7 @@
             this.AttenuationConnectorTextBoxR.Name = "AttenuationConnectorTextBoxR";
             this.AttenuationConnectorTextBoxR.Size = new System.Drawing.Size(86, 20);
             this.AttenuationConnectorTextBoxR.TabIndex = 6;
+            this.AttenuationConnectorTextBoxR.Click += new System.EventHandler(this.AttenuationConnectorTextBoxR_Click);
             // 
             // ConnectorComboBoxR
             // 
@@ -551,6 +557,7 @@
             this.AttenuationWireTextBoxR.Name = "AttenuationWireTextBoxR";
             this.AttenuationWireTextBoxR.Size = new System.Drawing.Size(86, 20);
             this.AttenuationWireTextBoxR.TabIndex = 8;
+            this.AttenuationWireTextBoxR.Click += new System.EventHandler(this.AttenuationWireTextBoxR_Click);
             // 
             // WireComboBoxR
             // 
