@@ -11,6 +11,9 @@ namespace AppFunctionsLibrary.Models
     [Table("ConnectorsToWires")]
     public class ConnectorToWire
     {
+        [Key]
+        [Column("id")]
+        public int id { get; set; }
         [Column("wire_id")]
         public int wire_id { get; set; }
         [Column("connector_id")]

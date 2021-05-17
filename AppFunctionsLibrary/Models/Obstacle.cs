@@ -16,8 +16,10 @@ namespace AppFunctionsLibrary.Models
         public int id { get; set; }
         [Column("name")]
         public string name { get; set; }
-        [Column("attenuation")]
-        public float attenuation { get; set; }
+        [Column("attenuation_24")]
+        public float attenuation_24 { get; set; }
+        [Column("attenuation_5")]
+        public float attenuation_5 { get; set; }
 
         public List<ObstacleAmount> ObstaclesAmount { get; set; }
     }

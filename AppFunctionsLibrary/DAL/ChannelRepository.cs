@@ -13,5 +13,23 @@ namespace AppFunctionsLibrary.DAL
         {
 
         }
+        public Channel GetChannel(int id)
+        {
+            return dbSet.SingleOrDefault(x => x.id == id);
+        }
+        public Channel GetChannelByBandFrequency(int band, int number)
+        {
+            return dbSet.SingleOrDefault(x => x.band == band && x.number == number);
+        }
+
+        public List<Channel> GetChannelsByBand (int band)
+        {
+            return dbSet.Where(x => x.band == band).ToList();
+        }
+        
+        public List<Channel> GetAllChannels()
+        {
+            return dbSet.ToList();
+        }
     }
 }

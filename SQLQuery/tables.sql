@@ -25,6 +25,7 @@ CREATE TABLE Connectors (
 );
 
 CREATE TABLE ConnectorsToWires (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
   wire_id INTEGER,
   connector_id INTEGER,
   FOREIGN KEY (wire_id) REFERENCES Wires (id),
@@ -34,7 +35,8 @@ CREATE TABLE ConnectorsToWires (
 CREATE TABLE Obstacles (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name varchar(255) NOT NULL,
-  attenuation float NOT NULL
+  attenuation_24 float NOT NULL,
+  attenuation_5 float NOT NULL
 );
 
 CREATE TABLE Channels (
@@ -48,6 +50,8 @@ CREATE TABLE Measurements (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name varchar(255) NOT NULL,
   distance float NOT NULL,
+  wireLenghtT float NOT NULL,
+  wireLenghtR float NOT NULL,
   transmitter_id INTEGER,
   receiver_id INTEGER,
   wireT_id INTEGER,
@@ -73,26 +77,3 @@ CREATE TABLE ObstaclesAmount (
   FOREIGN KEY (measurements_id) REFERENCES Measurements (id)
 );
 
---ALTER TABLE WiresAttenuation ADD FOREIGN KEY (wire_id) REFERENCES Wires (id);
-
---ALTER TABLE ConnectorsToWires ADD FOREIGN KEY (wire_id) REFERENCES Wires (id);
-
---ALTER TABLE ConnectorsToWires ADD FOREIGN KEY (connector_id) REFERENCES Connectors (id);
-
---ALTER TABLE Measurements ADD FOREIGN KEY (transmitter_id) REFERENCES Devices (id);
-
---ALTER TABLE Measurements ADD FOREIGN KEY (receiver_id) REFERENCES Devices (id);
-
---ALTER TABLE Measurements ADD FOREIGN KEY (wireT_id) REFERENCES Wires (id);
-
---ALTER TABLE Measurements ADD FOREIGN KEY (wireR_id) REFERENCES Wires (id);
-
---ALTER TABLE Measurements ADD FOREIGN KEY (connectorT_id) REFERENCES Connectors (id);
-
---ALTER TABLE Measurements ADD FOREIGN KEY (connectorR_id) REFERENCES Connectors (id);
-
---ALTER TABLE Measurements ADD FOREIGN KEY (channel_id) REFERENCES Channels (id);
-
---ALTER TABLE ObstaclesAmount ADD FOREIGN KEY (obstacles_id) REFERENCES Obstacles (id);
-
---ALTER TABLE ObstaclesAmount ADD FOREIGN KEY (measurements_id) REFERENCES Measurements (id);

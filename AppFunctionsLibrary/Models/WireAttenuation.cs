@@ -18,6 +18,9 @@ namespace AppFunctionsLibrary.Models
         public float frequency { get; set; }
         [Column("value")]
         public float value { get; set; }
+        [Column("wire_id")]
+        public int wire_id { get; set; }
 
+        public Wire Wire { get; set; }
     }
 }

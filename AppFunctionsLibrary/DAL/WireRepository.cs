@@ -13,5 +13,18 @@ namespace AppFunctionsLibrary.DAL
         {
 
         }
+        public Wire GetWire(int id)
+        {
+            return dbSet.SingleOrDefault(x => x.id == id);
+        }
+        public Wire GetWireByName(string name)
+        {
+            return dbSet.SingleOrDefault(x => x.name == name);
+        }
+        public List<Wire> GetAllWires()
+        {
+            return dbSet.ToList();
+        }
+
     }
 }
