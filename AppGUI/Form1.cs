@@ -14,77 +14,102 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using AppFunctionsLibrary.Models;
 
-namespace AppGUI
-{
-    public partial class Form1 : Form
-    {
+namespace AppGUI {
+    public partial class Form1 : Form {
         AppDatabaseContext context;
+        ChannelManager chm;
+        ConnectorManager cm;
+        ConnectorToWireManager ctwm;
         DeviceManager dm;
+        ObstacleManager om;
+        WireManager wm;
+        WireAttenuationManager wam;
 
         // 0 if English, 1 if Polish
         private bool guiLanguage = false;
 
-        public Form1()
-        {
+        NumberFormatInfo nfi = new NumberFormatInfo();
+
+        const string CUSTOM_PL = "<własne>";
+        const string CUSTOM_EN = "<custom>";
+        const string WRONG_PL = "Błędne dane!";
+        const string WRONG_EN = "Wrong value!";
+
+        public Form1() {
+            InitializeComponent();
 
             var opBuilder = new DbContextOptionsBuilder<AppDatabaseContext>();
             var conStringBuilder = new SqliteConnectionStringBuilder();
             conStringBuilder.DataSource = @"..\..\..\AppDB.db";
             opBuilder.UseSqlite(conStringBuilder.ConnectionString);
             this.context = new AppDatabaseContext(opBuilder.Options);
+            this.chm = new ChannelManager(this.context);
+            this.cm = new ConnectorManager(this.context);
+            this.ctwm = new ConnectorToWireManager(this.context);
             this.dm = new DeviceManager(this.context);
+            this.om = new ObstacleManager(this.context);
+            this.wm = new WireManager(this.context);
+            this.wam = new WireAttenuationManager(this.context);
+            List<Connector> connectorList = this.cm.GetConnectors();
+            var deviceList = this.dm.GetDevices();
+            var obstacleList = this.om.GetObstacles();
+            var wireList = this.wm.GetWires();
 
-            InitializeComponent();
+            FillCombobox(ConnectorComboBoxT, connectorList);
+            FillCombobox(ConnectorComboBoxR, connectorList);
+            FillCombobox(TransmitterComboBox, deviceList);
+            FillCombobox(ReceiverComboBox, deviceList);
+            FillCombobox(WireComboBoxT, wireList);
+            FillCombobox(WireComboBoxR, wireList);
 
+            BandComboBox.Items.Add("2.4");
+            BandComboBox.Items.Add("5.0");
+
+            this.nfi.NumberDecimalSeparator = ".";
         }
 
-        private void koteczek_Click(object sender, EventArgs e)
-        {
+        private void koteczek_Click(object sender, EventArgs e) {
             koteczek.Text = "Siemka";
 
         }
 
-        private void toolTip1_Popup(object sender, PopupEventArgs e)
-        {
+        private void FillCombobox<T>(ComboBox comboBox, List<T> values) {
+            comboBox.Items.Clear();
+            comboBox.Items.Add(guiLanguage ? CUSTOM_PL : CUSTOM_EN);
+            foreach (var value in values) {
+                comboBox.Items.Add(value.GetType().GetProperties().SingleOrDefault(x => x.Name == "name").GetValue(value, null));
+            }
+        }
+
+        private void toolTip1_Popup(object sender, PopupEventArgs e) {
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+        private void Form1_Load(object sender, EventArgs e) {
 
         }
 
-        private double GetValue(Control textBox)
-        {
+        private double GetValue(Control textBox) {
             var match = Regex.Match(textBox.Text, @"^[0-9]*\.?[0-9]+$");
 
-            if (match.Success && match.Value.Length == textBox.Text.Length)
-            {
-                NumberFormatInfo provider = new NumberFormatInfo();
-                provider.NumberDecimalSeparator = ".";
-                return Convert.ToDouble(textBox.Text, provider);
-            }
-            else
-            {
-                textBox.Text = "Wrong value!";
+            if (match.Success && match.Value.Length == textBox.Text.Length) {
+                return Convert.ToDouble(textBox.Text, nfi);
+            } else {
+                textBox.Text = guiLanguage ? WRONG_PL : WRONG_EN;
                 throw new Exception("Wrong value");
             }
         }
 
-        private void CountButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                double fsl = (20 * Math.Log10(GetValue(DistanceTextBox) / 1000)) + (20 * Math.Log10(GetValue(FrequencyComboBox))) + 32.44;
+        private void CountButton_Click(object sender, EventArgs e) {
+            try {
+                double fsl = (20 * Math.Log10(GetValue(DistanceTextBox) / 1000)) + (20 * Math.Log10(GetValue(FrequencyTextBox))) + 32.44;
                 double rpl = GetValue(PowerTextBoxT) - GetValue(AttenuationWireTextBoxT) * GetValue(LengthTextBoxT) - GetValue(AttenuationConnectorTextBoxT) + GetValue(GainTextBoxT) - fsl + GetValue(GainTextBoxR) - GetValue(AttenuationWireTextBoxR) * GetValue(LengthTextBoxR) - GetValue(AttenuationConnectorTextBoxR);
                 rpl = Math.Round(rpl, 4);
                 ResultTextBox.Text = rpl.ToString();
-            }
-            catch (Exception ex) { }
+            } catch (Exception ex) { }
         }
 
-        private void LanguageButton_Click(object sender, EventArgs e)
-        {
+        private void LanguageButton_Click(object sender, EventArgs e) {
             if (this.guiLanguage) // switch to English
             {
                 NewButton.Text = "New";
@@ -100,16 +125,23 @@ namespace AppGUI
                 ConnectorLabelT.Text = ConnectorLabelR.Text = "Connector";
                 AttenuationConnectorLabelT.Text = AttenuationConnectorLabelR.Text = "Attenuation [dB]";
                 DistanceLabel.Text = "Distance [m]";
-                FrequencyLabel.Text = "Frequency [MHz]";
+                BandLabel.Text = "Band [GHz]";
                 ChannelLabel.Text = "Channel";
+                FrequencyLabel.Text = "Frequency [MHz]";
                 ObstaclesLabel.Text = "Obstacles";
                 ResultLabel.Text = "RESULT [dB]";
                 CountButton.Text = "Count";
 
+                TransmitterComboBox.Items[0] = CUSTOM_EN;
+                ReceiverComboBox.Items[0] = CUSTOM_EN;
+                WireComboBoxT.Items[0] = CUSTOM_EN;
+                WireComboBoxR.Items[0] = CUSTOM_EN;
+                ConnectorComboBoxT.Items[0] = CUSTOM_EN;
+                ConnectorComboBoxR.Items[0] = CUSTOM_EN;
+
                 this.guiLanguage = false;
-            }
-            else // switch to Polish
-            {
+            } else // switch to Polish
+              {
                 NewButton.Text = "Nowy";
                 OpenButton.Text = "Otwórz";
                 SaveButton.Text = "Zapisz";
@@ -123,20 +155,26 @@ namespace AppGUI
                 ConnectorLabelT.Text = ConnectorLabelR.Text = "Złącze";
                 AttenuationConnectorLabelT.Text = AttenuationConnectorLabelR.Text = "Tłumienie [db]";
                 DistanceLabel.Text = "Dystans [m]";
-                FrequencyLabel.Text = "Częstotliwość [MHz]";
+                BandLabel.Text = "Pasmo [GHz]";
                 ChannelLabel.Text = "Kanał";
+                FrequencyLabel.Text = "Częstotliwość [MHz]";
                 ObstaclesLabel.Text = "Przeszkody";
                 ResultLabel.Text = "WYNIK [dB]";
                 CountButton.Text = "Oblicz";
 
+                TransmitterComboBox.Items[0] = CUSTOM_PL;
+                ReceiverComboBox.Items[0] = CUSTOM_PL;
+                WireComboBoxT.Items[0] = CUSTOM_PL;
+                WireComboBoxR.Items[0] = CUSTOM_PL;
+                ConnectorComboBoxT.Items[0] = CUSTOM_PL;
+                ConnectorComboBoxR.Items[0] = CUSTOM_PL;
+
                 this.guiLanguage = true;
             }
         }
-        private void InfoButton_Click(object sender, EventArgs e)
-        {
+        private void InfoButton_Click(object sender, EventArgs e) {
             string info;
-            if (this.guiLanguage)
-            {
+            if (this.guiLanguage) {
                 info = @"Budżet łącza obliczany jest zgodnie ze wzorem:
             RSL=TSL-CLT+GT-FSL+GR-CLR-CLO
 gdzie:
@@ -154,9 +192,7 @@ FSL wyliczany jest ze wzoru:
 gdzie:
     d - odległość między antenami [m]
     f - częstotliwość fali [MHz]";
-            }
-            else
-            {
+            } else {
                 info = @"Link budget is calculated using following equation:
             RSL=TSL-CLT+GT-FSL+GR-CLR-CLO
 where:
@@ -178,5 +214,204 @@ where:
             }
             MessageBox.Show(info, "Info");
         }
+
+        private void TransmitterComboBox_SelectedIndexChanged(object sender, EventArgs e) {
+            if (TransmitterComboBox.Text != CUSTOM_EN && TransmitterComboBox.Text != CUSTOM_PL) {
+                var transmitter = this.dm.GetDeviceByName(TransmitterComboBox.Text);
+                PowerTextBoxT.Text = transmitter.power.ToString();
+                GainTextBoxT.Text = transmitter.gain.ToString();
+                PowerTextBoxT.Enabled = false;
+                GainTextBoxT.Enabled = false;
+            } else {
+                PowerTextBoxT.Enabled = true;
+                GainTextBoxT.Enabled = true;
+            }
+        }
+
+        private void ReceiverComboBox_SelectedIndexChanged(object sender, EventArgs e) {
+            if (ReceiverComboBox.Text != CUSTOM_EN && ReceiverComboBox.Text != CUSTOM_PL) {
+                var receiver = this.dm.GetDeviceByName(ReceiverComboBox.Text);
+                GainTextBoxR.Text = receiver.gain.ToString();
+                GainTextBoxR.Enabled = false;
+            } else {
+                GainTextBoxR.Enabled = true;
+            }
+        }
+
+        private void WireComboBoxT_SelectedIndexChanged(object sender, EventArgs e) {
+            if (WireComboBoxT.Text != CUSTOM_EN && WireComboBoxT.Text != CUSTOM_PL) {
+                var wire = this.wm.GetWireByName(WireComboBoxT.Text);
+
+                if (FrequencyTextBox.Text == "") {
+                    AttenuationWireTextBoxT.Text = "";
+                } else {
+                    var attenuation = this.wm.GetWireAttenuationByNameFrequency(WireComboBoxT.Text, Convert.ToInt32(FrequencyTextBox.Text));
+                    AttenuationWireTextBoxT.Text = (attenuation.value / 100).ToString(nfi);
+                }
+
+                var connectors = this.ctwm.GetConnectorsByWire(wire.id);
+                FillCombobox(ConnectorComboBoxT, connectors);
+                if (!ConnectorComboBoxT.Items.Contains(ConnectorComboBoxT.Text)) {
+                    ConnectorComboBoxT.Text = "";
+                    AttenuationConnectorTextBoxT.Text = "";
+                } else {
+                    AttenuationConnectorTextBoxT.Text = this.cm.GetConnectorByName(ConnectorComboBoxT.Text).attenuation.ToString(nfi);
+                }
+
+                AttenuationWireTextBoxT.Enabled = false;
+
+            } else {
+                AttenuationWireTextBoxT.Enabled = true;
+                var connectors = this.cm.GetConnectors();
+                FillCombobox(ConnectorComboBoxT, connectors);
+            }
+        }
+
+        private void WireComboBoxR_SelectedIndexChanged(object sender, EventArgs e) {
+            if (WireComboBoxR.Text != CUSTOM_EN && WireComboBoxT.Text != CUSTOM_PL) {
+                var wire = this.wm.GetWireByName(WireComboBoxR.Text);
+
+                if (FrequencyTextBox.Text == "") {
+                    AttenuationWireTextBoxR.Text = "";
+                } else {
+                    var attenuation = this.wm.GetWireAttenuationByNameFrequency(WireComboBoxR.Text, Convert.ToInt32(FrequencyTextBox.Text));
+                    AttenuationWireTextBoxR.Text = (attenuation.value / 100).ToString(nfi);
+                }
+
+                var connectors = this.ctwm.GetConnectorsByWire(wire.id);
+                FillCombobox(ConnectorComboBoxR, connectors);
+
+                if (!ConnectorComboBoxR.Items.Contains(ConnectorComboBoxR.Text)) {
+                    ConnectorComboBoxR.Text = "";
+                    AttenuationConnectorTextBoxR.Text = "";
+                } else {
+                    AttenuationConnectorTextBoxR.Text = this.cm.GetConnectorByName(ConnectorComboBoxR.Text).attenuation.ToString(nfi);
+                }
+
+                AttenuationWireTextBoxR.Enabled = false;
+
+            } else {
+                AttenuationWireTextBoxR.Enabled = true;
+                var connectors = this.cm.GetConnectors();
+                FillCombobox(ConnectorComboBoxR, connectors);
+            }
+        }
+
+        private void ConnectorComboBoxT_SelectedIndexChanged(object sender, EventArgs e) {
+            if (ConnectorComboBoxT.Text != CUSTOM_EN && ConnectorComboBoxT.Text != CUSTOM_PL) {
+                AttenuationConnectorTextBoxT.Text = this.cm.GetConnectorByName(ConnectorComboBoxT.Text).attenuation.ToString(nfi);
+                AttenuationConnectorTextBoxT.Enabled = false;
+            } else {
+                AttenuationConnectorTextBoxT.Enabled = true;
+            }
+        }
+
+        private void ConnectorComboBoxR_SelectedIndexChanged(object sender, EventArgs e) {
+            if (ConnectorComboBoxR.Text != CUSTOM_EN && ConnectorComboBoxR.Text != CUSTOM_PL) {
+                AttenuationConnectorTextBoxR.Text = this.cm.GetConnectorByName(ConnectorComboBoxR.Text).attenuation.ToString(nfi);
+                AttenuationConnectorTextBoxR.Enabled = false;
+            } else {
+                AttenuationConnectorTextBoxR.Enabled = true;
+            }
+        }
+
+        private void BandComboBox_SelectedIndexChanged(object sender, EventArgs e) {
+            FrequencyTextBox.Text = "";
+            ChannelComboBox.Text = "";
+            ChannelComboBox.Items.Clear();
+            AttenuationWireTextBoxT.Text = "";
+            AttenuationWireTextBoxR.Text = "";
+            List<Channel> channels = new List<Channel>();
+            if (BandComboBox.Text == "2.4")
+                channels = this.chm.GetChannelsByBand(24);
+            else if (BandComboBox.Text == "5.0")
+                channels = this.chm.GetChannelsByBand(50);
+            foreach (var channel in channels)
+                ChannelComboBox.Items.Add(channel.number);
+        }
+
+        private void ChannelComboBox_SelectedIndexChanged(object sender, EventArgs e) {
+            int band = 0;
+            if (BandComboBox.Text == "2.4")
+                band = 24;
+            else if (BandComboBox.Text == "5.0")
+                band = 50;
+            var channel = this.chm.GetChannelByBandFrequency(band, Convert.ToInt32(ChannelComboBox.Text));
+            FrequencyTextBox.Text = channel.frequency.ToString();
+
+            if (WireComboBoxT.Text != "" && WireComboBoxT.Text != CUSTOM_EN && WireComboBoxT.Text != CUSTOM_PL) {
+                var wireAttenuation = this.wm.GetWireAttenuationByNameFrequency(WireComboBoxT.Text, channel.frequency);
+
+                var wires = this.wm.GetWiresByFrequency(channel.frequency);
+                FillCombobox(WireComboBoxT, wires);
+
+                if (wireAttenuation == null) {
+                    WireComboBoxT.Text = "";
+                    AttenuationWireTextBoxT.Text = "";
+                    AttenuationConnectorTextBoxT.Text = "";
+
+                    var connectors = this.cm.GetConnectors();
+                    FillCombobox(ConnectorComboBoxT, connectors);
+                } else {
+                    AttenuationWireTextBoxT.Text = (wireAttenuation.value / 100).ToString(nfi);
+                }
+            } else {
+                var wirelist = this.wm.GetWiresByFrequency(channel.frequency);
+                FillCombobox(WireComboBoxT, wirelist);
+            }
+
+            if (WireComboBoxR.Text != "" && WireComboBoxR.Text != CUSTOM_EN && WireComboBoxR.Text != CUSTOM_PL) {
+                var wireAttenuation = this.wm.GetWireAttenuationByNameFrequency(WireComboBoxR.Text, channel.frequency);
+
+                var wires = this.wm.GetWiresByFrequency(channel.frequency);
+                FillCombobox(WireComboBoxR, wires);
+
+                if (wireAttenuation == null) {
+                    WireComboBoxR.Text = "";
+                    AttenuationWireTextBoxR.Text = "";
+                    AttenuationConnectorTextBoxR.Text = "";
+
+                    var connectors = this.cm.GetConnectors();
+                    FillCombobox(ConnectorComboBoxR, connectors);
+                } else {
+
+                    AttenuationWireTextBoxR.Text = (wireAttenuation.value / 100).ToString(nfi);
+                }
+            } else {
+                var wirelist = this.wm.GetWiresByFrequency(channel.frequency);
+                FillCombobox(WireComboBoxR, wirelist);
+            }
+        }
+
+        private void PowerTextBoxT_Click(object sender, EventArgs e){
+            TransmitterComboBox.Text = (guiLanguage ? CUSTOM_PL : CUSTOM_EN);
+        }
+
+        private void GainTextBoxT_Click(object sender, EventArgs e) {
+            TransmitterComboBox.Text = (guiLanguage ? CUSTOM_PL : CUSTOM_EN);
+        }
+
+        private void AttenuationWireTextBoxT_Click(object sender, EventArgs e) {
+            WireComboBoxT.Text = (guiLanguage ? CUSTOM_PL : CUSTOM_EN);
+        }
+
+        private void AttenuationConnectorTextBoxT_Click(object sender, EventArgs e) {
+            ConnectorComboBoxT.Text = (guiLanguage ? CUSTOM_PL : CUSTOM_EN);
+        }
+
+        private void GainTextBoxR_Click(object sender, EventArgs e) {
+            ReceiverComboBox.Text = (guiLanguage ? CUSTOM_PL : CUSTOM_EN);
+        }
+
+        private void AttenuationWireTextBoxR_Click(object sender, EventArgs e) {
+            WireComboBoxR.Text = (guiLanguage ? CUSTOM_PL : CUSTOM_EN);
+        }
+
+        private void AttenuationConnectorTextBoxR_Click(object sender, EventArgs e) {
+            ConnectorComboBoxR.Text = (guiLanguage ? CUSTOM_PL : CUSTOM_EN);
+        }
     }
 }
+
+// todo:
+// "wrong value" traktować jak ""

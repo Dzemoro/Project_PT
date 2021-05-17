@@ -13,5 +13,13 @@ namespace AppFunctionsLibrary.DAL
         {
 
         }
+        public Obstacle GetObstacle(int id)
+        {
+            return dbSet.SingleOrDefault(x => x.id == id);
+        }
+        public List<Obstacle> GetAllObstacles()
+        {
+            return dbSet.ToList();
+        }
     }
 }
