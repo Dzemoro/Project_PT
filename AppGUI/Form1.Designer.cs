@@ -668,7 +668,7 @@
             this.ObstacleAmountColumn,
             this.Amount2Column,
             this.DeleteColumn});
-            this.ObstaclesDataGridView.Location = new System.Drawing.Point(702, 200);
+            this.ObstaclesDataGridView.Location = new System.Drawing.Point(702, 211);
             this.ObstaclesDataGridView.Name = "ObstaclesDataGridView";
             this.ObstaclesDataGridView.Size = new System.Drawing.Size(457, 197);
             this.ObstaclesDataGridView.TabIndex = 36;
