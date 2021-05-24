@@ -10,8 +10,7 @@ cursor = conn.cursor()
 #cursor.execute("DROP TABLE IF EXISTS Devices")
 
 #Creating table as per requirement
-sql = """ SELECT * FROM WiresAttenuation wa
-LEFT JOIN Wires w ON w.id == wa.wire_id WHERE wa.frequency == 2400;"""
+sql = """ SELECT * FROM Obstacles;"""
 print(sql)
 cursor.execute(sql)
 
