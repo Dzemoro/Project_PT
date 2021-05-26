@@ -13,5 +13,19 @@ namespace AppFunctionsLibrary.DAL
         {
 
         }
+        public Measurement GetMeasurement(int id) {
+            return dbSet.SingleOrDefault(x => x.id == id);
+        }
+        public Measurement GetMeasurementeByName(string name) {
+            return dbSet.SingleOrDefault(x => x.name == name);
+        }
+        public List<Measurement> GetAllMeasurements() {
+            return dbSet.ToList();
+        }
+        public bool AddMeasurement(Measurement m) {
+            Insert(m);
+            //dbSet.Add(m);
+            return true;
+        }
     }
 }

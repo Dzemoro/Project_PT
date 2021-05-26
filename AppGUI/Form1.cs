@@ -21,6 +21,7 @@ namespace AppGUI {
         ConnectorManager cm;
         ConnectorToWireManager ctwm;
         DeviceManager dm;
+        MeasurementManager mm;
         ObstacleManager om;
         WireManager wm;
         WireAttenuationManager wam;
@@ -49,6 +50,7 @@ namespace AppGUI {
             this.cm = new ConnectorManager(this.context);
             this.ctwm = new ConnectorToWireManager(this.context);
             this.dm = new DeviceManager(this.context);
+            this.mm = new MeasurementManager(this.context);
             this.om = new ObstacleManager(this.context);
             this.wm = new WireManager(this.context);
             this.wam = new WireAttenuationManager(this.context);
@@ -297,7 +299,7 @@ where:
         }
 
         private void WireComboBoxR_SelectedIndexChanged(object sender, EventArgs e) {
-            if (WireComboBoxR.Text != CUSTOM_EN && WireComboBoxT.Text != CUSTOM_PL) {
+            if (WireComboBoxR.Text != CUSTOM_EN && WireComboBoxR.Text != CUSTOM_PL) {
                 var wire = this.wm.GetWireByName(WireComboBoxR.Text);
 
                 if (FrequencyTextBox.Text == "") {
@@ -487,9 +489,39 @@ where:
                     row.Cells["ObstacleColumn"].Value = (guiLanguage ? CUSTOM_PL : CUSTOM_EN);
             }
         }
+
+        private void NewButton_Click(object sender, EventArgs e) {
+            DialogResult dialogResult = MessageBox.Show("Sure", "Some Title", MessageBoxButtons.YesNoCancel);
+            if (dialogResult == DialogResult.Yes) {
+                // save to DB
+                Measurement m = new Measurement();
+                m.name = "Test2";
+                m.distance = float.Parse(DistanceTextBox.Text, nfi);
+                m.wireLenghtT = float.Parse(LengthTextBoxT.Text, nfi);
+                m.wireLenghtR = float.Parse(LengthTextBoxR.Text, nfi);
+                m.transmitter_id = this.dm.GetDeviceByName(TransmitterComboBox.Text).id;
+                m.receiver_id = this.dm.GetDeviceByName(ReceiverComboBox.Text).id;
+                m.wireT_id = this.wm.GetWireByName(WireComboBoxT.Text).id;
+                m.wireR_id = this.wm.GetWireByName(WireComboBoxR.Text).id;
+                m.connectorT_id = this.cm.GetConnectorByName(ConnectorComboBoxT.Text).id;
+                m.connectorR_id = this.cm.GetConnectorByName(ConnectorComboBoxR.Text).id;
+                m.channel_id = Int32.Parse(DistanceTextBox.Text, nfi);
+
+                this.mm.AddMeasurement(m);
+                var list = this.mm.GetMeasurements();
+
+                // clear form
+                Form1 NewForm = new Form1();
+                NewForm.Show();
+                this.Dispose(false);
+
+            } else if (dialogResult == DialogResult.No) {
+                Form1 NewForm = new Form1();
+                NewForm.Show();
+                this.Dispose(false);
+            }
+        }
     }
 }
 
 // todo:
-// "wrong value" traktować jak ""
-// bug z polskim
