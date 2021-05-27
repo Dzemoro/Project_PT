@@ -10,7 +10,7 @@ cursor = conn.cursor()
 #cursor.execute("DROP TABLE IF EXISTS Devices")
 
 #Creating table as per requirement
-sql = """ SELECT * FROM Obstacles;"""
+sql = """ SELECT * FROM Measurements;"""
 print(sql)
 cursor.execute(sql)
 

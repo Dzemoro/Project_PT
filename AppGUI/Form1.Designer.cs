@@ -85,7 +85,7 @@
             this.ObstaclesDataGridView = new System.Windows.Forms.DataGridView();
             this.ObstacleColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.ObstacleAmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount2Column = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ObstacleAttenuationtColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DeleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.FrequencyLabel = new System.Windows.Forms.Label();
             this.FrequencyTextBox = new System.Windows.Forms.TextBox();
@@ -161,6 +161,7 @@
             this.NewButton.TabIndex = 23;
             this.NewButton.Text = "New";
             this.NewButton.UseVisualStyleBackColor = true;
+            this.NewButton.Click += new System.EventHandler(this.NewButton_Click);
             // 
             // TransmitterComboBox
             // 
@@ -675,19 +676,18 @@
             this.ObstaclesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ObstacleColumn,
             this.ObstacleAmountColumn,
-            this.Amount2Column,
+            this.ObstacleAttenuationtColumn,
             this.DeleteColumn});
             this.ObstaclesDataGridView.Location = new System.Drawing.Point(702, 200);
             this.ObstaclesDataGridView.Name = "ObstaclesDataGridView";
             this.ObstaclesDataGridView.Size = new System.Drawing.Size(457, 197);
             this.ObstaclesDataGridView.TabIndex = 36;
+            this.ObstaclesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ObstaclesDataGridView_CellContentClick);
+            this.ObstaclesDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.ObstaclesDataGridView_CellValueChanged);
             // 
             // ObstacleColumn
             // 
             this.ObstacleColumn.HeaderText = "ObstacleColumn";
-            this.ObstacleColumn.Items.AddRange(new object[] {
-            "Wood wall",
-            "Stone wall"});
             this.ObstacleColumn.Name = "ObstacleColumn";
             // 
             // ObstacleAmountColumn
@@ -697,24 +697,11 @@
             this.ObstacleAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ObstacleAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // Amount2Column
+            // ObstacleAttenuationtColumn
             // 
-            this.Amount2Column.HeaderText = "Amount2";
-            this.Amount2Column.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.Amount2Column.Name = "Amount2Column";
-            this.Amount2Column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Amount2Column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ObstacleAttenuationtColumn.HeaderText = "Attenuation";
+            this.ObstacleAttenuationtColumn.Name = "ObstacleAttenuationtColumn";
+            this.ObstacleAttenuationtColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // DeleteColumn
             // 
@@ -833,12 +820,12 @@
         private System.Windows.Forms.Button LanguageButton;
         private System.Windows.Forms.TextBox ResultTextBox;
         private System.Windows.Forms.DataGridView ObstaclesDataGridView;
-        private System.Windows.Forms.DataGridViewComboBoxColumn ObstacleColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ObstacleAmountColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Amount2Column;
-        private System.Windows.Forms.DataGridViewButtonColumn DeleteColumn;
         private System.Windows.Forms.Label FrequencyLabel;
         private System.Windows.Forms.TextBox FrequencyTextBox;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ObstacleColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ObstacleAmountColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ObstacleAttenuationtColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn DeleteColumn;
     }
 }
 
