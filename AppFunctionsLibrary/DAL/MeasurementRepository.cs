@@ -22,10 +22,6 @@ namespace AppFunctionsLibrary.DAL
         public List<Measurement> GetAllMeasurements() {
             return dbSet.ToList();
         }
-        public bool AddMeasurement(Measurement m) {
-            Insert(m);
-            //dbSet.Add(m);
-            return true;
-        }
+
     }
 }

@@ -6,4 +6,4 @@
 -- INSERT INTO Obstacles (name, attenuation_24, attenuation_5) VALUES ('Lime Brick', 4.3, 7.8);
 -- INSERT INTO Obstacles (name, attenuation_24, attenuation_5) VALUES ('Dry Wall Partition', 5.4, 10.1);
 -- INSERT INTO Obstacles (name, attenuation_24, attenuation_5) VALUES ('Chip Board', 0.5, 0.8);
-DELETE FROM Measurements;
+DELETE FROM Devices where name = "custom";

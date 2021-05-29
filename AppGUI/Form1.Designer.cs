@@ -141,6 +141,7 @@
             this.SaveButton.TabIndex = 25;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // OpenButton
             // 
@@ -151,6 +152,7 @@
             this.OpenButton.TabIndex = 24;
             this.OpenButton.Text = "Open";
             this.OpenButton.UseVisualStyleBackColor = true;
+            this.OpenButton.Click += new System.EventHandler(this.OpenButton_Click);
             // 
             // NewButton
             // 
@@ -722,6 +724,7 @@
             // 
             this.FrequencyTextBox.Location = new System.Drawing.Point(185, 599);
             this.FrequencyTextBox.Name = "FrequencyTextBox";
+            this.FrequencyTextBox.ReadOnly = true;
             this.FrequencyTextBox.Size = new System.Drawing.Size(86, 20);
             this.FrequencyTextBox.TabIndex = 38;
             // 
