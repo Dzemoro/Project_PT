@@ -1,5 +1,10 @@
 import sqlite3
 
+def ReadQuery(path):
+    with open(path, 'r') as file:
+        content = file.read()
+    return content
+
 #Connecting to sqlite
 conn = sqlite3.connect('AppDB.db')
 
@@ -10,15 +15,8 @@ cursor = conn.cursor()
 #cursor.execute("DROP TABLE IF EXISTS Devices")
 
 #Creating table as per requirement
-sql = """ SELECT * FROM Obstacles;"""
-print(sql)
-cursor.execute(sql)
-
-rows = cursor.fetchall()
-
-for row in rows:
-    print(row)
-
+sql = ReadQuery('fixes.sql')
+cursor.executescript(sql)
 print("Table created successfully........")
 
 # Commit your changes in the database

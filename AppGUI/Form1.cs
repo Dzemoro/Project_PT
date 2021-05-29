@@ -21,6 +21,7 @@ namespace AppGUI {
         ConnectorManager cm;
         ConnectorToWireManager ctwm;
         DeviceManager dm;
+        MeasurementManager mm;
         ObstacleManager om;
         WireManager wm;
         WireAttenuationManager wam;
@@ -29,6 +30,8 @@ namespace AppGUI {
         private bool guiLanguage = false;
 
         NumberFormatInfo nfi = new NumberFormatInfo();
+
+        bool isInit = true;
 
         const string CUSTOM_PL = "<własne>";
         const string CUSTOM_EN = "<custom>";
@@ -47,6 +50,7 @@ namespace AppGUI {
             this.cm = new ConnectorManager(this.context);
             this.ctwm = new ConnectorToWireManager(this.context);
             this.dm = new DeviceManager(this.context);
+            this.mm = new MeasurementManager(this.context);
             this.om = new ObstacleManager(this.context);
             this.wm = new WireManager(this.context);
             this.wam = new WireAttenuationManager(this.context);
@@ -54,6 +58,7 @@ namespace AppGUI {
             var deviceList = this.dm.GetDevices();
             var obstacleList = this.om.GetObstacles();
             var wireList = this.wm.GetWires();
+            var obstaclesList = this.om.GetObstacles();
 
             FillCombobox(ConnectorComboBoxT, connectorList);
             FillCombobox(ConnectorComboBoxR, connectorList);
@@ -61,6 +66,12 @@ namespace AppGUI {
             FillCombobox(ReceiverComboBox, deviceList);
             FillCombobox(WireComboBoxT, wireList);
             FillCombobox(WireComboBoxR, wireList);
+
+            ObstacleColumn.Items.Clear();
+            ObstacleColumn.Items.Add(guiLanguage ? CUSTOM_PL : CUSTOM_EN);
+            foreach (var value in obstacleList) {
+                ObstacleColumn.Items.Add(value.name);
+            }
 
             BandComboBox.Items.Add("2.4");
             BandComboBox.Items.Add("5.0");
@@ -99,11 +110,31 @@ namespace AppGUI {
                 throw new Exception("Wrong value");
             }
         }
+        private double GetValue(DataGridViewCell cell) {
+            var match = Regex.Match(cell.Value.ToString(), @"^[0-9]*\.?[0-9]+$");
+
+            if (match.Success && match.Value.Length == cell.Value.ToString().Length) {
+                return Convert.ToDouble(cell.Value.ToString(), nfi);
+            } else {
+                cell.Value = guiLanguage ? WRONG_PL : WRONG_EN;
+                throw new Exception("Wrong value");
+            }
+        }
 
         private void CountButton_Click(object sender, EventArgs e) {
             try {
+                double obstaclesAttenuation = 0;
+                foreach (DataGridViewRow row in ObstaclesDataGridView.Rows) {
+                    if (row.Cells["ObstacleColumn"].Value != null) {
+                        var obstacle = this.om.GetObstacleByName(row.Cells["ObstacleColumn"].Value.ToString());
+                        //if (BandComboBox.Text == "2.4")
+                        obstaclesAttenuation += GetValue(row.Cells["ObstacleAttenuationColumn"]) * GetValue(row.Cells["ObstacleAmountColumn"]);
+                        //else
+                        //obstaclesAttenuation += obstacle.attenuation_5 * Int32.Parse(row.Cells["ObstacleAmountColumn"].Value);
+                    }
+                }
                 double fsl = (20 * Math.Log10(GetValue(DistanceTextBox) / 1000)) + (20 * Math.Log10(GetValue(FrequencyTextBox))) + 32.44;
-                double rpl = GetValue(PowerTextBoxT) - GetValue(AttenuationWireTextBoxT) * GetValue(LengthTextBoxT) - GetValue(AttenuationConnectorTextBoxT) + GetValue(GainTextBoxT) - fsl + GetValue(GainTextBoxR) - GetValue(AttenuationWireTextBoxR) * GetValue(LengthTextBoxR) - GetValue(AttenuationConnectorTextBoxR);
+                double rpl = GetValue(PowerTextBoxT) - GetValue(AttenuationWireTextBoxT) * GetValue(LengthTextBoxT) - GetValue(AttenuationConnectorTextBoxT) + GetValue(GainTextBoxT) - fsl + GetValue(GainTextBoxR) - GetValue(AttenuationWireTextBoxR) * GetValue(LengthTextBoxR) - GetValue(AttenuationConnectorTextBoxR) - obstaclesAttenuation;
                 rpl = Math.Round(rpl, 4);
                 ResultTextBox.Text = rpl.ToString();
             } catch (Exception ex) { }
@@ -268,7 +299,7 @@ where:
         }
 
         private void WireComboBoxR_SelectedIndexChanged(object sender, EventArgs e) {
-            if (WireComboBoxR.Text != CUSTOM_EN && WireComboBoxT.Text != CUSTOM_PL) {
+            if (WireComboBoxR.Text != CUSTOM_EN && WireComboBoxR.Text != CUSTOM_PL) {
                 var wire = this.wm.GetWireByName(WireComboBoxR.Text);
 
                 if (FrequencyTextBox.Text == "") {
@@ -328,6 +359,19 @@ where:
                 channels = this.chm.GetChannelsByBand(50);
             foreach (var channel in channels)
                 ChannelComboBox.Items.Add(channel.number);
+
+            if (ObstaclesDataGridView.Columns[0].Name != "") {
+                foreach (DataGridViewRow row in ObstaclesDataGridView.Rows) {
+                    if (row.Cells["ObstacleColumn"].Value != null) {
+                        if (row.Cells["ObstacleColumn"].Value.ToString() != CUSTOM_EN && row.Cells["ObstacleColumn"].Value.ToString() != CUSTOM_PL) {
+                            var obstacle = this.om.GetObstacleByName(row.Cells["ObstacleColumn"].Value.ToString());
+                            if (BandComboBox.Text == "2.4")
+                                row.Cells["ObstacleAttenuationtColumn"].Value = obstacle.attenuation_24;
+                            else row.Cells["ObstacleAttenuationtColumn"].Value = obstacle.attenuation_5;
+                        }
+                    }
+                }
+            }
         }
 
         private void ChannelComboBox_SelectedIndexChanged(object sender, EventArgs e) {
@@ -383,7 +427,7 @@ where:
             }
         }
 
-        private void PowerTextBoxT_Click(object sender, EventArgs e){
+        private void PowerTextBoxT_Click(object sender, EventArgs e) {
             TransmitterComboBox.Text = (guiLanguage ? CUSTOM_PL : CUSTOM_EN);
         }
 
@@ -410,8 +454,74 @@ where:
         private void AttenuationConnectorTextBoxR_Click(object sender, EventArgs e) {
             ConnectorComboBoxR.Text = (guiLanguage ? CUSTOM_PL : CUSTOM_EN);
         }
+
+        private void ObstaclesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+            if (e.RowIndex > -1 && !ObstaclesDataGridView.Rows[e.RowIndex].IsNewRow)
+                if (ObstaclesDataGridView.Rows.Count > 1)
+                    ObstaclesDataGridView.Rows.RemoveAt(e.RowIndex);
+                else
+                    foreach (DataGridViewCell cell in ObstaclesDataGridView.Rows[0].Cells)
+                        cell.Value = "";
+        }
+
+        private void ObstaclesDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e) {
+            if (ObstaclesDataGridView.Columns[0].Name == "") return;
+            if (e.RowIndex < 0) return;
+            var rowNum = e.ColumnIndex;
+            var row = ObstaclesDataGridView.Rows[e.RowIndex];
+            var cell = row.Cells[rowNum];
+            if (rowNum == 0) {        // Name
+                if (cell.Value.ToString() != CUSTOM_EN && cell.Value.ToString() != CUSTOM_PL) {
+                    if (BandComboBox.Text == "") {
+                        row.Cells["ObstacleAttenuationtColumn"].Value = "";
+                    } else {
+                        var obstacle = this.om.GetObstacleByName(cell.Value.ToString());
+                        if (BandComboBox.Text == "2.4")
+                            row.Cells["ObstacleAttenuationtColumn"].Value = obstacle.attenuation_24;
+                        else row.Cells["ObstacleAttenuationtColumn"].Value = obstacle.attenuation_5;
+                    }
+                    row.Cells["ObstacleAttenuationtColumn"].ReadOnly = true;
+                } else {
+                    row.Cells["ObstacleAttenuationtColumn"].ReadOnly = false;
+                }
+            } else if (rowNum == 2) { // Attenuation
+                if (row.Cells["ObstacleColumn"].Value == null)
+                    row.Cells["ObstacleColumn"].Value = (guiLanguage ? CUSTOM_PL : CUSTOM_EN);
+            }
+        }
+
+        private void NewButton_Click(object sender, EventArgs e) {
+            DialogResult dialogResult = MessageBox.Show("Sure", "Some Title", MessageBoxButtons.YesNoCancel);
+            if (dialogResult == DialogResult.Yes) {
+                // save to DB
+                Measurement m = new Measurement();
+                m.name = "Test2";
+                m.distance = float.Parse(DistanceTextBox.Text, nfi);
+                m.wireLenghtT = float.Parse(LengthTextBoxT.Text, nfi);
+                m.wireLenghtR = float.Parse(LengthTextBoxR.Text, nfi);
+                m.transmitter_id = this.dm.GetDeviceByName(TransmitterComboBox.Text).id;
+                m.receiver_id = this.dm.GetDeviceByName(ReceiverComboBox.Text).id;
+                m.wireT_id = this.wm.GetWireByName(WireComboBoxT.Text).id;
+                m.wireR_id = this.wm.GetWireByName(WireComboBoxR.Text).id;
+                m.connectorT_id = this.cm.GetConnectorByName(ConnectorComboBoxT.Text).id;
+                m.connectorR_id = this.cm.GetConnectorByName(ConnectorComboBoxR.Text).id;
+                m.channel_id = Int32.Parse(DistanceTextBox.Text, nfi);
+
+                this.mm.AddMeasurement(m);
+                var list = this.mm.GetMeasurements();
+
+                // clear form
+                Form1 NewForm = new Form1();
+                NewForm.Show();
+                this.Dispose(false);
+
+            } else if (dialogResult == DialogResult.No) {
+                Form1 NewForm = new Form1();
+                NewForm.Show();
+                this.Dispose(false);
+            }
+        }
     }
 }
 
 // todo:
-// "wrong value" traktować jak ""

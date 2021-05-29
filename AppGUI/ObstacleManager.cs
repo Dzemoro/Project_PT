@@ -24,5 +24,8 @@ namespace AppGUI
         {
             return this.rep.GetAllObstacles();
         }
+        public Obstacle GetObstacleByName(string name) {
+            return this.rep.GetObstacleByName(name);
+        }
     }
 }

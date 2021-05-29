@@ -21,5 +21,8 @@ namespace AppFunctionsLibrary.DAL
         {
             return dbSet.ToList();
         }
+        public Obstacle GetObstacleByName(string name) {
+            return dbSet.SingleOrDefault(x => x.name == name);
+        }
     }
 }
