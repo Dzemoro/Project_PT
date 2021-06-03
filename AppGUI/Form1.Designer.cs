@@ -141,6 +141,7 @@
             this.SaveButton.TabIndex = 25;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // OpenButton
             // 
@@ -151,6 +152,7 @@
             this.OpenButton.TabIndex = 24;
             this.OpenButton.Text = "Open";
             this.OpenButton.UseVisualStyleBackColor = true;
+            this.OpenButton.Click += new System.EventHandler(this.OpenButton_Click);
             // 
             // NewButton
             // 
@@ -656,10 +658,6 @@
             this.ResultLabel.TabIndex = 33;
             this.ResultLabel.Text = "RESULT [dB]";
             // 
-            // toolTip1
-            // 
-            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
-            // 
             // ResultTextBox
             // 
             this.ResultTextBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -684,10 +682,11 @@
             this.ObstaclesDataGridView.TabIndex = 36;
             this.ObstaclesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ObstaclesDataGridView_CellContentClick);
             this.ObstaclesDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.ObstaclesDataGridView_CellValueChanged);
+            this.ObstaclesDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.ObstaclesDataGridView_DataError);
             // 
             // ObstacleColumn
             // 
-            this.ObstacleColumn.HeaderText = "ObstacleColumn";
+            this.ObstacleColumn.HeaderText = "Obstacle";
             this.ObstacleColumn.Name = "ObstacleColumn";
             // 
             // ObstacleAmountColumn
@@ -722,6 +721,7 @@
             // 
             this.FrequencyTextBox.Location = new System.Drawing.Point(185, 599);
             this.FrequencyTextBox.Name = "FrequencyTextBox";
+            this.FrequencyTextBox.ReadOnly = true;
             this.FrequencyTextBox.Size = new System.Drawing.Size(86, 20);
             this.FrequencyTextBox.TabIndex = 38;
             // 
@@ -750,7 +750,6 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "Link Budget Calculator";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.TransmitterTable.ResumeLayout(false);
             this.TransmitterTable.PerformLayout();

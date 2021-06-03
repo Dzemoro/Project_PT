@@ -15,10 +15,11 @@ namespace AppGUI {
         }
 
         public bool AddMeasurement(Measurement m) {
-            this.rep.Insert(m);
-            rep.Commit();
-
-            return true;
+            if (this.rep.GetMeasurementeByName(m.name) == null) {
+                this.rep.Insert(m);
+                rep.Commit();
+                return true;
+            } else return false;
         }
         public bool DeleteMeasurement() { return false; }
         public bool UpdateMeasurement() { return false; }

@@ -17,6 +17,11 @@ namespace AppGUI
             this.rep = new WireAttenuationRepository(context);
         }
 
+        public WireAttenuation AddCustomWireAttenuation(WireAttenuation wa) {
+            this.rep.Insert(wa);
+            rep.Commit();
+            return wa;
+        }
         public List<WireAttenuation> GetAll()
         {
             return this.rep.GetAll();
