@@ -79,10 +79,6 @@ namespace AppGUI {
             this.nfi.NumberDecimalSeparator = ".";
         }
 
-        private void koteczek_Click(object sender, EventArgs e) {
-            koteczek.Text = "Siemka";
-
-        }
 
         private void FillCombobox<T>(ComboBox comboBox, List<T> values) {
             comboBox.Items.Clear();
@@ -159,7 +155,6 @@ namespace AppGUI {
                 BandLabel.Text = "Band [GHz]";
                 ChannelLabel.Text = "Channel";
                 FrequencyLabel.Text = "Frequency [MHz]";
-                ObstaclesLabel.Text = "Obstacles";
                 ResultLabel.Text = "RESULT [dB]";
                 CountButton.Text = "Count";
 
@@ -189,7 +184,6 @@ namespace AppGUI {
                 BandLabel.Text = "Pasmo [GHz]";
                 ChannelLabel.Text = "Kanał";
                 FrequencyLabel.Text = "Częstotliwość [MHz]";
-                ObstaclesLabel.Text = "Przeszkody";
                 ResultLabel.Text = "WYNIK [dB]";
                 CountButton.Text = "Oblicz";
 
@@ -520,6 +514,36 @@ where:
                 NewForm.Show();
                 this.Dispose(false);
             }
+        }
+
+        private void PowerLabelT_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DistanceLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
