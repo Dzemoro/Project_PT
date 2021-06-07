@@ -81,10 +81,6 @@ namespace AppGUI {
             this.nfi.NumberDecimalSeparator = ".";
         }
 
-        private void koteczek_Click(object sender, EventArgs e) {
-            koteczek.Text = "Siemka";
-
-        }
 
         private void FillCombobox<T>(ComboBox comboBox, List<T> values) {
             comboBox.Items.Clear();
@@ -142,7 +138,6 @@ namespace AppGUI {
                 BandLabel.Text = "Band [GHz]";
                 ChannelLabel.Text = "Channel";
                 FrequencyLabel.Text = "Frequency [MHz]";
-                ObstaclesLabel.Text = "Obstacles";
                 ResultLabel.Text = "RESULT [dB]";
                 CountButton.Text = "Count";
 
@@ -179,7 +174,6 @@ namespace AppGUI {
                 BandLabel.Text = "Pasmo [GHz]";
                 ChannelLabel.Text = "Kanał";
                 FrequencyLabel.Text = "Częstotliwość [MHz]";
-                ObstaclesLabel.Text = "Przeszkody";
                 ResultLabel.Text = "WYNIK [dB]";
                 CountButton.Text = "Oblicz";
 
