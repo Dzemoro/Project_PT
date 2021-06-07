@@ -13,5 +13,8 @@ namespace AppFunctionsLibrary.DAL
         {
 
         }
+        public List<ObstacleAmount> GetAllObstacleAmounts() {
+            return dbSet.ToList();
+        }
     }
 }

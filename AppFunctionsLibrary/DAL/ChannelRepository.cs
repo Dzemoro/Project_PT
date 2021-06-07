@@ -17,6 +17,9 @@ namespace AppFunctionsLibrary.DAL
         {
             return dbSet.SingleOrDefault(x => x.id == id);
         }
+        public Channel GetChannelByFrequency(int frequency) {
+            return dbSet.SingleOrDefault(x => x.frequency == frequency);
+        }
         public Channel GetChannelByBandFrequency(int band, int number)
         {
             return dbSet.SingleOrDefault(x => x.band == band && x.number == number);
