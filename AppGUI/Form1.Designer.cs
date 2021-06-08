@@ -30,11 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.LanguageButton = new System.Windows.Forms.Button();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.InfoButton = new System.Windows.Forms.Button();
-            this.SaveButton = new System.Windows.Forms.Button();
-            this.OpenButton = new System.Windows.Forms.Button();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.NewButton = new System.Windows.Forms.Button();
+            this.OpenButton = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.PowerTextBoxT = new System.Windows.Forms.TextBox();
             this.AttenuationConnectorTextBoxT = new System.Windows.Forms.TextBox();
             this.AttenuationWireTextBoxT = new System.Windows.Forms.TextBox();
@@ -72,16 +73,14 @@
             this.ObstaclesDataGridView = new System.Windows.Forms.DataGridView();
             this.FrequencyLabel = new System.Windows.Forms.Label();
             this.FrequencyTextBox = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.TransmitterSectionLabel = new System.Windows.Forms.Label();
             this.ReceiverSectionLabel = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.GainTextBoxT = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.GainLabelT = new System.Windows.Forms.Label();
             this.TransmitterComboBox = new System.Windows.Forms.ComboBox();
+            this.GainTextBoxT = new System.Windows.Forms.TextBox();
             this.TransmitterLabelT = new System.Windows.Forms.Label();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.WireComboBoxT = new System.Windows.Forms.ComboBox();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
@@ -105,9 +104,9 @@
             this.ObstacleAttenuationtColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DeleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ObstaclesDataGridView)).BeginInit();
-            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ObstaclesDataGridView)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox13.SuspendLayout();
@@ -138,25 +137,26 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
-            // LanguageButton
+            // tableLayoutPanel4
             // 
-            this.LanguageButton.BackColor = System.Drawing.Color.LightGray;
-            this.LanguageButton.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.LanguageButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.LanguageButton.Location = new System.Drawing.Point(3, 3);
-            this.LanguageButton.Name = "LanguageButton";
-            this.LanguageButton.Size = new System.Drawing.Size(81, 37);
-            this.LanguageButton.TabIndex = 27;
-            this.LanguageButton.Text = "PL/EN";
-            this.LanguageButton.UseVisualStyleBackColor = false;
-            this.LanguageButton.Click += new System.EventHandler(this.LanguageButton_Click);
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.InfoButton, 1, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(973, 19);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(194, 54);
+            this.tableLayoutPanel4.TabIndex = 29;
             // 
             // InfoButton
             // 
             this.InfoButton.BackColor = System.Drawing.Color.LightGray;
             this.InfoButton.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.InfoButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.InfoButton.Location = new System.Drawing.Point(103, 3);
+            this.InfoButton.Location = new System.Drawing.Point(100, 3);
             this.InfoButton.Name = "InfoButton";
             this.InfoButton.Size = new System.Drawing.Size(81, 37);
             this.InfoButton.TabIndex = 26;
@@ -164,35 +164,21 @@
             this.InfoButton.UseVisualStyleBackColor = false;
             this.InfoButton.Click += new System.EventHandler(this.InfoButton_Click);
             // 
-            // SaveButton
+            // tableLayoutPanel3
             // 
-            this.SaveButton.BackColor = System.Drawing.Color.LightGray;
-            this.SaveButton.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.SaveButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.SaveButton.Location = new System.Drawing.Point(263, 3);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(81, 37);
-            this.SaveButton.TabIndex = 25;
-            this.SaveButton.Text = "Save";
-
-            this.SaveButton.UseVisualStyleBackColor = false;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
-
-            // 
-            // OpenButton
-            // 
-            this.OpenButton.BackColor = System.Drawing.Color.LightGray;
-            this.OpenButton.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.OpenButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.OpenButton.Location = new System.Drawing.Point(133, 3);
-            this.OpenButton.Name = "OpenButton";
-            this.OpenButton.Size = new System.Drawing.Size(81, 37);
-            this.OpenButton.TabIndex = 24;
-            this.OpenButton.Text = "Open";
-
-            this.OpenButton.UseVisualStyleBackColor = false;
-            this.OpenButton.Click += new System.EventHandler(this.OpenButton_Click);
-
+            this.tableLayoutPanel3.ColumnCount = 3;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel3.Controls.Add(this.NewButton, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.OpenButton, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.SaveButton, 2, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(7, 23);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(384, 43);
+            this.tableLayoutPanel3.TabIndex = 28;
             // 
             // NewButton
             // 
@@ -203,52 +189,78 @@
             this.NewButton.Name = "NewButton";
             this.NewButton.Size = new System.Drawing.Size(81, 37);
             this.NewButton.TabIndex = 23;
-            this.NewButton.Text = "New";
+            this.NewButton.Text = "Nowy";
             this.NewButton.UseVisualStyleBackColor = false;
             this.NewButton.Click += new System.EventHandler(this.NewButton_Click);
+            // 
+            // OpenButton
+            // 
+            this.OpenButton.BackColor = System.Drawing.Color.LightGray;
+            this.OpenButton.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.OpenButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.OpenButton.Location = new System.Drawing.Point(131, 3);
+            this.OpenButton.Name = "OpenButton";
+            this.OpenButton.Size = new System.Drawing.Size(81, 37);
+            this.OpenButton.TabIndex = 24;
+            this.OpenButton.Text = "Otwórz";
+            this.OpenButton.UseVisualStyleBackColor = false;
+            this.OpenButton.Click += new System.EventHandler(this.OpenButton_Click);
+            // 
+            // SaveButton
+            // 
+            this.SaveButton.BackColor = System.Drawing.Color.LightGray;
+            this.SaveButton.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.SaveButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.SaveButton.Location = new System.Drawing.Point(259, 3);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(81, 37);
+            this.SaveButton.TabIndex = 25;
+            this.SaveButton.Text = "Zapisz";
+            this.SaveButton.UseVisualStyleBackColor = false;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // PowerTextBoxT
             // 
             this.PowerTextBoxT.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.PowerTextBoxT.Location = new System.Drawing.Point(161, 89);
+            this.PowerTextBoxT.Location = new System.Drawing.Point(128, 90);
             this.PowerTextBoxT.Name = "PowerTextBoxT";
-            this.PowerTextBoxT.Size = new System.Drawing.Size(86, 20);
+            this.PowerTextBoxT.Size = new System.Drawing.Size(119, 20);
             this.PowerTextBoxT.TabIndex = 4;
             this.PowerTextBoxT.Click += new System.EventHandler(this.PowerTextBoxT_Click);
             // 
             // AttenuationConnectorTextBoxT
             // 
             this.AttenuationConnectorTextBoxT.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.AttenuationConnectorTextBoxT.Location = new System.Drawing.Point(161, 56);
+            this.AttenuationConnectorTextBoxT.Location = new System.Drawing.Point(128, 56);
             this.AttenuationConnectorTextBoxT.Name = "AttenuationConnectorTextBoxT";
-            this.AttenuationConnectorTextBoxT.Size = new System.Drawing.Size(86, 20);
+            this.AttenuationConnectorTextBoxT.Size = new System.Drawing.Size(119, 20);
             this.AttenuationConnectorTextBoxT.TabIndex = 6;
             this.AttenuationConnectorTextBoxT.Click += new System.EventHandler(this.AttenuationConnectorTextBoxT_Click);
             // 
             // AttenuationWireTextBoxT
             // 
             this.AttenuationWireTextBoxT.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.AttenuationWireTextBoxT.Location = new System.Drawing.Point(161, 53);
+            this.AttenuationWireTextBoxT.Location = new System.Drawing.Point(128, 53);
             this.AttenuationWireTextBoxT.Name = "AttenuationWireTextBoxT";
-            this.AttenuationWireTextBoxT.Size = new System.Drawing.Size(86, 20);
+            this.AttenuationWireTextBoxT.Size = new System.Drawing.Size(119, 20);
             this.AttenuationWireTextBoxT.TabIndex = 7;
             this.AttenuationWireTextBoxT.Click += new System.EventHandler(this.AttenuationWireTextBoxT_Click);
             // 
             // LengthTextBoxT
             // 
             this.LengthTextBoxT.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.LengthTextBoxT.Location = new System.Drawing.Point(161, 95);
+            this.LengthTextBoxT.Location = new System.Drawing.Point(128, 95);
             this.LengthTextBoxT.Name = "LengthTextBoxT";
-            this.LengthTextBoxT.Size = new System.Drawing.Size(86, 20);
+            this.LengthTextBoxT.Size = new System.Drawing.Size(119, 20);
             this.LengthTextBoxT.TabIndex = 8;
             // 
             // ConnectorComboBoxT
             // 
             this.ConnectorComboBoxT.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ConnectorComboBoxT.FormattingEnabled = true;
-            this.ConnectorComboBoxT.Location = new System.Drawing.Point(161, 11);
+            this.ConnectorComboBoxT.Location = new System.Drawing.Point(128, 12);
             this.ConnectorComboBoxT.Name = "ConnectorComboBoxT";
-            this.ConnectorComboBoxT.Size = new System.Drawing.Size(86, 21);
+            this.ConnectorComboBoxT.Size = new System.Drawing.Size(119, 21);
             this.ConnectorComboBoxT.TabIndex = 9;
             this.ConnectorComboBoxT.SelectedIndexChanged += new System.EventHandler(this.ConnectorComboBoxT_SelectedIndexChanged);
             // 
@@ -288,9 +300,9 @@
             this.AttenuationConnectorLabelT.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.AttenuationConnectorLabelT.Location = new System.Drawing.Point(3, 45);
             this.AttenuationConnectorLabelT.Name = "AttenuationConnectorLabelT";
-            this.AttenuationConnectorLabelT.Size = new System.Drawing.Size(96, 42);
+            this.AttenuationConnectorLabelT.Size = new System.Drawing.Size(105, 42);
             this.AttenuationConnectorLabelT.TabIndex = 18;
-            this.AttenuationConnectorLabelT.Text = "Attenuation [dB]";
+            this.AttenuationConnectorLabelT.Text = "Tłumienność [dB]";
             // 
             // ConnectorLabelT
             // 
@@ -300,9 +312,9 @@
             this.ConnectorLabelT.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ConnectorLabelT.Location = new System.Drawing.Point(3, 11);
             this.ConnectorLabelT.Name = "ConnectorLabelT";
-            this.ConnectorLabelT.Size = new System.Drawing.Size(83, 21);
+            this.ConnectorLabelT.Size = new System.Drawing.Size(69, 21);
             this.ConnectorLabelT.TabIndex = 17;
-            this.ConnectorLabelT.Text = "Connector";
+            this.ConnectorLabelT.Text = "Przewód";
             // 
             // LengthLabelT
             // 
@@ -312,9 +324,9 @@
             this.LengthLabelT.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.LengthLabelT.Location = new System.Drawing.Point(3, 95);
             this.LengthLabelT.Name = "LengthLabelT";
-            this.LengthLabelT.Size = new System.Drawing.Size(83, 21);
+            this.LengthLabelT.Size = new System.Drawing.Size(93, 21);
             this.LengthLabelT.TabIndex = 16;
-            this.LengthLabelT.Text = "Length [m]";
+            this.LengthLabelT.Text = "Dlugość [m]";
             // 
             // AttenuationWireLabelT
             // 
@@ -324,9 +336,9 @@
             this.AttenuationWireLabelT.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.AttenuationWireLabelT.Location = new System.Drawing.Point(3, 42);
             this.AttenuationWireLabelT.Name = "AttenuationWireLabelT";
-            this.AttenuationWireLabelT.Size = new System.Drawing.Size(96, 42);
+            this.AttenuationWireLabelT.Size = new System.Drawing.Size(105, 42);
             this.AttenuationWireLabelT.TabIndex = 15;
-            this.AttenuationWireLabelT.Text = "Attenuation [dB]";
+            this.AttenuationWireLabelT.Text = "Tłumienność [dB]";
             // 
             // WireLabelT
             // 
@@ -336,9 +348,9 @@
             this.WireLabelT.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.WireLabelT.Location = new System.Drawing.Point(3, 10);
             this.WireLabelT.Name = "WireLabelT";
-            this.WireLabelT.Size = new System.Drawing.Size(43, 21);
+            this.WireLabelT.Size = new System.Drawing.Size(69, 21);
             this.WireLabelT.TabIndex = 14;
-            this.WireLabelT.Text = "Wire";
+            this.WireLabelT.Text = "Przewód";
             // 
             // PowerLabelT
             // 
@@ -346,13 +358,12 @@
             this.PowerLabelT.AutoSize = true;
             this.PowerLabelT.Font = new System.Drawing.Font("Impact", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.PowerLabelT.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.PowerLabelT.Location = new System.Drawing.Point(3, 88);
+            this.PowerLabelT.Location = new System.Drawing.Point(3, 89);
             this.PowerLabelT.Name = "PowerLabelT";
-            this.PowerLabelT.Size = new System.Drawing.Size(98, 21);
+            this.PowerLabelT.Size = new System.Drawing.Size(83, 21);
             this.PowerLabelT.TabIndex = 12;
-            this.PowerLabelT.Text = "Power [dBm]";
+            this.PowerLabelT.Text = "Moc [dBm]";
             this.PowerLabelT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.PowerLabelT.Click += new System.EventHandler(this.PowerLabelT_Click);
             // 
             // AttenuationConnectorLabelR
             // 
@@ -362,17 +373,17 @@
             this.AttenuationConnectorLabelR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.AttenuationConnectorLabelR.Location = new System.Drawing.Point(3, 45);
             this.AttenuationConnectorLabelR.Name = "AttenuationConnectorLabelR";
-            this.AttenuationConnectorLabelR.Size = new System.Drawing.Size(96, 42);
+            this.AttenuationConnectorLabelR.Size = new System.Drawing.Size(105, 42);
             this.AttenuationConnectorLabelR.TabIndex = 19;
-            this.AttenuationConnectorLabelR.Text = "Attenuation [dB]";
+            this.AttenuationConnectorLabelR.Text = "Tłumienność [dB]";
             // 
             // ReceiverComboBox
             // 
             this.ReceiverComboBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ReceiverComboBox.FormattingEnabled = true;
-            this.ReceiverComboBox.Location = new System.Drawing.Point(161, 11);
+            this.ReceiverComboBox.Location = new System.Drawing.Point(128, 12);
             this.ReceiverComboBox.Name = "ReceiverComboBox";
-            this.ReceiverComboBox.Size = new System.Drawing.Size(86, 21);
+            this.ReceiverComboBox.Size = new System.Drawing.Size(119, 21);
             this.ReceiverComboBox.TabIndex = 3;
             this.ReceiverComboBox.SelectedIndexChanged += new System.EventHandler(this.ReceiverComboBox_SelectedIndexChanged);
             // 
@@ -384,9 +395,9 @@
             this.GainLabelR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.GainLabelR.Location = new System.Drawing.Point(3, 55);
             this.GainLabelR.Name = "GainLabelR";
-            this.GainLabelR.Size = new System.Drawing.Size(78, 21);
+            this.GainLabelR.Size = new System.Drawing.Size(77, 21);
             this.GainLabelR.TabIndex = 14;
-            this.GainLabelR.Text = "Gain [dBi]";
+            this.GainLabelR.Text = "Zysk [dBi]";
             // 
             // WireLabelR
             // 
@@ -396,9 +407,9 @@
             this.WireLabelR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.WireLabelR.Location = new System.Drawing.Point(3, 10);
             this.WireLabelR.Name = "WireLabelR";
-            this.WireLabelR.Size = new System.Drawing.Size(43, 21);
+            this.WireLabelR.Size = new System.Drawing.Size(69, 21);
             this.WireLabelR.TabIndex = 15;
-            this.WireLabelR.Text = "Wire";
+            this.WireLabelR.Text = "Przewód";
             // 
             // AttenuationWireLabelR
             // 
@@ -408,9 +419,9 @@
             this.AttenuationWireLabelR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.AttenuationWireLabelR.Location = new System.Drawing.Point(3, 42);
             this.AttenuationWireLabelR.Name = "AttenuationWireLabelR";
-            this.AttenuationWireLabelR.Size = new System.Drawing.Size(96, 42);
+            this.AttenuationWireLabelR.Size = new System.Drawing.Size(105, 42);
             this.AttenuationWireLabelR.TabIndex = 16;
-            this.AttenuationWireLabelR.Text = "Attenuation [dB]";
+            this.AttenuationWireLabelR.Text = "Tłumienność [dB]";
             // 
             // LengthLabelR
             // 
@@ -420,9 +431,9 @@
             this.LengthLabelR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.LengthLabelR.Location = new System.Drawing.Point(3, 95);
             this.LengthLabelR.Name = "LengthLabelR";
-            this.LengthLabelR.Size = new System.Drawing.Size(83, 21);
+            this.LengthLabelR.Size = new System.Drawing.Size(93, 21);
             this.LengthLabelR.TabIndex = 17;
-            this.LengthLabelR.Text = "Length [m]";
+            this.LengthLabelR.Text = "Dlugość [m]";
             // 
             // ConnectorLabelR
             // 
@@ -432,25 +443,25 @@
             this.ConnectorLabelR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ConnectorLabelR.Location = new System.Drawing.Point(3, 11);
             this.ConnectorLabelR.Name = "ConnectorLabelR";
-            this.ConnectorLabelR.Size = new System.Drawing.Size(83, 21);
+            this.ConnectorLabelR.Size = new System.Drawing.Size(69, 21);
             this.ConnectorLabelR.TabIndex = 18;
-            this.ConnectorLabelR.Text = "Connector";
+            this.ConnectorLabelR.Text = "Przewód";
             // 
             // GainTextBoxR
             // 
             this.GainTextBoxR.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.GainTextBoxR.Location = new System.Drawing.Point(161, 56);
+            this.GainTextBoxR.Location = new System.Drawing.Point(128, 56);
             this.GainTextBoxR.Name = "GainTextBoxR";
-            this.GainTextBoxR.Size = new System.Drawing.Size(86, 20);
+            this.GainTextBoxR.Size = new System.Drawing.Size(119, 20);
             this.GainTextBoxR.TabIndex = 4;
             this.GainTextBoxR.Click += new System.EventHandler(this.GainTextBoxR_Click);
             // 
             // AttenuationConnectorTextBoxR
             // 
             this.AttenuationConnectorTextBoxR.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.AttenuationConnectorTextBoxR.Location = new System.Drawing.Point(161, 56);
+            this.AttenuationConnectorTextBoxR.Location = new System.Drawing.Point(128, 56);
             this.AttenuationConnectorTextBoxR.Name = "AttenuationConnectorTextBoxR";
-            this.AttenuationConnectorTextBoxR.Size = new System.Drawing.Size(86, 20);
+            this.AttenuationConnectorTextBoxR.Size = new System.Drawing.Size(119, 20);
             this.AttenuationConnectorTextBoxR.TabIndex = 6;
             this.AttenuationConnectorTextBoxR.Click += new System.EventHandler(this.AttenuationConnectorTextBoxR_Click);
             // 
@@ -458,26 +469,26 @@
             // 
             this.ConnectorComboBoxR.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ConnectorComboBoxR.FormattingEnabled = true;
-            this.ConnectorComboBoxR.Location = new System.Drawing.Point(161, 11);
+            this.ConnectorComboBoxR.Location = new System.Drawing.Point(128, 11);
             this.ConnectorComboBoxR.Name = "ConnectorComboBoxR";
-            this.ConnectorComboBoxR.Size = new System.Drawing.Size(86, 21);
+            this.ConnectorComboBoxR.Size = new System.Drawing.Size(119, 21);
             this.ConnectorComboBoxR.TabIndex = 10;
             this.ConnectorComboBoxR.SelectedIndexChanged += new System.EventHandler(this.ConnectorComboBoxR_SelectedIndexChanged);
             // 
             // LengthTextBoxR
             // 
             this.LengthTextBoxR.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.LengthTextBoxR.Location = new System.Drawing.Point(161, 95);
+            this.LengthTextBoxR.Location = new System.Drawing.Point(128, 95);
             this.LengthTextBoxR.Name = "LengthTextBoxR";
-            this.LengthTextBoxR.Size = new System.Drawing.Size(86, 20);
+            this.LengthTextBoxR.Size = new System.Drawing.Size(119, 20);
             this.LengthTextBoxR.TabIndex = 7;
             // 
             // AttenuationWireTextBoxR
             // 
             this.AttenuationWireTextBoxR.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.AttenuationWireTextBoxR.Location = new System.Drawing.Point(161, 53);
+            this.AttenuationWireTextBoxR.Location = new System.Drawing.Point(128, 53);
             this.AttenuationWireTextBoxR.Name = "AttenuationWireTextBoxR";
-            this.AttenuationWireTextBoxR.Size = new System.Drawing.Size(86, 20);
+            this.AttenuationWireTextBoxR.Size = new System.Drawing.Size(119, 20);
             this.AttenuationWireTextBoxR.TabIndex = 8;
             this.AttenuationWireTextBoxR.Click += new System.EventHandler(this.AttenuationWireTextBoxR_Click);
             // 
@@ -485,9 +496,9 @@
             // 
             this.WireComboBoxR.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.WireComboBoxR.FormattingEnabled = true;
-            this.WireComboBoxR.Location = new System.Drawing.Point(161, 10);
+            this.WireComboBoxR.Location = new System.Drawing.Point(128, 10);
             this.WireComboBoxR.Name = "WireComboBoxR";
-            this.WireComboBoxR.Size = new System.Drawing.Size(86, 21);
+            this.WireComboBoxR.Size = new System.Drawing.Size(119, 21);
             this.WireComboBoxR.TabIndex = 9;
             this.WireComboBoxR.SelectedIndexChanged += new System.EventHandler(this.WireComboBoxR_SelectedIndexChanged);
             // 
@@ -501,7 +512,7 @@
             this.CountButton.Name = "CountButton";
             this.CountButton.Size = new System.Drawing.Size(69, 37);
             this.CountButton.TabIndex = 27;
-            this.CountButton.Text = "Count";
+            this.CountButton.Text = "Oblicz";
             this.CountButton.UseVisualStyleBackColor = false;
             this.CountButton.Click += new System.EventHandler(this.CountButton_Click);
             // 
@@ -513,9 +524,9 @@
             this.ChannelLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ChannelLabel.Location = new System.Drawing.Point(3, 89);
             this.ChannelLabel.Name = "ChannelLabel";
-            this.ChannelLabel.Size = new System.Drawing.Size(69, 21);
+            this.ChannelLabel.Size = new System.Drawing.Size(51, 21);
             this.ChannelLabel.TabIndex = 30;
-            this.ChannelLabel.Text = "Channel";
+            this.ChannelLabel.Text = "Kanal";
             // 
             // DistanceLabel
             // 
@@ -525,10 +536,9 @@
             this.DistanceLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.DistanceLabel.Location = new System.Drawing.Point(3, 9);
             this.DistanceLabel.Name = "DistanceLabel";
-            this.DistanceLabel.Size = new System.Drawing.Size(98, 21);
+            this.DistanceLabel.Size = new System.Drawing.Size(107, 21);
             this.DistanceLabel.TabIndex = 31;
-            this.DistanceLabel.Text = "Distance [m]";
-            this.DistanceLabel.Click += new System.EventHandler(this.DistanceLabel_Click);
+            this.DistanceLabel.Text = "Odległość [m]";
             // 
             // BandLabel
             // 
@@ -538,9 +548,9 @@
             this.BandLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.BandLabel.Location = new System.Drawing.Point(3, 49);
             this.BandLabel.Name = "BandLabel";
-            this.BandLabel.Size = new System.Drawing.Size(83, 21);
+            this.BandLabel.Size = new System.Drawing.Size(95, 21);
             this.BandLabel.TabIndex = 32;
-            this.BandLabel.Text = "Band [GHz]";
+            this.BandLabel.Text = "Pasmo [GHz]";
             // 
             // ResultLabel
             // 
@@ -548,11 +558,11 @@
             this.ResultLabel.AutoSize = true;
             this.ResultLabel.Font = new System.Drawing.Font("Impact", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ResultLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ResultLabel.Location = new System.Drawing.Point(94, 11);
+            this.ResultLabel.Location = new System.Drawing.Point(96, 11);
             this.ResultLabel.Name = "ResultLabel";
-            this.ResultLabel.Size = new System.Drawing.Size(88, 21);
+            this.ResultLabel.Size = new System.Drawing.Size(84, 21);
             this.ResultLabel.TabIndex = 33;
-            this.ResultLabel.Text = "RESULT [dB]";
+            this.ResultLabel.Text = "Wynik [dB]";
             // 
             // ResultTextBox
             // 
@@ -574,7 +584,7 @@
             this.DeleteColumn});
             this.ObstaclesDataGridView.Location = new System.Drawing.Point(665, 114);
             this.ObstaclesDataGridView.Name = "ObstaclesDataGridView";
-            this.ObstaclesDataGridView.Size = new System.Drawing.Size(417, 237);
+            this.ObstaclesDataGridView.Size = new System.Drawing.Size(458, 237);
             this.ObstaclesDataGridView.TabIndex = 36;
             this.ObstaclesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ObstaclesDataGridView_CellContentClick);
             this.ObstaclesDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.ObstaclesDataGridView_CellValueChanged);
@@ -588,48 +598,18 @@
             this.FrequencyLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.FrequencyLabel.Location = new System.Drawing.Point(3, 129);
             this.FrequencyLabel.Name = "FrequencyLabel";
-            this.FrequencyLabel.Size = new System.Drawing.Size(124, 21);
+            this.FrequencyLabel.Size = new System.Drawing.Size(147, 21);
             this.FrequencyLabel.TabIndex = 37;
-            this.FrequencyLabel.Text = "Frequency [MHz]";
+            this.FrequencyLabel.Text = "Częstotliwość [MHz]";
             // 
             // FrequencyTextBox
             // 
             this.FrequencyTextBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.FrequencyTextBox.Location = new System.Drawing.Point(216, 130);
             this.FrequencyTextBox.Name = "FrequencyTextBox";
+            this.FrequencyTextBox.ReadOnly = true;
             this.FrequencyTextBox.Size = new System.Drawing.Size(86, 20);
             this.FrequencyTextBox.TabIndex = 38;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.Controls.Add(this.NewButton, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.OpenButton, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.SaveButton, 2, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 23);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(391, 43);
-            this.tableLayoutPanel3.TabIndex = 28;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.LanguageButton, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.InfoButton, 1, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(973, 19);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(200, 54);
-            this.tableLayoutPanel4.TabIndex = 29;
             // 
             // TransmitterSectionLabel
             // 
@@ -639,11 +619,10 @@
             this.TransmitterSectionLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.TransmitterSectionLabel.Location = new System.Drawing.Point(38, 7);
             this.TransmitterSectionLabel.Name = "TransmitterSectionLabel";
-            this.TransmitterSectionLabel.Size = new System.Drawing.Size(200, 26);
+            this.TransmitterSectionLabel.Size = new System.Drawing.Size(165, 26);
             this.TransmitterSectionLabel.TabIndex = 39;
-            this.TransmitterSectionLabel.Text = "TRANSMITTER SECTION";
+            this.TransmitterSectionLabel.Text = "SEKCJA NADAJNIKA";
             this.TransmitterSectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.TransmitterSectionLabel.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // ReceiverSectionLabel
             // 
@@ -653,9 +632,9 @@
             this.ReceiverSectionLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ReceiverSectionLabel.Location = new System.Drawing.Point(67, 7);
             this.ReceiverSectionLabel.Name = "ReceiverSectionLabel";
-            this.ReceiverSectionLabel.Size = new System.Drawing.Size(163, 26);
+            this.ReceiverSectionLabel.Size = new System.Drawing.Size(177, 26);
             this.ReceiverSectionLabel.TabIndex = 40;
-            this.ReceiverSectionLabel.Text = "RECEIVER SECTION";
+            this.ReceiverSectionLabel.Text = "SEKCJA ODBIORNIKA";
             this.ReceiverSectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // groupBox2
@@ -666,51 +645,6 @@
             this.groupBox2.Size = new System.Drawing.Size(263, 145);
             this.groupBox2.TabIndex = 42;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
-            // 
-            // GainTextBoxT
-            // 
-            this.GainTextBoxT.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.GainTextBoxT.Location = new System.Drawing.Point(161, 48);
-            this.GainTextBoxT.Name = "GainTextBoxT";
-            this.GainTextBoxT.Size = new System.Drawing.Size(86, 20);
-            this.GainTextBoxT.TabIndex = 5;
-            this.GainTextBoxT.Click += new System.EventHandler(this.GainTextBoxT_Click);
-            // 
-            // GainLabelT
-            // 
-            this.GainLabelT.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.GainLabelT.AutoSize = true;
-            this.GainLabelT.Font = new System.Drawing.Font("Impact", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.GainLabelT.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.GainLabelT.Location = new System.Drawing.Point(3, 48);
-            this.GainLabelT.Name = "GainLabelT";
-            this.GainLabelT.Size = new System.Drawing.Size(78, 21);
-            this.GainLabelT.TabIndex = 13;
-            this.GainLabelT.Text = "Gain [dBi]";
-            // 
-            // TransmitterComboBox
-            // 
-            this.TransmitterComboBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.TransmitterComboBox.FormattingEnabled = true;
-            this.TransmitterComboBox.Location = new System.Drawing.Point(161, 9);
-            this.TransmitterComboBox.Name = "TransmitterComboBox";
-            this.TransmitterComboBox.Size = new System.Drawing.Size(86, 21);
-            this.TransmitterComboBox.TabIndex = 3;
-            this.TransmitterComboBox.SelectedIndexChanged += new System.EventHandler(this.TransmitterComboBox_SelectedIndexChanged);
-            // 
-            // TransmitterLabelT
-            // 
-            this.TransmitterLabelT.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.TransmitterLabelT.AutoSize = true;
-            this.TransmitterLabelT.Font = new System.Drawing.Font("Impact", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.TransmitterLabelT.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.TransmitterLabelT.Location = new System.Drawing.Point(3, 9);
-            this.TransmitterLabelT.Name = "TransmitterLabelT";
-            this.TransmitterLabelT.Size = new System.Drawing.Size(93, 21);
-            this.TransmitterLabelT.TabIndex = 11;
-            this.TransmitterLabelT.Text = "Transmitter";
-            this.TransmitterLabelT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tableLayoutPanel5
             // 
@@ -732,13 +666,57 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(250, 120);
             this.tableLayoutPanel5.TabIndex = 43;
             // 
+            // GainLabelT
+            // 
+            this.GainLabelT.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.GainLabelT.AutoSize = true;
+            this.GainLabelT.Font = new System.Drawing.Font("Impact", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.GainLabelT.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.GainLabelT.Location = new System.Drawing.Point(3, 49);
+            this.GainLabelT.Name = "GainLabelT";
+            this.GainLabelT.Size = new System.Drawing.Size(77, 21);
+            this.GainLabelT.TabIndex = 13;
+            this.GainLabelT.Text = "Zysk [dBi]";
+            // 
+            // TransmitterComboBox
+            // 
+            this.TransmitterComboBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.TransmitterComboBox.FormattingEnabled = true;
+            this.TransmitterComboBox.Location = new System.Drawing.Point(128, 9);
+            this.TransmitterComboBox.Name = "TransmitterComboBox";
+            this.TransmitterComboBox.Size = new System.Drawing.Size(119, 21);
+            this.TransmitterComboBox.TabIndex = 3;
+            this.TransmitterComboBox.SelectedIndexChanged += new System.EventHandler(this.TransmitterComboBox_SelectedIndexChanged);
+            // 
+            // GainTextBoxT
+            // 
+            this.GainTextBoxT.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.GainTextBoxT.Location = new System.Drawing.Point(128, 50);
+            this.GainTextBoxT.Name = "GainTextBoxT";
+            this.GainTextBoxT.Size = new System.Drawing.Size(119, 20);
+            this.GainTextBoxT.TabIndex = 5;
+            this.GainTextBoxT.Click += new System.EventHandler(this.GainTextBoxT_Click);
+            // 
+            // TransmitterLabelT
+            // 
+            this.TransmitterLabelT.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.TransmitterLabelT.AutoSize = true;
+            this.TransmitterLabelT.Font = new System.Drawing.Font("Impact", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TransmitterLabelT.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.TransmitterLabelT.Location = new System.Drawing.Point(3, 9);
+            this.TransmitterLabelT.Name = "TransmitterLabelT";
+            this.TransmitterLabelT.Size = new System.Drawing.Size(73, 21);
+            this.TransmitterLabelT.TabIndex = 11;
+            this.TransmitterLabelT.Text = "Nadajnik";
+            this.TransmitterLabelT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // WireComboBoxT
             // 
             this.WireComboBoxT.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.WireComboBoxT.FormattingEnabled = true;
-            this.WireComboBoxT.Location = new System.Drawing.Point(161, 10);
+            this.WireComboBoxT.Location = new System.Drawing.Point(128, 11);
             this.WireComboBoxT.Name = "WireComboBoxT";
-            this.WireComboBoxT.Size = new System.Drawing.Size(86, 21);
+            this.WireComboBoxT.Size = new System.Drawing.Size(119, 21);
             this.WireComboBoxT.TabIndex = 10;
             this.WireComboBoxT.SelectedIndexChanged += new System.EventHandler(this.WireComboBoxT_SelectedIndexChanged);
             // 
@@ -914,9 +892,9 @@
             this.ReceiverLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ReceiverLabel.Location = new System.Drawing.Point(3, 11);
             this.ReceiverLabel.Name = "ReceiverLabel";
-            this.ReceiverLabel.Size = new System.Drawing.Size(72, 21);
+            this.ReceiverLabel.Size = new System.Drawing.Size(79, 21);
             this.ReceiverLabel.TabIndex = 12;
-            this.ReceiverLabel.Text = "Receiver";
+            this.ReceiverLabel.Text = "Odbiornik";
             // 
             // panel1
             // 
@@ -971,47 +949,32 @@
             // 
             // ObstacleColumn
             // 
-            this.ObstacleColumn.HeaderText = "Obstacle";
+            this.ObstacleColumn.HeaderText = "Przeszkoda";
             this.ObstacleColumn.Name = "ObstacleColumn";
+            this.ObstacleColumn.Width = 135;
             // 
             // ObstacleAmountColumn
             // 
-            this.ObstacleAmountColumn.HeaderText = "Amount";
+            this.ObstacleAmountColumn.FillWeight = 90F;
+            this.ObstacleAmountColumn.HeaderText = "Ilość";
             this.ObstacleAmountColumn.Name = "ObstacleAmountColumn";
             this.ObstacleAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ObstacleAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // ObstacleAttenuationtColumn
             // 
-            this.ObstacleAttenuationtColumn.HeaderText = "Attenuation";
+            this.ObstacleAttenuationtColumn.HeaderText = "Tłumienność [dB]";
             this.ObstacleAttenuationtColumn.Name = "ObstacleAttenuationtColumn";
             this.ObstacleAttenuationtColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ObstacleAttenuationtColumn.Width = 120;
             // 
             // DeleteColumn
             // 
-            this.DeleteColumn.HeaderText = "Delete";
+            this.DeleteColumn.FillWeight = 70F;
+            this.DeleteColumn.HeaderText = "Usuń";
             this.DeleteColumn.Name = "DeleteColumn";
             this.DeleteColumn.Text = "Delete";
-            this.DeleteColumn.Width = 70;
-
-            // 
-            // FrequencyLabel
-            // 
-            this.FrequencyLabel.AutoSize = true;
-            this.FrequencyLabel.Location = new System.Drawing.Point(47, 606);
-            this.FrequencyLabel.Name = "FrequencyLabel";
-            this.FrequencyLabel.Size = new System.Drawing.Size(88, 13);
-            this.FrequencyLabel.TabIndex = 37;
-            this.FrequencyLabel.Text = "Frequency [MHz]";
-            // 
-            // FrequencyTextBox
-            // 
-            this.FrequencyTextBox.Location = new System.Drawing.Point(185, 599);
-            this.FrequencyTextBox.Name = "FrequencyTextBox";
-            this.FrequencyTextBox.ReadOnly = true;
-            this.FrequencyTextBox.Size = new System.Drawing.Size(86, 20);
-            this.FrequencyTextBox.TabIndex = 38;
-
+            this.DeleteColumn.Width = 60;
             // 
             // Form1
             // 
@@ -1028,11 +991,11 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Link Budget Calculator";
+            this.Text = "Kalkulator budżetu łącza";
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ObstaclesDataGridView)).EndInit();
-            this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ObstaclesDataGridView)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
@@ -1104,7 +1067,6 @@
         private System.Windows.Forms.Label BandLabel;
         private System.Windows.Forms.Label ResultLabel;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Button LanguageButton;
         private System.Windows.Forms.TextBox ResultTextBox;
         private System.Windows.Forms.DataGridView ObstaclesDataGridView;
         private System.Windows.Forms.Label FrequencyLabel;

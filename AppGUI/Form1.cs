@@ -27,17 +27,12 @@ namespace AppGUI {
         WireManager wm;
         WireAttenuationManager wam;
 
-        // 0 if English, 1 if Polish
-        private bool guiLanguage = false;
-
         NumberFormatInfo nfi = new NumberFormatInfo();
 
         bool isSavedSuccessfully = false;
 
         const string CUSTOM_PL = "<własne>";
-        const string CUSTOM_EN = "<custom>";
         const string WRONG_PL = "Błędne dane!";
-        const string WRONG_EN = "Wrong value!";
 
         public Form1() {
             InitializeComponent();
@@ -56,6 +51,40 @@ namespace AppGUI {
             this.omm = new ObstacleAmountManager(this.context);
             this.wm = new WireManager(this.context);
             this.wam = new WireAttenuationManager(this.context);
+
+            this.nfi.NumberDecimalSeparator = ".";
+
+            Init();
+        }
+
+        private void ClearAll() {
+            TransmitterComboBox.Text = "";
+            ReceiverComboBox.Text = "";
+            GainTextBoxT.Text = "";
+            GainTextBoxR.Text = "";
+            PowerTextBoxT.Text = "";
+            WireComboBoxT.Text = "";
+            WireComboBoxR.Text = "";
+            AttenuationWireTextBoxT.Text = "";
+            AttenuationWireTextBoxR.Text = "";
+            LengthTextBoxT.Text = "";
+            LengthTextBoxR.Text = "";
+            ConnectorComboBoxT.Text = "";
+            ConnectorComboBoxR.Text = "";
+            AttenuationConnectorTextBoxT.Text = "";
+            AttenuationConnectorTextBoxR.Text = "";
+            DistanceTextBox.Text = "";
+            BandComboBox.Text = "";
+            ChannelComboBox.Text = "";
+            FrequencyTextBox.Text = "";
+            ResultTextBox.Text = "";
+            ChannelComboBox.Items.Clear();
+            ObstaclesDataGridView.Rows.Clear();
+            ObstaclesDataGridView.Refresh();
+            Init();
+        }
+
+        private void Init() {
             List<Connector> connectorList = this.cm.GetConnectors();
             var deviceList = this.dm.GetDevices();
             var obstacleList = this.om.GetObstacles();
@@ -68,17 +97,20 @@ namespace AppGUI {
             FillCombobox(WireComboBoxT, wireList);
             FillCombobox(WireComboBoxR, wireList);
 
+            //var utf8 = Encoding.GetEncoding("UTF-8");
+
             ObstacleColumn.Items.Clear();
             ObstacleColumn.Items.Add(GetCustom());
             foreach (var value in obstacleList) {
-                if (value.name != "custom")
+                if (value.name != "custom") {
+                    //ObstacleColumn.Items.Add(Encoding.UTF8.GetString(Encoding.Convert(utf8, Encoding.UTF8, Encoding.Default.GetBytes(value.name))));
                     ObstacleColumn.Items.Add(value.name);
+                }
             }
 
+            BandComboBox.Items.Clear();
             BandComboBox.Items.Add("2.4");
             BandComboBox.Items.Add("5.0");
-
-            this.nfi.NumberDecimalSeparator = ".";
         }
 
 
@@ -97,7 +129,7 @@ namespace AppGUI {
             if (match.Success && match.Value.Length == textBox.Text.Length) {
                 return Convert.ToDouble(textBox.Text, nfi);
             } else {
-                textBox.Text = guiLanguage ? WRONG_PL : WRONG_EN;
+                textBox.Text = WRONG_PL;
                 throw new Exception("Wrong value");
             }
         }
@@ -107,98 +139,21 @@ namespace AppGUI {
             if (match.Success && match.Value.Length == cell.Value.ToString().Length) {
                 return Convert.ToDouble(cell.Value.ToString(), nfi);
             } else {
-                cell.Value = guiLanguage ? WRONG_PL : WRONG_EN;
+                cell.Value = WRONG_PL;
                 throw new Exception("Wrong value");
             }
         }
 
         private bool IsCustom(string text) {
-            return (text == CUSTOM_EN || text == CUSTOM_PL);
+            return (text == CUSTOM_PL);
         }
         
         private string GetCustom() {
-            return (guiLanguage ? CUSTOM_PL : CUSTOM_EN);
-        }
-
-        private void LanguageButton_Click(object sender, EventArgs e) {
-            if (this.guiLanguage) { // switch to English
-                NewButton.Text = "New";
-                OpenButton.Text = "Open";
-                SaveButton.Text = "Save";
-                TransmitterLabelT.Text = "Transmitter";
-                ReceiverLabel.Text = "Receiver";
-                PowerLabelT.Text = "Power [dBm]";
-                GainLabelT.Text = GainLabelR.Text = "Gain [dBi]";
-                WireLabelT.Text = WireLabelR.Text = "Wire";
-                AttenuationWireLabelT.Text = AttenuationWireLabelR.Text = "Attenuation [dB]";
-                LengthLabelT.Text = LengthLabelR.Text = "Length [m]";
-                ConnectorLabelT.Text = ConnectorLabelR.Text = "Connector";
-                AttenuationConnectorLabelT.Text = AttenuationConnectorLabelR.Text = "Attenuation [dB]";
-                DistanceLabel.Text = "Distance [m]";
-                BandLabel.Text = "Band [GHz]";
-                ChannelLabel.Text = "Channel";
-                FrequencyLabel.Text = "Frequency [MHz]";
-                ResultLabel.Text = "RESULT [dB]";
-                CountButton.Text = "Count";
-
-                ObstacleColumn.HeaderText = "Obstacle";
-                ObstacleAmountColumn.HeaderText = "Amount";
-                ObstacleAttenuationtColumn.HeaderText = "Attenuation";
-                DeleteColumn.HeaderText = "Delete";
-
-                TransmitterComboBox.Items[0] = CUSTOM_EN;
-                ReceiverComboBox.Items[0] = CUSTOM_EN;
-                WireComboBoxT.Items[0] = CUSTOM_EN;
-                WireComboBoxR.Items[0] = CUSTOM_EN;
-                ConnectorComboBoxT.Items[0] = CUSTOM_EN;
-                ConnectorComboBoxR.Items[0] = CUSTOM_EN;
-                ObstacleColumn.Items[0] = CUSTOM_EN;
-                ObstacleColumn.Items[0] = CUSTOM_EN;
-
-
-                this.guiLanguage = false;
-            } else { // switch to Polish
-                NewButton.Text = "Nowy";
-                OpenButton.Text = "Otwórz";
-                SaveButton.Text = "Zapisz";
-                TransmitterLabelT.Text = "Nadajnik";
-                ReceiverLabel.Text = "Odbiornik";
-                PowerLabelT.Text = "Moc [dBm]";
-                GainLabelT.Text = GainLabelR.Text = "Zysk [dBi]";
-                WireLabelT.Text = WireLabelR.Text = "Przewód";
-                AttenuationWireLabelT.Text = AttenuationWireLabelR.Text = "Tłumienie [dB]";
-                LengthLabelT.Text = LengthLabelR.Text = "Długość [m]";
-                ConnectorLabelT.Text = ConnectorLabelR.Text = "Złącze";
-                AttenuationConnectorLabelT.Text = AttenuationConnectorLabelR.Text = "Tłumienie [db]";
-                DistanceLabel.Text = "Dystans [m]";
-                BandLabel.Text = "Pasmo [GHz]";
-                ChannelLabel.Text = "Kanał";
-                FrequencyLabel.Text = "Częstotliwość [MHz]";
-                ResultLabel.Text = "WYNIK [dB]";
-                CountButton.Text = "Oblicz";
-
-                ObstacleColumn.HeaderText = "Przeszkoda";
-                ObstacleAmountColumn.HeaderText = "Liczba";
-                ObstacleAttenuationtColumn.HeaderText = "Tłumienność";
-                DeleteColumn.HeaderText = "Usuń";
-
-                TransmitterComboBox.Items[0] = CUSTOM_PL;
-                ReceiverComboBox.Items[0] = CUSTOM_PL;
-                WireComboBoxT.Items[0] = CUSTOM_PL;
-                WireComboBoxR.Items[0] = CUSTOM_PL;
-                ConnectorComboBoxT.Items[0] = CUSTOM_PL;
-                ConnectorComboBoxR.Items[0] = CUSTOM_PL;
-                ObstacleColumn.Items[0] = CUSTOM_PL;
-
-
-                this.guiLanguage = true;
-            }
+            return CUSTOM_PL;
         }
         
         private void InfoButton_Click(object sender, EventArgs e) {
-            string info;
-            if (this.guiLanguage) {
-                info = @"Budżet łącza obliczany jest zgodnie ze wzorem:
+                string info = @"Budżet łącza obliczany jest zgodnie ze wzorem:
             RSL=TSL-CLT+GT-FSL+GR-CLR-CLO
 gdzie:
     RSL – poziom sygnału na wejściu odbiornika [dB]
@@ -215,34 +170,15 @@ FSL wyliczany jest ze wzoru:
 gdzie:
     d - odległość między antenami [m]
     f - częstotliwość fali [MHz]";
-            } else {
-                info = @"Link budget is calculated using following equation:
-            RSL=TSL-CLT+GT-FSL+GR-CLR-CLO
-where:
-    RSL – received power [dB]
-    TSL – transmitter power [dBm]
-    CLT – transmitter wire and connector loss [dB]
-    GT – transmitter antenna gain [dBi]
-    FSL – free space loss [dB]
-    GR – receiver antenna gain [dBi]
-    CLR – receiver wire and connector loss [dB]
-    CLO – obstacles attenuation
 
-FSL is calculated with:
-            FSL=20log(d*1000)+20log(f)+32,44
-where:
-    d - distance between antennas [m]
-    f - wave frequency [MHz]";
-
-            }
             MessageBox.Show(info, "Info");
         }
 
         private void TransmitterComboBox_SelectedIndexChanged(object sender, EventArgs e) {
             if (!IsCustom(TransmitterComboBox.Text)) {
                 var transmitter = this.dm.GetDeviceByName(TransmitterComboBox.Text);
-                PowerTextBoxT.Text = transmitter.power.ToString();
-                GainTextBoxT.Text = transmitter.gain.ToString();
+                PowerTextBoxT.Text = transmitter.power.ToString(nfi);
+                GainTextBoxT.Text = transmitter.gain.ToString(nfi);
                 PowerTextBoxT.Enabled = false;
                 GainTextBoxT.Enabled = false;
             } else {
@@ -254,7 +190,7 @@ where:
         private void ReceiverComboBox_SelectedIndexChanged(object sender, EventArgs e) {
             if (!IsCustom(ReceiverComboBox.Text)) {
                 var receiver = this.dm.GetDeviceByName(ReceiverComboBox.Text);
-                GainTextBoxR.Text = receiver.gain.ToString();
+                GainTextBoxR.Text = receiver.gain.ToString(nfi);
                 GainTextBoxR.Enabled = false;
             } else {
                 GainTextBoxR.Enabled = true;
@@ -277,7 +213,7 @@ where:
                 if (!ConnectorComboBoxT.Items.Contains(ConnectorComboBoxT.Text)) {
                     ConnectorComboBoxT.Text = "";
                     AttenuationConnectorTextBoxT.Text = "";
-                } else {
+                } else if (!IsCustom(ConnectorComboBoxT.Text)) {
                     AttenuationConnectorTextBoxT.Text = this.cm.GetConnectorByName(ConnectorComboBoxT.Text).attenuation.ToString(nfi);
                 }
 
@@ -307,7 +243,7 @@ where:
                 if (!ConnectorComboBoxR.Items.Contains(ConnectorComboBoxR.Text)) {
                     ConnectorComboBoxR.Text = "";
                     AttenuationConnectorTextBoxR.Text = "";
-                } else {
+                } else if (!IsCustom(ConnectorComboBoxR.Text)) {
                     AttenuationConnectorTextBoxR.Text = this.cm.GetConnectorByName(ConnectorComboBoxR.Text).attenuation.ToString(nfi);
                 }
 
@@ -555,7 +491,7 @@ where:
         }
 
         private bool WantToSave(object sender, EventArgs e) {
-            DialogResult dialogResult = MessageBox.Show(guiLanguage ? "Czy chcesz zapisać pomiar?" : "Do you want to save your measurement?", guiLanguage ? "Nowy" : "New", MessageBoxButtons.YesNoCancel);
+            DialogResult dialogResult = MessageBox.Show("Czy chcesz zapisać pomiar?", "Nowy", MessageBoxButtons.YesNoCancel);
             if (dialogResult == DialogResult.Yes) {
                 SaveButton_Click(sender, e);
                 if (isSavedSuccessfully)
@@ -569,18 +505,14 @@ where:
 
         private void NewButton_Click(object sender, EventArgs e) {
             if (WantToSave(sender, e)) {
-                Form1 NewForm = new Form1();
-                NewForm.Show();
-                this.Dispose(false);
+                ClearAll();
             }
         }
 
         private void OpenButton_Click(object sender, EventArgs e) {
             if (WantToSave(sender, e)) {
-                Form1 NewForm = new Form1();
-                NewForm.Show();
-                this.Dispose(false);
-                NewForm.ShowOpenDialog();
+                ClearAll();
+                ShowOpenDialog();
             }
         }
 
@@ -593,18 +525,18 @@ where:
             string msg = "";
             switch (result) {
                 case 0:
-                    msg = guiLanguage ? "Zapisano pomyslnie" : "Saved successfully";
+                    msg = "Zapisano pomyslnie";
                     break;
                 case 1:
-                    msg = guiLanguage ? "Podana nazwa jest nieprawidłowa lub już istnieje pomiar o takiej nazwie" : "Given name is wrong or already in use";
+                    msg = "Podana nazwa jest nieprawidłowa lub już istnieje pomiar o takiej nazwie";
                     break;
                 case 2:
-                    msg = guiLanguage ? "Pozostawiono puste wymagane pola" : "You cannot leave empty fields";
+                    msg = "Pozostawiono puste wymagane pola";
                     break;
                 case 3:
                     return;
             }
-            DialogResult dialogResult = MessageBox.Show(msg, guiLanguage ? "Zapisz" : "Save", MessageBoxButtons.OK);
+            DialogResult dialogResult = MessageBox.Show(msg, "Zapisz", MessageBoxButtons.OK);
             if (result == 0) isSavedSuccessfully = true;
             else isSavedSuccessfully = false;
         }
@@ -614,7 +546,7 @@ where:
         // 2 - empty fields
         // 3 - cancel
         private int ShowSaveDialog() {
-            string text = guiLanguage ? "Zapisz" : "Save";
+            string text = "Zapisz";
             Form prompt = new Form() {
                 Width = 300,
                 Height = 150,
@@ -623,7 +555,7 @@ where:
                 StartPosition = FormStartPosition.CenterScreen,
                 CausesValidation = true,
             };
-            Label textLabel = new Label() { Left = 25, Top = 20, Text = guiLanguage ? "Podaj nazwę pomiaru:" : "Enter measurement name:" };
+            Label textLabel = new Label() { Left = 25, Top = 20, Text = "Podaj nazwę pomiaru:"};
             TextBox textBox = new TextBox() { Left = 25, Top = 50, Width = 250 };
             Button confirmation = new Button() { Text = text, Left = 100, Width = 100, Top = 80, DialogResult = DialogResult.OK, CausesValidation = true };
             prompt.Controls.Add(textBox);
@@ -646,7 +578,7 @@ where:
         }
 
         private void ShowOpenDialog() {
-            string text = guiLanguage ? "Otwórz" : "Open";
+            string text = "Otwórz";
             Form prompt = new Form() {
                 Width = 300,
                 Height = 150,
@@ -683,7 +615,7 @@ where:
             LengthTextBoxR.Text = m.wireLenghtR.ToString(nfi);
 
             var channel = this.chm.GetChannel(m.channel_id);
-            BandComboBox.Text = (channel.band < 5) ? "2.4" : "5.0";
+            BandComboBox.Text = (channel.band < 50) ? "2.4" : "5.0";
             ChannelComboBox.Text = channel.number.ToString(nfi);
 
             var transmitter = this.dm.GetDevice(m.transmitter_id);

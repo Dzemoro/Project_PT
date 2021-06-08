@@ -10,7 +10,7 @@ conn = sqlite3.connect('AppDB.db')
 
 #Creating a cursor object using the cursor() method
 cursor = conn.cursor()
-
+cursor.execute('PRAGMA encoding="UTF-8";')
 #Doping EMPLOYEE table if already exists.
 #cursor.execute("DROP TABLE IF EXISTS Devices")
 
