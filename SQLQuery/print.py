@@ -5,27 +5,35 @@ conn = sqlite3.connect('AppDB.db')
 
 #Creating a cursor object using the cursor() method
 cursor = conn.cursor()
-
+cursor.execute('PRAGMA encoding="UTF-8";')
 #Doping EMPLOYEE table if already exists.
 #cursor.execute("DROP TABLE IF EXISTS Devices")
 
 #Creating table as per requirement
-#sql = """ SELECT * FROM Measurements;"""
+sqlM = """ SELECT * FROM Measurements;"""
+sqlCh = """ SELECT * FROM Channels;"""
 #sql = """ SELECT * FROM ObstaclesAmount;"""
-#sql = """ SELECT * FROM Obstacles;"""
-#sql = """ SELECT * FROM Devices;"""
-#sql = """ SELECT * FROM Wires;"""
-#sql = """ SELECT * FROM WiresAttenuation;"""
-#sql = """ SELECT * FROM Connectors;"""
-sql = """ SELECT * FROM Channels;"""
+sqlO = """ SELECT * FROM Obstacles;"""
+sqlD = """ SELECT * FROM Devices;"""
+sqlW = """ SELECT * FROM Wires;"""
+sqlWA = """ SELECT * FROM WiresAttenuation;"""
+sqlC = """ SELECT * FROM Connectors;"""
+sqlCW = """ SELECT * FROM ConnectorsToWires;"""
 
-print(sql)
-cursor.execute(sql)
+sqlDel = """ DELETE FROM Obstacles WHERE id < 8;  """
 
+sqlInsert = """
+INSERT INTO Obstacles (name, attenuation_24, attenuation_5) VALUES ('Płyta wiórowa', 0.5, 0.8);
+"""
+
+print(sqlDel)
+cursor.execute(sqlDel)
 rows = cursor.fetchall()
-
 for row in rows:
     print(row)
+
+
+
 
 print("Table created successfully........")
 
