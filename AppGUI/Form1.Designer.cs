@@ -315,7 +315,6 @@
             this.ConnectorLabelT.Size = new System.Drawing.Size(54, 21);
             this.ConnectorLabelT.TabIndex = 17;
             this.ConnectorLabelT.Text = "Złącze";
-            this.ConnectorLabelT.Click += new System.EventHandler(this.ConnectorLabelT_Click);
             // 
             // LengthLabelT
             // 
@@ -595,7 +594,7 @@
             // 
             this.ObstacleColumn.HeaderText = "Przeszkoda";
             this.ObstacleColumn.Name = "ObstacleColumn";
-            this.ObstacleColumn.Width = 216;
+            this.ObstacleColumn.Width = 135;
             // 
             // ObstacleAmountColumn
             // 
@@ -779,7 +778,7 @@
             // groupBox14
             // 
             this.groupBox14.Controls.Add(this.tableLayoutPanel11);
-            this.groupBox14.Location = new System.Drawing.Point(665, 357);
+            this.groupBox14.Location = new System.Drawing.Point(665, 352);
             this.groupBox14.Name = "groupBox14";
             this.groupBox14.Size = new System.Drawing.Size(317, 177);
             this.groupBox14.TabIndex = 44;
@@ -811,7 +810,7 @@
             // groupBox15
             // 
             this.groupBox15.Controls.Add(this.tableLayoutPanel12);
-            this.groupBox15.Location = new System.Drawing.Point(992, 425);
+            this.groupBox15.Location = new System.Drawing.Point(992, 420);
             this.groupBox15.Name = "groupBox15";
             this.groupBox15.Size = new System.Drawing.Size(215, 109);
             this.groupBox15.TabIndex = 44;
