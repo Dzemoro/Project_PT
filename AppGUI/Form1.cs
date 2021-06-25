@@ -688,5 +688,10 @@ gdzie:
         }
 
         private void ObstaclesDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e) { }
+
+        private void ConnectorLabelT_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
