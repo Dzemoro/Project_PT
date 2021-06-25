@@ -315,6 +315,7 @@
             this.ConnectorLabelT.Size = new System.Drawing.Size(54, 21);
             this.ConnectorLabelT.TabIndex = 17;
             this.ConnectorLabelT.Text = "Złącze";
+
             // 
             // LengthLabelT
             // 
@@ -526,7 +527,7 @@
             this.ChannelLabel.Name = "ChannelLabel";
             this.ChannelLabel.Size = new System.Drawing.Size(51, 21);
             this.ChannelLabel.TabIndex = 30;
-            this.ChannelLabel.Text = "Kanal";
+            this.ChannelLabel.Text = "Kanał";
             // 
             // DistanceLabel
             // 
@@ -566,8 +567,8 @@
             // 
             // ResultTextBox
             // 
-            this.ResultTextBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.ResultTextBox.Location = new System.Drawing.Point(112, 56);
+            this.ResultTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ResultTextBox.Location = new System.Drawing.Point(95, 56);
             this.ResultTextBox.Name = "ResultTextBox";
             this.ResultTextBox.ReadOnly = true;
             this.ResultTextBox.Size = new System.Drawing.Size(86, 20);
@@ -584,7 +585,7 @@
             this.DeleteColumn});
             this.ObstaclesDataGridView.Location = new System.Drawing.Point(665, 114);
             this.ObstaclesDataGridView.Name = "ObstaclesDataGridView";
-            this.ObstaclesDataGridView.Size = new System.Drawing.Size(458, 237);
+            this.ObstaclesDataGridView.Size = new System.Drawing.Size(542, 237);
             this.ObstaclesDataGridView.TabIndex = 36;
             this.ObstaclesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ObstaclesDataGridView_CellContentClick);
             this.ObstaclesDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.ObstaclesDataGridView_CellValueChanged);
@@ -594,7 +595,9 @@
             // 
             this.ObstacleColumn.HeaderText = "Przeszkoda";
             this.ObstacleColumn.Name = "ObstacleColumn";
+
             this.ObstacleColumn.Width = 135;
+
             // 
             // ObstacleAmountColumn
             // 
@@ -646,7 +649,7 @@
             this.TransmitterSectionLabel.AutoSize = true;
             this.TransmitterSectionLabel.Font = new System.Drawing.Font("Impact", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.TransmitterSectionLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.TransmitterSectionLabel.Location = new System.Drawing.Point(38, 7);
+            this.TransmitterSectionLabel.Location = new System.Drawing.Point(54, 7);
             this.TransmitterSectionLabel.Name = "TransmitterSectionLabel";
             this.TransmitterSectionLabel.Size = new System.Drawing.Size(165, 26);
             this.TransmitterSectionLabel.TabIndex = 39;
@@ -752,7 +755,7 @@
             // groupBox13
             // 
             this.groupBox13.Controls.Add(this.tableLayoutPanel10);
-            this.groupBox13.Location = new System.Drawing.Point(13, 313);
+            this.groupBox13.Location = new System.Drawing.Point(13, 309);
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.Size = new System.Drawing.Size(263, 107);
             this.groupBox13.TabIndex = 44;
@@ -835,7 +838,7 @@
             // groupBox16
             // 
             this.groupBox16.Controls.Add(this.tableLayoutPanel13);
-            this.groupBox16.Location = new System.Drawing.Point(7, 313);
+            this.groupBox16.Location = new System.Drawing.Point(7, 309);
             this.groupBox16.Name = "groupBox16";
             this.groupBox16.Size = new System.Drawing.Size(263, 107);
             this.groupBox16.TabIndex = 44;
@@ -861,7 +864,7 @@
             // groupBox17
             // 
             this.groupBox17.Controls.Add(this.tableLayoutPanel14);
-            this.groupBox17.Location = new System.Drawing.Point(7, 168);
+            this.groupBox17.Location = new System.Drawing.Point(7, 167);
             this.groupBox17.Name = "groupBox17";
             this.groupBox17.Size = new System.Drawing.Size(263, 149);
             this.groupBox17.TabIndex = 44;
@@ -890,7 +893,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.tableLayoutPanel2);
-            this.groupBox4.Location = new System.Drawing.Point(13, 31);
+            this.groupBox4.Location = new System.Drawing.Point(13, 29);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(263, 107);
             this.groupBox4.TabIndex = 47;
@@ -939,7 +942,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.tableLayoutPanel6);
-            this.groupBox3.Location = new System.Drawing.Point(13, 168);
+            this.groupBox3.Location = new System.Drawing.Point(13, 167);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(263, 149);
             this.groupBox3.TabIndex = 48;
