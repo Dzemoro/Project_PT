@@ -133,7 +133,7 @@ namespace AppGUI {
                 throw new Exception("Wrong value");
             }
         }
-        
+
         private double GetValue(DataGridViewCell cell) {
             var match = Regex.Match(cell.Value.ToString(), @"^[0-9]*\.?[0-9]+$");
             if (match.Success && match.Value.Length == cell.Value.ToString().Length) {
@@ -147,13 +147,13 @@ namespace AppGUI {
         private bool IsCustom(string text) {
             return (text == CUSTOM_PL);
         }
-        
+
         private string GetCustom() {
             return CUSTOM_PL;
         }
-        
+
         private void InfoButton_Click(object sender, EventArgs e) {
-                string info = @"Budżet łącza obliczany jest zgodnie ze wzorem:
+            string info = @"Budżet łącza obliczany jest zgodnie ze wzorem:
             RSL=TSL-CLT+GT-FSL+GR-CLR-CLO
 gdzie:
     RSL – poziom sygnału na wejściu odbiornika [dB]
@@ -435,6 +435,21 @@ gdzie:
                 double rpl = GetValue(PowerTextBoxT) - GetValue(AttenuationWireTextBoxT) * GetValue(LengthTextBoxT) - GetValue(AttenuationConnectorTextBoxT) + GetValue(GainTextBoxT) - fsl + GetValue(GainTextBoxR) - GetValue(AttenuationWireTextBoxR) * GetValue(LengthTextBoxR) - GetValue(AttenuationConnectorTextBoxR) - obstaclesAttenuation;
                 rpl = Math.Round(rpl, 4);
                 ResultTextBox.Text = rpl.ToString();
+
+                string msg = "";
+                if (rpl > -30)
+                    msg = "Wynik: "+rpl.ToString()+"\nSiła sygnału: doskonała";
+                else if (rpl > -67)
+                    msg = "Wynik: " + rpl.ToString() + "\nSiła sygnału: bardzo dobra";
+                else if (rpl > -70)
+                    msg = "Wynik: " + rpl.ToString() + "\nSiła sygnału: dobra";
+                else if (rpl > -80)
+                    msg = "Wynik: " + rpl.ToString() + "\nSiła sygnału: słaba";
+                else
+                    msg = "Wynik: " + rpl.ToString() + "\nSiła sygnału: niewystarczająca";
+
+                DialogResult dialogResult = MessageBox.Show(msg, "Wynik", MessageBoxButtons.OK);
+
             } catch (Exception ex) { }
         }
 
@@ -555,7 +570,7 @@ gdzie:
                 StartPosition = FormStartPosition.CenterScreen,
                 CausesValidation = true,
             };
-            Label textLabel = new Label() { Left = 25, Top = 20, Text = "Podaj nazwę pomiaru:"};
+            Label textLabel = new Label() { Left = 25, Top = 20, Text = "Podaj nazwę pomiaru:" };
             TextBox textBox = new TextBox() { Left = 25, Top = 50, Width = 250 };
             Button confirmation = new Button() { Text = text, Left = 100, Width = 100, Top = 80, DialogResult = DialogResult.OK, CausesValidation = true };
             prompt.Controls.Add(textBox);

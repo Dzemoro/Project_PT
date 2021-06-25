@@ -71,6 +71,10 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.ResultTextBox = new System.Windows.Forms.TextBox();
             this.ObstaclesDataGridView = new System.Windows.Forms.DataGridView();
+            this.ObstacleColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ObstacleAmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ObstacleAttenuationtColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.FrequencyLabel = new System.Windows.Forms.Label();
             this.FrequencyTextBox = new System.Windows.Forms.TextBox();
             this.TransmitterSectionLabel = new System.Windows.Forms.Label();
@@ -99,10 +103,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.ObstacleColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.ObstacleAmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ObstacleAttenuationtColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DeleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -258,7 +258,7 @@
             // 
             this.ConnectorComboBoxT.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ConnectorComboBoxT.FormattingEnabled = true;
-            this.ConnectorComboBoxT.Location = new System.Drawing.Point(128, 12);
+            this.ConnectorComboBoxT.Location = new System.Drawing.Point(128, 11);
             this.ConnectorComboBoxT.Name = "ConnectorComboBoxT";
             this.ConnectorComboBoxT.Size = new System.Drawing.Size(119, 21);
             this.ConnectorComboBoxT.TabIndex = 9;
@@ -312,9 +312,9 @@
             this.ConnectorLabelT.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ConnectorLabelT.Location = new System.Drawing.Point(3, 11);
             this.ConnectorLabelT.Name = "ConnectorLabelT";
-            this.ConnectorLabelT.Size = new System.Drawing.Size(69, 21);
+            this.ConnectorLabelT.Size = new System.Drawing.Size(54, 21);
             this.ConnectorLabelT.TabIndex = 17;
-            this.ConnectorLabelT.Text = "Przewód";
+            this.ConnectorLabelT.Text = "Złącze";
             // 
             // LengthLabelT
             // 
@@ -381,7 +381,7 @@
             // 
             this.ReceiverComboBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ReceiverComboBox.FormattingEnabled = true;
-            this.ReceiverComboBox.Location = new System.Drawing.Point(128, 12);
+            this.ReceiverComboBox.Location = new System.Drawing.Point(128, 11);
             this.ReceiverComboBox.Name = "ReceiverComboBox";
             this.ReceiverComboBox.Size = new System.Drawing.Size(119, 21);
             this.ReceiverComboBox.TabIndex = 3;
@@ -443,9 +443,9 @@
             this.ConnectorLabelR.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ConnectorLabelR.Location = new System.Drawing.Point(3, 11);
             this.ConnectorLabelR.Name = "ConnectorLabelR";
-            this.ConnectorLabelR.Size = new System.Drawing.Size(69, 21);
+            this.ConnectorLabelR.Size = new System.Drawing.Size(54, 21);
             this.ConnectorLabelR.TabIndex = 18;
-            this.ConnectorLabelR.Text = "Przewód";
+            this.ConnectorLabelR.Text = "Złącze";
             // 
             // GainTextBoxR
             // 
@@ -590,6 +590,35 @@
             this.ObstaclesDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.ObstaclesDataGridView_CellValueChanged);
             this.ObstaclesDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.ObstaclesDataGridView_DataError);
             // 
+            // ObstacleColumn
+            // 
+            this.ObstacleColumn.HeaderText = "Przeszkoda";
+            this.ObstacleColumn.Name = "ObstacleColumn";
+            this.ObstacleColumn.Width = 135;
+            // 
+            // ObstacleAmountColumn
+            // 
+            this.ObstacleAmountColumn.FillWeight = 90F;
+            this.ObstacleAmountColumn.HeaderText = "Ilość";
+            this.ObstacleAmountColumn.Name = "ObstacleAmountColumn";
+            this.ObstacleAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ObstacleAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ObstacleAttenuationtColumn
+            // 
+            this.ObstacleAttenuationtColumn.HeaderText = "Tłumienność [dB]";
+            this.ObstacleAttenuationtColumn.Name = "ObstacleAttenuationtColumn";
+            this.ObstacleAttenuationtColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ObstacleAttenuationtColumn.Width = 120;
+            // 
+            // DeleteColumn
+            // 
+            this.DeleteColumn.FillWeight = 70F;
+            this.DeleteColumn.HeaderText = "Usuń";
+            this.DeleteColumn.Name = "DeleteColumn";
+            this.DeleteColumn.Text = "Delete";
+            this.DeleteColumn.Width = 60;
+            // 
             // FrequencyLabel
             // 
             this.FrequencyLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -714,7 +743,7 @@
             // 
             this.WireComboBoxT.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.WireComboBoxT.FormattingEnabled = true;
-            this.WireComboBoxT.Location = new System.Drawing.Point(128, 11);
+            this.WireComboBoxT.Location = new System.Drawing.Point(128, 10);
             this.WireComboBoxT.Name = "WireComboBoxT";
             this.WireComboBoxT.Size = new System.Drawing.Size(119, 21);
             this.WireComboBoxT.TabIndex = 10;
@@ -946,35 +975,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(291, 420);
             this.panel2.TabIndex = 49;
-            // 
-            // ObstacleColumn
-            // 
-            this.ObstacleColumn.HeaderText = "Przeszkoda";
-            this.ObstacleColumn.Name = "ObstacleColumn";
-            this.ObstacleColumn.Width = 135;
-            // 
-            // ObstacleAmountColumn
-            // 
-            this.ObstacleAmountColumn.FillWeight = 90F;
-            this.ObstacleAmountColumn.HeaderText = "Ilość";
-            this.ObstacleAmountColumn.Name = "ObstacleAmountColumn";
-            this.ObstacleAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ObstacleAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ObstacleAttenuationtColumn
-            // 
-            this.ObstacleAttenuationtColumn.HeaderText = "Tłumienność [dB]";
-            this.ObstacleAttenuationtColumn.Name = "ObstacleAttenuationtColumn";
-            this.ObstacleAttenuationtColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ObstacleAttenuationtColumn.Width = 120;
-            // 
-            // DeleteColumn
-            // 
-            this.DeleteColumn.FillWeight = 70F;
-            this.DeleteColumn.HeaderText = "Usuń";
-            this.DeleteColumn.Name = "DeleteColumn";
-            this.DeleteColumn.Text = "Delete";
-            this.DeleteColumn.Width = 60;
             // 
             // Form1
             // 
