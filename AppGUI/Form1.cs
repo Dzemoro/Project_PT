@@ -438,15 +438,15 @@ gdzie:
 
                 string msg = "";
                 if (rpl > -30)
-                    msg = "Wynik: "+rpl.ToString()+"\nSiła sygnału: doskonała";
+                    msg = "Wynik: " + rpl.ToString() + "dB\nJakość sygnału: doskonała\nJakość zapewniająca niezawodny i szybki przesył danych.";
                 else if (rpl > -67)
-                    msg = "Wynik: " + rpl.ToString() + "\nSiła sygnału: bardzo dobra";
+                    msg = "Wynik: " + rpl.ToString() + "dB\nJakość sygnału: bardzo dobra\nJakość zapewniająca niezawodny i szybki przesył danych.";
                 else if (rpl > -70)
-                    msg = "Wynik: " + rpl.ToString() + "\nSiła sygnału: dobra";
+                    msg = "Wynik: " + rpl.ToString() + "dB\nJakość sygnału: dobra\nJakość wystarczająca, by zapewnić niezawodny przesył danych.";
                 else if (rpl > -80)
-                    msg = "Wynik: " + rpl.ToString() + "\nSiła sygnału: słaba";
+                    msg = "Wynik: " + rpl.ToString() + "dB\nJakość sygnału: słaba\nJakość wystarczająca, by zapewnić podstawową łączność. Przesył danych może być zawodny.";
                 else
-                    msg = "Wynik: " + rpl.ToString() + "\nSiła sygnału: niewystarczająca";
+                    msg = "Wynik: " + rpl.ToString() + "dB\nJakość sygnału: niewystarczająca\nJakość niewystarczająca, by korzystać z sieci.";
 
                 DialogResult dialogResult = MessageBox.Show(msg, "Wynik", MessageBoxButtons.OK);
 
