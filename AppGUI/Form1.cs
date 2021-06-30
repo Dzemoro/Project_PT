@@ -39,7 +39,7 @@ namespace AppGUI {
 
             var opBuilder = new DbContextOptionsBuilder<AppDatabaseContext>();
             var conStringBuilder = new SqliteConnectionStringBuilder();
-            conStringBuilder.DataSource = @"..\..\..\AppDB.db";
+            conStringBuilder.DataSource = @"AppDB.db";
             opBuilder.UseSqlite(conStringBuilder.ConnectionString);
             this.context = new AppDatabaseContext(opBuilder.Options);
             this.chm = new ChannelManager(this.context);
