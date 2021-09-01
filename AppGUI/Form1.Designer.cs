@@ -71,6 +71,10 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.ResultTextBox = new System.Windows.Forms.TextBox();
             this.ObstaclesDataGridView = new System.Windows.Forms.DataGridView();
+            this.ObstacleColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ObstacleAmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ObstacleAttenuationtColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.FrequencyLabel = new System.Windows.Forms.Label();
             this.FrequencyTextBox = new System.Windows.Forms.TextBox();
             this.TransmitterSectionLabel = new System.Windows.Forms.Label();
@@ -99,10 +103,8 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.ObstacleColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.ObstacleAmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ObstacleAttenuationtColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DeleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -548,9 +550,9 @@
             this.BandLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.BandLabel.Location = new System.Drawing.Point(3, 49);
             this.BandLabel.Name = "BandLabel";
-            this.BandLabel.Size = new System.Drawing.Size(95, 21);
+            this.BandLabel.Size = new System.Drawing.Size(97, 21);
             this.BandLabel.TabIndex = 32;
-            this.BandLabel.Text = "Pasmo [GHz]";
+            this.BandLabel.Text = "Zakres [MHz]";
             // 
             // ResultLabel
             // 
@@ -582,13 +584,42 @@
             this.ObstacleAmountColumn,
             this.ObstacleAttenuationtColumn,
             this.DeleteColumn});
-            this.ObstaclesDataGridView.Location = new System.Drawing.Point(665, 114);
+            this.ObstaclesDataGridView.Location = new System.Drawing.Point(665, 154);
             this.ObstaclesDataGridView.Name = "ObstaclesDataGridView";
-            this.ObstaclesDataGridView.Size = new System.Drawing.Size(542, 237);
+            this.ObstaclesDataGridView.Size = new System.Drawing.Size(542, 169);
             this.ObstaclesDataGridView.TabIndex = 36;
             this.ObstaclesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ObstaclesDataGridView_CellContentClick);
             this.ObstaclesDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.ObstaclesDataGridView_CellValueChanged);
             this.ObstaclesDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.ObstaclesDataGridView_DataError);
+            // 
+            // ObstacleColumn
+            // 
+            this.ObstacleColumn.HeaderText = "Przeszkoda";
+            this.ObstacleColumn.Name = "ObstacleColumn";
+            this.ObstacleColumn.Width = 155;
+            // 
+            // ObstacleAmountColumn
+            // 
+            this.ObstacleAmountColumn.FillWeight = 90F;
+            this.ObstacleAmountColumn.HeaderText = "Ilość";
+            this.ObstacleAmountColumn.Name = "ObstacleAmountColumn";
+            this.ObstacleAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ObstacleAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ObstacleAttenuationtColumn
+            // 
+            this.ObstacleAttenuationtColumn.HeaderText = "Tłumienność [dB]";
+            this.ObstacleAttenuationtColumn.Name = "ObstacleAttenuationtColumn";
+            this.ObstacleAttenuationtColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ObstacleAttenuationtColumn.Width = 120;
+            // 
+            // DeleteColumn
+            // 
+            this.DeleteColumn.FillWeight = 70F;
+            this.DeleteColumn.HeaderText = "Usuń";
+            this.DeleteColumn.Name = "DeleteColumn";
+            this.DeleteColumn.Text = "Delete";
+            this.DeleteColumn.Width = 60;
             // 
             // FrequencyLabel
             // 
@@ -947,34 +978,32 @@
             this.panel2.Size = new System.Drawing.Size(291, 420);
             this.panel2.TabIndex = 49;
             // 
-            // ObstacleColumn
+            // label1
             // 
-            this.ObstacleColumn.HeaderText = "Przeszkoda";
-            this.ObstacleColumn.Name = "ObstacleColumn";
-            this.ObstacleColumn.Width = 155;
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Impact", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(835, 121);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(168, 26);
+            this.label1.TabIndex = 49;
+            this.label1.Text = "SEKCJA PRZESZKÓD";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // ObstacleAmountColumn
+            // label2
             // 
-            this.ObstacleAmountColumn.FillWeight = 90F;
-            this.ObstacleAmountColumn.HeaderText = "Ilość";
-            this.ObstacleAmountColumn.Name = "ObstacleAmountColumn";
-            this.ObstacleAmountColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ObstacleAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ObstacleAttenuationtColumn
-            // 
-            this.ObstacleAttenuationtColumn.HeaderText = "Tłumienność [dB]";
-            this.ObstacleAttenuationtColumn.Name = "ObstacleAttenuationtColumn";
-            this.ObstacleAttenuationtColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ObstacleAttenuationtColumn.Width = 120;
-            // 
-            // DeleteColumn
-            // 
-            this.DeleteColumn.FillWeight = 70F;
-            this.DeleteColumn.HeaderText = "Usuń";
-            this.DeleteColumn.Name = "DeleteColumn";
-            this.DeleteColumn.Text = "Delete";
-            this.DeleteColumn.Width = 60;
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Impact", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(670, 329);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(306, 26);
+            this.label2.TabIndex = 50;
+            this.label2.Text = "SEKCJA POZOSTAŁYCH PARAMETRÓW";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Form1
             // 
@@ -982,6 +1011,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1237, 551);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox14);
@@ -1025,6 +1056,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1103,6 +1135,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ObstacleAmountColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ObstacleAttenuationtColumn;
         private System.Windows.Forms.DataGridViewButtonColumn DeleteColumn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 

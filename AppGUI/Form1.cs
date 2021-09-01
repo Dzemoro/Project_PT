@@ -109,8 +109,8 @@ namespace AppGUI {
             }
 
             BandComboBox.Items.Clear();
-            BandComboBox.Items.Add("2.4");
-            BandComboBox.Items.Add("5.0");
+            BandComboBox.Items.Add("2412-2484");
+            BandComboBox.Items.Add("5180-5825");
         }
 
 
@@ -283,9 +283,9 @@ gdzie:
             if (!IsCustom(WireComboBoxR.Text))
                 AttenuationWireTextBoxR.Text = "";
             List<Channel> channels = new List<Channel>();
-            if (BandComboBox.Text == "2.4")
+            if (BandComboBox.Text == "2412-2484")
                 channels = this.chm.GetChannelsByBand(24);
-            else if (BandComboBox.Text == "5.0")
+            else if (BandComboBox.Text == "5180-5825")
                 channels = this.chm.GetChannelsByBand(50);
             foreach (var channel in channels)
                 ChannelComboBox.Items.Add(channel.number);
@@ -295,7 +295,7 @@ gdzie:
                     if (row.Cells["ObstacleColumn"].Value != null) {
                         if (!IsCustom(row.Cells["ObstacleColumn"].Value.ToString())) {
                             var obstacle = this.om.GetObstacleByName(row.Cells["ObstacleColumn"].Value.ToString());
-                            if (BandComboBox.Text == "2.4")
+                            if (BandComboBox.Text == "2412-2484")
                                 row.Cells["ObstacleAttenuationtColumn"].Value = obstacle.attenuation_24;
                             else row.Cells["ObstacleAttenuationtColumn"].Value = obstacle.attenuation_5;
                         }
@@ -306,9 +306,9 @@ gdzie:
 
         private void ChannelComboBox_SelectedIndexChanged(object sender, EventArgs e) {
             int band = 0;
-            if (BandComboBox.Text == "2.4")
+            if (BandComboBox.Text == "2412-2484")
                 band = 24;
-            else if (BandComboBox.Text == "5.0")
+            else if (BandComboBox.Text == "5180-5825")
                 band = 50;
             var channel = this.chm.GetChannelByBandFrequency(band, Convert.ToInt32(ChannelComboBox.Text));
             FrequencyTextBox.Text = channel.frequency.ToString();
@@ -408,7 +408,7 @@ gdzie:
                         row.Cells["ObstacleAttenuationtColumn"].Value = "";
                     } else {
                         var obstacle = this.om.GetObstacleByName(cell.Value.ToString());
-                        if (BandComboBox.Text == "2.4")
+                        if (BandComboBox.Text == "2412-2484")
                             row.Cells["ObstacleAttenuationtColumn"].Value = obstacle.attenuation_24.ToString(nfi);
                         else row.Cells["ObstacleAttenuationtColumn"].Value = obstacle.attenuation_5.ToString(nfi);
                     }
@@ -432,8 +432,7 @@ gdzie:
                     }
                 }
                 double fsl = (20 * Math.Log10(GetValue(DistanceTextBox) / 1000)) + (20 * Math.Log10(GetValue(FrequencyTextBox))) + 32.44;
-                double rpl = GetValue(PowerTextBoxT) - GetValue(AttenuationWireTextBoxT) * GetValue(LengthTextBoxT) - GetValue(AttenuationConnectorTextBoxT) + GetValue(GainTextBoxT) - fsl + GetValue(GainTextBoxR) - GetValue(AttenuationWireTextBoxR) * GetValue(LengthTextBoxR) - GetValue(AttenuationConnectorTextBoxR) - obstaclesAttenuation;
-                rpl = Math.Round(rpl, 4);
+                double rpl = CountClass.CountTest(GetValue(PowerTextBoxT), GetValue(AttenuationWireTextBoxT), GetValue(LengthTextBoxT), GetValue(AttenuationConnectorTextBoxT), GetValue(GainTextBoxT), fsl, GetValue(GainTextBoxR), GetValue(AttenuationWireTextBoxR), GetValue(LengthTextBoxR), GetValue(AttenuationConnectorTextBoxR), obstaclesAttenuation);            
                 ResultTextBox.Text = rpl.ToString();
 
                 string msg = "";
@@ -492,7 +491,7 @@ gdzie:
                         ObstacleAmount om = new ObstacleAmount();
                         om.amount = (int)GetValue(row.Cells["ObstacleAmountColumn"]);
                         if (IsCustom(row.Cells["ObstacleColumn"].Value.ToString())) {
-                            om.obstacles_id = this.om.AddCustomObstacle(new Obstacle() { name = "custom", attenuation_24 = (BandComboBox.Text == "2.4" ? float.Parse(row.Cells["ObstacleAttenuationtColumn"].Value.ToString()) : 0), attenuation_5 = (BandComboBox.Text == "5.0" ? float.Parse(row.Cells["ObstacleAttenuationtColumn"].Value.ToString()) : 0) }).id;
+                            om.obstacles_id = this.om.AddCustomObstacle(new Obstacle() { name = "custom", attenuation_24 = (BandComboBox.Text == "2412-2484" ? float.Parse(row.Cells["ObstacleAttenuationtColumn"].Value.ToString()) : 0), attenuation_5 = (BandComboBox.Text == "5180-5825" ? float.Parse(row.Cells["ObstacleAttenuationtColumn"].Value.ToString()) : 0) }).id;
                         } else
                             om.obstacles_id = this.om.GetObstacleByName(row.Cells["ObstacleColumn"].Value.ToString()).id;
                         om.measurements_id = m.id;
@@ -630,7 +629,7 @@ gdzie:
             LengthTextBoxR.Text = m.wireLenghtR.ToString(nfi);
 
             var channel = this.chm.GetChannel(m.channel_id);
-            BandComboBox.Text = (channel.band < 50) ? "2.4" : "5.0";
+            BandComboBox.Text = (channel.band < 50) ? "2412-2484" : "5180-5825";
             ChannelComboBox.Text = channel.number.ToString(nfi);
 
             var transmitter = this.dm.GetDevice(m.transmitter_id);
@@ -691,7 +690,7 @@ gdzie:
                 var ob = this.om.GetObstacle(obstacle.obstacles_id);
                 if (ob.name == "custom") {
                     row.Cells["ObstacleColumn"].Value = GetCustom();
-                    if (BandComboBox.Text == "2.4")
+                    if (BandComboBox.Text == "2412-2484")
                         row.Cells["ObstacleAttenuationtColumn"].Value = ob.attenuation_24.ToString(nfi);
                     else row.Cells["ObstacleAttenuationtColumn"].Value = ob.attenuation_5.ToString(nfi);
                     row.Cells["ObstacleAmountColumn"].Value = obstacle.amount.ToString(nfi);
@@ -707,6 +706,17 @@ gdzie:
         private void ConnectorLabelT_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label1_Click(object sender, EventArgs e) {
+
+        }
+    }
+
+    public class CountClass {
+        public static double CountTest(double PowerT, double WireT, double LenghtT, double ConnectorT, double GainT, double Fsl, double GainR, double WireR, double LengthR, double ConnectorR, double Obstacles) {
+            double result = PowerT - WireT * LenghtT - ConnectorT + GainT - Fsl + GainR - WireR * LengthR - ConnectorR - Obstacles;
+            return Math.Round(result, 4);
         }
     }
 }
